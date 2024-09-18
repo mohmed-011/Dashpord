@@ -21,7 +21,7 @@ export class ProductsComponent {
     autoplay:true,
     margin:8,
     merge:true,
-    autoplayTimeout:3000,
+    autoplayTimeout:4000,
     autoplayHoverPause:true,
     navText: ['', ''],
     responsive: {

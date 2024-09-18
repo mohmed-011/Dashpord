@@ -51,6 +51,13 @@ export const routes: Routes = [
             (c) => c.SettingsComponent
           ),
       },
+      {
+        path: 'pricing',title:'Pricing',
+        loadComponent: () =>
+          import('./components/pricing/pricing.component').then(
+            (c) => c.PricingComponent
+          ),
+      },
     ],
   },
   {
