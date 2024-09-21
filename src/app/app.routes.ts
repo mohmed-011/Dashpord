@@ -58,6 +58,27 @@ export const routes: Routes = [
             (c) => c.PricingComponent
           ),
       },
+      {
+        path: 'reports',title:'Reports',
+        loadComponent: () =>
+          import('./components/reports/reports.component').then(
+            (c) => c.ReportsComponent
+          ),
+      },
+      {
+        path: 'charts',title:'Charts',
+        loadComponent: () =>
+          import('./components/charts/charts.component').then(
+            (c) => c.ChartsComponent
+          ),
+      },
+      {
+        path: 'comparison',title:'Comparison',
+        loadComponent: () =>
+          import('./components/comparison/comparison.component').then(
+            (c) => c.ComparisonComponent
+          ),
+      },
     ],
   },
   {
