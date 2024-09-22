@@ -1,17 +1,15 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 
 @Component({
-  selector: 'app-products',
+  selector: 'app-details',
   standalone: true,
-  imports: [CarouselModule,RouterLink],
-  templateUrl: './products.component.html',
-  styleUrl: './products.component.scss'
+  imports: [CarouselModule],
+  templateUrl: './details.component.html',
+  styleUrl: './details.component.scss'
 })
-export class ProductsComponent {
-
-  customOptionsCat: OwlOptions = {
+export class DetailsComponent {
+customOptionsCat: OwlOptions = {
     loop: true,
     mouseDrag: true,
     touchDrag: false,

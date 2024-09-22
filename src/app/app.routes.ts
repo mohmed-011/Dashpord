@@ -8,7 +8,7 @@ export const routes: Routes = [
     component: BlankComponent,
     // canActivate: [authGuard],
     children: [
-      { path: '', redirectTo: 'home', pathMatch: 'full' },
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       {
         path: 'dashboard',title:'Dashboard',
         loadComponent: () =>
@@ -77,6 +77,13 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./components/comparison/comparison.component').then(
             (c) => c.ComparisonComponent
+          ),
+      },
+      {
+        path: 'details',title:'Details',
+        loadComponent: () =>
+          import('./components/details/details.component').then(
+            (c) => c.DetailsComponent
           ),
       },
     ],
