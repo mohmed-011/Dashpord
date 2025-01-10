@@ -14,14 +14,23 @@ export class ChartsComponent implements OnInit{
     this.rendercharts();
   }
 rendercharts():void{
-
-  const data = {
-    labels: ['Red', 'Orange', 'Yellow', 'Green', 'Blue'],
+  const datapie = {
+    labels: ['1-Nike Running Shoes', '2-MacBook Pro', '3-Sony PlayStation 5', '4-Rolex Watch', '5-Dell Monitor','6-Xiaomi Smart Watch'],
     datasets: [
       {
         label: 'profit',
-        data: [10,50,90,80,70],
-        backgroundColor: ['Red', 'Orange', 'Yellow', 'Green', 'Blue'],
+        data: [6,4,3,3,3,3],
+        backgroundColor: ['Red', 'Orange', 'Yellow', 'Green', 'Blue', 'gray'],
+      }
+    ]
+};
+  const dataDona = {
+    labels: ['Dell XPS 13', 'iPhone 14', 'LG Refrigerator', 'MacBook Pro', 'Samsung 55 TV','Sony TV'],
+    datasets: [
+      {
+        label: 'profit',
+        data: [7,4,3,2,2,1],
+        backgroundColor: ['Red', 'Orange', 'Yellow', 'Green', 'Blue', 'gray'],
       }
     ]
 };
@@ -47,7 +56,7 @@ rendercharts():void{
 };
     const chart = new Chart('DonaChart', {
   type: 'doughnut',
-  data: data,
+  data: datapie,
   options: {
     responsive: true,
     plugins: {
@@ -56,14 +65,14 @@ rendercharts():void{
       },
       title: {
         display: true,
-        text: 'Chart.js Doughnut Chart'
+        text: 'Top Sold Products'
       }
     }
   },
 });
     const chart2 = new Chart('pieChart', {
   type: 'pie',
-  data: data,
+  data: dataDona,
   options: {
     responsive: true,
     plugins: {
@@ -72,7 +81,7 @@ rendercharts():void{
       },
       title: {
         display: true,
-        text: 'Chart.js Doughnut Chart'
+        text: 'Most Viewed Products'
       }
     }
   },

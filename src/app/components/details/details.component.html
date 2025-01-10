@@ -1,22 +1,657 @@
-
-
+<h2 class="text-3xl font-[500] m-0">Add Product</h2>
 <div class="px-1 mb-10 flex flex-wrap">
-  <div class="lg:w-[30%] md:w-[60%]  zero:w-full mx-auto  sm:p-16">
-    <owl-carousel-o [options]="customOptionsCat">
-                  @for (item of [1,2,3]; track $index) {
-                  <ng-template carouselSlide>
-                    <div  class="text-center cursor-pointer">
-                      <img src="../../../assets/images/OIP.jpeg" [alt]=""  class="w-full h-[200px] rounded-md" />
-                    </div>
-                  </ng-template>
-                  }
-                </owl-carousel-o>
+  <div class="lg:w-[50%] md:w-[60%] zero:w-full mx-auto sm:p-10">
+    <p class="ps-3 font-[500] mb-1 text-sm">Image Cover</p>
+    <div class="flex items-center justify-center w-full">
+      <label
+        for="dropzone-file"
+        class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800"
+      >
+        <div class="flex flex-col items-center justify-center pt-5 pb-6">
+          <svg
+            class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 20 16"
+          >
+            <path
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
+            />
+          </svg>
+          <p class="mb-2 text-sm text-gray-500 dark:text-gray-400">
+            <span class="font-semibold">Click to upload</span> or drag and drop
+          </p>
+          <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG</p>
+        </div>
+        <input id="dropzone-file" type="file" class="hidden" />
+      </label>
+    </div>
+    <div class="my-8">
+      <label
+        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+        for="multiple_files"
+        >Upload multiple image</label
+      >
+      <input
+        class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+        id="multiple_files"
+        type="file"
+        multiple
+      />
+    </div>
+    @if (selectedOption == '1') {
+    <div class="phones border rounded-lg px-5 py-7 relative">
+      <label class="absolute -top-[10px] left-4">Phones</label>
+      <div class="flex flex-wrap justify-between mb-6">
+        <div class="w-[45%]">
+          <label
+            for="first_name"
+            class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
+            >Color</label
+          >
+          <input
+            type="text"
+            id="first_name"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Ex: Gray"
+            required
+          />
+        </div>
+        <div class="w-[45%]">
+          <label
+            for="first_name"
+            class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
+            >Brand</label
+          >
+          <input
+            type="text"
+            id="first_name"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Ex: Apple"
+            required
+          />
+        </div>
+      </div>
+      <div class="flex flex-wrap justify-between mb-6">
+        <div class="w-[45%]">
+          <label
+            for="first_name"
+            class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
+            >RAM</label
+          >
+          <input
+            type="number"
+            id="first_name"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Ex: 8"
+            required
+          />
+        </div>
+        <div class="w-[45%]">
+          <label
+            for="first_name"
+            class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
+            >Memory</label
+          >
+          <input
+            type="number"
+            id="first_name"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Ex: 128"
+            required
+          />
+        </div>
+      </div>
+      <div class="flex flex-wrap justify-between">
+        <div class="w-[45%]">
+          <label
+            for="first_name"
+            class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
+            >CPU</label
+          >
+          <input
+            type="number"
+            id="first_name"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Ex: A15 Bionic"
+            required
+          />
+        </div>
+        <div class="w-[45%]">
+          <label
+            for="first_name"
+            class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
+            >Screen Size</label
+          >
+          <input
+            type="number"
+            id="first_name"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Ex: 6.10"
+            required
+          />
+        </div>
+      </div>
+    </div>
+    } @else if (selectedOption == '2') {
+    <div class="phones border rounded-lg px-5 py-7 relative">
+      <label class="absolute -top-[10px] left-4">Laptops</label>
+      <div class="flex flex-wrap justify-between mb-6">
+        <div class="w-[45%]">
+          <label
+            for="first_name"
+            class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
+            >Color</label
+          >
+          <input
+            type="text"
+            id="first_name"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Ex: Gray"
+            required
+          />
+        </div>
+        <div class="w-[45%]">
+          <label
+            for="first_name"
+            class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
+            >Brand</label
+          >
+          <input
+            type="text"
+            id="first_name"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Ex: Apple"
+            required
+          />
+        </div>
+      </div>
+      <div class="flex flex-wrap justify-between mb-6">
+        <div class="w-[45%]">
+          <label
+            for="first_name"
+            class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
+            >RAM</label
+          >
+          <input
+            type="number"
+            id="first_name"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Ex: 8"
+            required
+          />
+        </div>
+        <div class="w-[45%]">
+          <label
+            for="first_name"
+            class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
+            >Memory</label
+          >
+          <input
+            type="number"
+            id="first_name"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Ex: 128"
+            required
+          />
+        </div>
+      </div>
+      <div class="flex flex-wrap justify-between">
+        <div class="w-[45%]">
+          <label
+            for="first_name"
+            class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
+            >CPU</label
+          >
+          <input
+            type="number"
+            id="first_name"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Ex: A15 Bionic"
+            required
+          />
+        </div>
+        <div class="w-[45%]">
+          <label
+            for="first_name"
+            class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
+            >Screen Size</label
+          >
+          <input
+            type="number"
+            id="first_name"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Ex: 6.10"
+            required
+          />
+        </div>
+      </div>
+    </div>
+    } @else if (selectedOption == '4') {
+    <div class="phones border rounded-lg px-5 py-7 relative">
+      <label class="absolute -top-[10px] left-4">SmartWatches</label>
+      <div class="flex flex-wrap justify-between mb-6">
+        <div class="w-[45%]">
+          <label
+            for="first_name"
+            class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
+            >Color</label
+          >
+          <input
+            type="text"
+            id="first_name"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Ex: Gray"
+            required
+          />
+        </div>
+        <div class="w-[45%]">
+          <label
+            for="first_name"
+            class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
+            >Brand</label
+          >
+          <input
+            type="text"
+            id="first_name"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Ex: Apple"
+            required
+          />
+        </div>
+      </div>
+      <div class="flex flex-wrap justify-between mb-6">
+        <div class="w-[45%]">
+          <label
+            for="first_name"
+            class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
+            >RAM</label
+          >
+          <input
+            type="number"
+            id="first_name"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Ex: 8"
+            required
+          />
+        </div>
+        <div class="w-[45%]">
+          <label
+            for="first_name"
+            class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
+            >Memory</label
+          >
+          <input
+            type="number"
+            id="first_name"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Ex: 128"
+            required
+          />
+        </div>
+      </div>
+      <div class="flex flex-wrap justify-between">
+        <div class="w-[45%]">
+          <label
+            for="first_name"
+            class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
+            >CPU</label
+          >
+          <input
+            type="number"
+            id="first_name"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Ex: A15 Bionic"
+            required
+          />
+        </div>
+        <div class="w-[45%]">
+          <label
+            for="first_name"
+            class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
+            >Screen Size</label
+          >
+          <input
+            type="number"
+            id="first_name"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Ex: 6.10"
+            required
+          />
+        </div>
+      </div>
+    </div>
+    } @else if (selectedOption == '7') {
+    <div class="phones border rounded-lg px-5 py-7 relative">
+      <label class="absolute -top-[10px] left-4">TV</label>
+      <div class="flex flex-wrap justify-between mb-6">
+        <div class="w-[45%]">
+          <label
+            for="first_name"
+            class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
+            >Color</label
+          >
+          <input
+            type="text"
+            id="first_name"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Ex: Gray"
+            required
+          />
+        </div>
+        <div class="w-[45%]">
+          <label
+            for="first_name"
+            class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
+            >Brand</label
+          >
+          <input
+            type="text"
+            id="first_name"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Ex: Apple"
+            required
+          />
+        </div>
+      </div>
+      <div class="flex flex-wrap justify-between mb-6">
+        <div class="w-[45%]">
+          <label
+            for="first_name"
+            class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
+            >RAM</label
+          >
+          <input
+            type="number"
+            id="first_name"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Ex: 8"
+            required
+          />
+        </div>
+        <div class="w-[45%]">
+          <label
+            for="first_name"
+            class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
+            >Memory</label
+          >
+          <input
+            type="number"
+            id="first_name"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Ex: 128"
+            required
+          />
+        </div>
+      </div>
+      <div class="flex flex-wrap justify-between">
+        <div class="w-[45%]">
+          <label
+            for="first_name"
+            class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
+            >CPU</label
+          >
+          <input
+            type="number"
+            id="first_name"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Ex: A15 Bionic"
+            required
+          />
+        </div>
+        <div class="w-[45%]">
+          <label
+            for="first_name"
+            class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
+            >Screen Size</label
+          >
+          <input
+            type="number"
+            id="first_name"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Ex: 6.10"
+            required
+          />
+        </div>
+      </div>
+    </div>
+    } @else if (selectedOption == '1002') {
+    <div class="phones border rounded-lg px-5 py-7 relative">
+      <label class="absolute -top-[10px] left-4">PC</label>
+      <div class="flex flex-wrap justify-between mb-6">
+        <div class="w-[45%]">
+          <label
+            for="first_name"
+            class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
+            >Color</label
+          >
+          <input
+            type="text"
+            id="first_name"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Ex: Gray"
+            required
+          />
+        </div>
+        <div class="w-[45%]">
+          <label
+            for="first_name"
+            class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
+            >Brand</label
+          >
+          <input
+            type="text"
+            id="first_name"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Ex: Apple"
+            required
+          />
+        </div>
+      </div>
+      <div class="flex flex-wrap justify-between mb-6">
+        <div class="w-[45%]">
+          <label
+            for="first_name"
+            class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
+            >RAM</label
+          >
+          <input
+            type="number"
+            id="first_name"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Ex: 8"
+            required
+          />
+        </div>
+        <div class="w-[45%]">
+          <label
+            for="first_name"
+            class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
+            >Memory</label
+          >
+          <input
+            type="number"
+            id="first_name"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Ex: 128"
+            required
+          />
+        </div>
+      </div>
+      <div class="flex flex-wrap justify-between">
+        <div class="w-[45%]">
+          <label
+            for="first_name"
+            class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
+            >CPU</label
+          >
+          <input
+            type="number"
+            id="first_name"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Ex: A15 Bionic"
+            required
+          />
+        </div>
+        <div class="w-[45%]">
+          <label
+            for="first_name"
+            class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
+            >Screen Size</label
+          >
+          <input
+            type="number"
+            id="first_name"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Ex: 6.10"
+            required
+          />
+        </div>
+      </div>
+    </div>
+    }
   </div>
-  <div class="md:w-[70%] mx-auto lg:pt-16">
-    <h2 class="text-2xl font-semibold text-black dark:text-white">Apple Watch Series 4</h2>
-    <p class="text-black dark:text-[#9ca3af] text-lg font-semibold  py-3">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolorum quam provident laboriosam iste eum mollitia dolorem explicabo, incidunt dolores quos inventore repellendus fugiat totam quas ipsum minus tempore ipsam eaque.</p>
-    <p class="text-[#1a56db] font-semibold">Apple</p>
-    <div class="flex items-center mt-5 mb-5">
+  <div class="lg:w-[50%] md:w-[70%] mx-auto lg:pt-10 space-y-5">
+    <div>
+      <label
+        for="first_name"
+        class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
+        >Product Name</label
+      >
+      <input
+        type="text"
+        id="first_name"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        placeholder="Ex:  Iphone 16 Pro Max"
+        required
+      />
+    </div>
+
+    <div>
+      <label
+        for="first_name"
+        class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
+        >Product Description</label
+      >
+      <textarea
+        type="text"
+        id="first_name"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        rows="6"
+        placeholder="Ex:  Latest Apple iPhone Version"
+        required
+      ></textarea>
+    </div>
+    <div class="flex flex-wrap justify-between">
+      <div class="w-[45%]">
+        <label
+          for="countries"
+          class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
+          >Category</label
+        >
+        <select
+          id="countries"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        >
+          <option selected>Select Category</option>
+          <option value="1">Electronics</option>
+          <option value="5">Home Appliances</option>
+          <option value="9">Clothing</option>
+          <option value="FR">Books</option>
+          <option value="DE">Beauty</option>
+          <option value="DE">Sports</option>
+          <option value="DE">accessories</option>
+          <option value="DE">Tools</option>
+          <option value="DE">Furniture</option>
+        </select>
+      </div>
+      <div class="w-[45%]">
+        <label
+          for="countries"
+          class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
+          >Sub Category</label
+        >
+        <select
+          id="countries"
+          [(ngModel)]="selectedOption"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        >
+          <option selected>Select Sub Category</option>
+          <option value="1">Smartphones</option>
+          <option value="3">Tablets</option>
+          <option value="2">Laptops</option>
+          <option value="FR">Refrigerators</option>
+          <option value="DE">Clothing for Men</option>
+          <option value="7">Tvs</option>
+          <option value="4">SmartWatches</option>
+          <option value="1002">PCs</option>
+        </select>
+      </div>
+    </div>
+    <div class="flex flex-wrap justify-between">
+      <div class="w-[30%]">
+        <label
+          for="first_name"
+          class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
+          >Price in</label
+        >
+        <input
+          type="number"
+          id="first_name"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          placeholder="Ex: 1500"
+          required
+        />
+      </div>
+      <div class="w-[30%]">
+        <label
+          for="first_name"
+          class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
+          >Price Out</label
+        >
+        <input
+          type="number"
+          id="first_name"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          placeholder="Ex: 1700"
+          required
+        />
+      </div>
+      <div class="w-[30%]">
+        <label
+          for="first_name"
+          class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
+          >Discount</label
+        >
+        <input
+          type="number"
+          id="first_name"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          placeholder="Ex: 50"
+          required
+        />
+      </div>
+    </div>
+    <div class="w-[30%]">
+      <label
+        for="first_name"
+        class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
+        >Quantity</label
+      >
+      <input
+        type="number"
+        id="first_name"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        placeholder="Ex: 22"
+        required
+      />
+    </div>
+    <!-- <div class="flex items-center mt-5 mb-5">
       <div class="flex items-center space-x-1 rtl:space-x-reverse">
         @for (num of [1,2,3,4,5].slice(0,4.5); track
         $index) {
@@ -40,78 +675,69 @@
         class="bg-emerald-200 text-emerald-900 text-xs font-semibold px-2.5 py-0.5 rounded dark:bg-emerald-200 dark:text-emerald-800 ms-3"
         >4.5</span
       >
+    </div> -->
+    <div class="flex items-center justify-center">
+      <button
+        class="px-[15px] py-[5px] rounded-lg text-white bg-green-500 shadow-md hover:bg-[#3adb75] transition-all shadow-green-500"
+      >
+        <i class="text-xl fa-regular fa-floppy-disk pe-2"></i> Save Product
+      </button>
     </div>
-    <div class="flex items-center md:flex-row zero:flex-col justify-between ">
-      @if (true) {
-      <div class="flex w-fit">
-        <p class=" pe-5 text-2xl font-bold text-red-500 line-through">1200$ </p>
-        <p class="text-2xl font-bold text-emerald-500">900$ </p>
-      </div>
-      }
-      <!-- @else {
-      <p class="text-2xl font-bold text-black dark:text-white ">1200$ </p>
-      } -->
-      <div class="flex space-x-5 zero:mt-4 md:mt-0">
 
-        <button  class="px-[15px] py-[5px] rounded-lg text-white bg-red-500 shadow-md hover:bg-[#fa5858] transition-all shadow-red-500"> <i class=" text-xl fa-regular fa-heart pe-2"></i> Edit product</button>
-        <button  class="px-[15px] py-[5px] rounded-lg text-white bg-blue-500 shadow-md hover:bg-blue-400 transition-all shadow-blue-500"> <i class="fa-solid fa-cart-shopping pe-2"></i> uplode to site</button>
-      </div>
-    </div>
-    <hr class="my-7" />
     <!-- <h2 class="text-2xl font-semibold pb-3 text-black dark:text-white">Brand Details</h2> -->
-    <div class="flex flex-wrap justify-between items-center">
-      <div class="border rounded-lg shadow  overflow-hidden">
-        <img src="../../../assets/images/OIP.jpeg" alt="apple">
-      </div>
-      <div class="text-center">
-        <p class="text-xl font-semibold text-black dark:text-[#9ca3af]"><i class="fa-solid fa-boxes-stacked text-[#f5accc] text-2xl pe-3"></i> 250</p>
-        <P class="text-xl font-semibold text-black dark:text-[#9ca3af]" >in stock</P>
-      </div>
-      <div class="text-center">
-        <p class="flex text-xl font-semibold text-black dark:text-[#9ca3af]"> <img src="./assets/images/sold.svg" class="w-[35px] me-3" alt=""> 600</p>
-        <p  class="flex text-xl font-semibold text-black dark:text-[#9ca3af] text-center">sold times</p>
-        </div>
-    </div>
   </div>
 </div>
-
-<h1 class="text-3xl transition-all duration-[0.5s] text-black dark:text-white hover:text-white  p-4 w-fit mx-auto  relative mb-5   before:w-8 before:h-8 before:bg-[#1a56db] before:z-[-1] before:absolute before:-left-6 before:translate-y-[-50%] before:top-[50%] before:rounded-full before:transition-all before:duration-[0.5s]          after:z-[-1] after:transition-all after:duration-[0.5s] after:translate-y-[-50%]  after:w-8 after:h-8 after:bg-[#1a56db] after:absolute after:-right-6 after:top-[50%] after:rounded-full  hover:before:w-full hover:after:h-[75%]  hover:before:h-[75%] hover:after:w-full ">Related Products</h1>
-<owl-carousel-o [options]="customOptionsCat"  >
+<!--
+<h1
+  class="text-3xl transition-all duration-[0.5s] text-black dark:text-white hover:text-white p-4 w-fit mx-auto relative mb-5 before:w-8 before:h-8 before:bg-[#1a56db] before:z-[-1] before:absolute before:-left-6 before:translate-y-[-50%] before:top-[50%] before:rounded-full before:transition-all before:duration-[0.5s] after:z-[-1] after:transition-all after:duration-[0.5s] after:translate-y-[-50%] after:w-8 after:h-8 after:bg-[#1a56db] after:absolute after:-right-6 after:top-[50%] after:rounded-full hover:before:w-full hover:after:h-[75%] hover:before:h-[75%] hover:after:w-full"
+>
+  Related Products
+</h1>
+<owl-carousel-o [options]="customOptionsCat">
   @for (item of [1,2,3,4,5] ; track $index) {
   <ng-template carouselSlide>
-    <div class=" p-2 ">
-              <div class=" hover:scale-[1.05] transition-all duration-[0.5s] bg-white p-3 rounded-lg shadow-lg">
-                <owl-carousel-o [options]="customOptionsCat">
-                  @for (item of [1,2,3]; track $index) {
-                  <ng-template carouselSlide>
-                    <div  class="text-center cursor-pointer">
-                      <img src="../../../assets/images/OIP.jpeg" [alt]=""  class="w-full h-[200px] rounded-md" />
-                    </div>
-                  </ng-template>
-                  }
-                </owl-carousel-o>
+    <div class="p-2">
+      <div
+        class="hover:scale-[1.05] transition-all duration-[0.5s] bg-white p-3 rounded-lg shadow-lg"
+      >
+        <owl-carousel-o [options]="customOptionsCat">
+          @for (item of [1,2,3]; track $index) {
+          <ng-template carouselSlide>
+            <div class="text-center cursor-pointer">
+              <img
+                src="../../../assets/images/OIP.jpeg"
+                [alt]=""
+                class="w-full h-[200px] rounded-md"
+              />
+            </div>
+          </ng-template>
+          }
+        </owl-carousel-o>
 
-                <h5 class="my-2 font-semibold">Apple Watch Series 4</h5>
-                <div class="flex justify-between">
-                  <p class=" my-1 text-[#4880FF] font-semibold ">1200$</p>
-                  <div class="cursor-pointer  p-1 rounded-full color1 d-flex items-center justify-center">
-                    <i class="fa-regular fa-heart "></i>
-                  </div>
+        <h5 class="my-2 font-semibold">Apple Watch Series 4</h5>
+        <div class="flex justify-between">
+          <p class="my-1 text-[#4880FF] font-semibold">1200$</p>
+          <div
+            class="cursor-pointer p-1 rounded-full color1 d-flex items-center justify-center"
+          >
+            <i class="fa-regular fa-heart"></i>
+          </div>
+        </div>
 
-                </div>
-
-                <div class="flex my-2">
-                  <i class="fa-solid fa-star text-yellow-400"></i>
-                  <i class="fa-solid fa-star text-yellow-400"></i>
-                  <i class="fa-solid fa-star text-yellow-400"></i>
-                  <i class="fa-solid fa-star-half-stroke text-yellow-400"></i>
-                  <i class="fa-regular fa-star text-yellow-400"></i>
-                </div>
-                <button class=" bg-slate-100 text-sm font-semibold rounded-md px-3 py-1 my-2 ">Edit product</button>
-              </div>
-  </div>
-
-</ng-template>
+        <div class="flex my-2">
+          <i class="fa-solid fa-star text-yellow-400"></i>
+          <i class="fa-solid fa-star text-yellow-400"></i>
+          <i class="fa-solid fa-star text-yellow-400"></i>
+          <i class="fa-solid fa-star-half-stroke text-yellow-400"></i>
+          <i class="fa-regular fa-star text-yellow-400"></i>
+        </div>
+        <button
+          class="bg-slate-100 text-sm font-semibold rounded-md px-3 py-1 my-2"
+        >
+          Edit product
+        </button>
+      </div>
+    </div>
+  </ng-template>
   }
-</owl-carousel-o>
-
+</owl-carousel-o> -->
