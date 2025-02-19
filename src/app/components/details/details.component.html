@@ -47,67 +47,47 @@
     @if (selectedOption == '1') {
     <div class="phones border rounded-lg px-5 py-7 relative">
       <label class="absolute -top-[10px] left-4">Phones</label>
+
       <div class="flex flex-wrap justify-between mb-6">
         <div class="w-[45%]">
           <label
-            for="first_name"
-            class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
-            >Color</label
-          >
-          <input
-            type="text"
-            id="first_name"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            placeholder="Ex: Gray"
-            required
-          />
-        </div>
-        <div class="w-[45%]">
-          <label
-            for="first_name"
-            class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
-            >Brand</label
-          >
-          <input
-            type="text"
-            id="first_name"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            placeholder="Ex: Apple"
-            required
-          />
-        </div>
-      </div>
-      <div class="flex flex-wrap justify-between mb-6">
-        <div class="w-[45%]">
-          <label
-            for="first_name"
+            for="RAM"
             class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
             >RAM</label
           >
-          <input
-            type="number"
-            id="first_name"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            placeholder="Ex: 8"
-            required
-          />
+          <select
+          id="RAM"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        >
+          <option selected>Select Ram size</option>
+          <option value="2">2GB</option>
+          <option value="4">4GB</option>
+          <option value="8">8GB</option>
+          <option value="16">16GB</option>
+          <option value="32">32GB</option>
+
+        </select>
         </div>
         <div class="w-[45%]">
           <label
-            for="first_name"
+            for="RAM"
             class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
             >Memory</label
           >
-          <input
-            type="number"
-            id="first_name"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            placeholder="Ex: 128"
-            required
-          />
+          <select
+          id="RAM"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        >
+          <option selected>Select Memory size</option>
+          <option value="128">128GB</option>
+          <option value="256">256GB</option>
+          <option value="512">512GB</option>
+          <option value="1000">1TB</option>
+
+        </select>
         </div>
       </div>
-      <div class="flex flex-wrap justify-between">
+      <div class="flex flex-wrap justify-between mb-6">
         <div class="w-[45%]">
           <label
             for="first_name"
@@ -136,6 +116,23 @@
             required
           />
         </div>
+      </div>
+      <div class="flex flex-wrap justify-between ">
+        <div class="w-[45%]">
+          <label
+            for="first_name"
+            class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
+            >Color</label
+          >
+          <input
+            type="text"
+            id="first_name"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Ex: Gray"
+            required
+          />
+        </div>
+
       </div>
     </div>
     } @else if (selectedOption == '2') {
@@ -146,7 +143,7 @@
           <label
             for="first_name"
             class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
-            >Color</label
+            >Weight</label
           >
           <input
             type="text"
@@ -160,7 +157,7 @@
           <label
             for="first_name"
             class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
-            >Brand</label
+            >Model</label
           >
           <input
             type="text"
@@ -174,34 +171,83 @@
       <div class="flex flex-wrap justify-between mb-6">
         <div class="w-[45%]">
           <label
-            for="first_name"
+            for="RAM"
             class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
             >RAM</label
           >
-          <input
-            type="number"
-            id="first_name"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            placeholder="Ex: 8"
-            required
-          />
+          <select
+          id="RAM"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        >
+          <option selected>Select Ram size</option>
+          <option value="2">2GB</option>
+          <option value="4">4GB</option>
+          <option value="8">8GB</option>
+          <option value="16">16GB</option>
+          <option value="32">32GB</option>
+
+        </select>
         </div>
+        <div class="w-[45%]">
+          <label
+            for="RAM"
+            class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
+            >Memory</label
+          >
+          <select
+          id="RAM"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        >
+          <option selected>Select Memory size</option>
+          <option value="128">128GB</option>
+          <option value="256">256GB</option>
+          <option value="512">512GB</option>
+          <option value="1000">1TB</option>
+          <option value="2000">2TB</option>
+          <option value="4000">4TB</option>
+          <option value="8000">8TB</option>
+
+        </select>
+        </div>
+
+
+      </div>
+      <div class="flex flex-wrap justify-between mb-6">
+        <div class="w-[45%]">
+          <label
+            for="RAM"
+            class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
+            >Memory Type</label
+          >
+          <select
+          id="RAM"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        >
+          <option selected>Select Memory Type</option>
+          <option value="2">SSD</option>
+          <option value="4">HHD</option>
+
+
+        </select>
+        </div>
+
         <div class="w-[45%]">
           <label
             for="first_name"
             class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
-            >Memory</label
+            >Graphics_Card</label
           >
           <input
-            type="number"
+            type="Text"
             id="first_name"
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            placeholder="Ex: 128"
+            placeholder="Ex: NVIDIA GTX 1650"
             required
           />
         </div>
+
       </div>
-      <div class="flex flex-wrap justify-between">
+      <div class="flex flex-wrap justify-between mb-6">
         <div class="w-[45%]">
           <label
             for="first_name"
@@ -230,6 +276,9 @@
             required
           />
         </div>
+      </div>
+      <div class="flex flex-wrap justify-between">
+
       </div>
     </div>
     } @else if (selectedOption == '4') {
@@ -250,11 +299,11 @@
             required
           />
         </div>
-        <div class="w-[45%]">
+         <div class="w-[45%]">
           <label
             for="first_name"
             class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
-            >Brand</label
+            >Model</label
           >
           <input
             type="text"
@@ -265,42 +314,13 @@
           />
         </div>
       </div>
-      <div class="flex flex-wrap justify-between mb-6">
-        <div class="w-[45%]">
-          <label
-            for="first_name"
-            class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
-            >RAM</label
-          >
-          <input
-            type="number"
-            id="first_name"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            placeholder="Ex: 8"
-            required
-          />
-        </div>
-        <div class="w-[45%]">
-          <label
-            for="first_name"
-            class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
-            >Memory</label
-          >
-          <input
-            type="number"
-            id="first_name"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            placeholder="Ex: 128"
-            required
-          />
-        </div>
-      </div>
+
       <div class="flex flex-wrap justify-between">
         <div class="w-[45%]">
           <label
             for="first_name"
             class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
-            >CPU</label
+            >OS</label
           >
           <input
             type="number"
@@ -334,21 +354,7 @@
           <label
             for="first_name"
             class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
-            >Color</label
-          >
-          <input
-            type="text"
-            id="first_name"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            placeholder="Ex: Gray"
-            required
-          />
-        </div>
-        <div class="w-[45%]">
-          <label
-            for="first_name"
-            class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
-            >Brand</label
+            >Model</label
           >
           <input
             type="text"
@@ -358,53 +364,7 @@
             required
           />
         </div>
-      </div>
-      <div class="flex flex-wrap justify-between mb-6">
-        <div class="w-[45%]">
-          <label
-            for="first_name"
-            class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
-            >RAM</label
-          >
-          <input
-            type="number"
-            id="first_name"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            placeholder="Ex: 8"
-            required
-          />
-        </div>
-        <div class="w-[45%]">
-          <label
-            for="first_name"
-            class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
-            >Memory</label
-          >
-          <input
-            type="number"
-            id="first_name"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            placeholder="Ex: 128"
-            required
-          />
-        </div>
-      </div>
-      <div class="flex flex-wrap justify-between">
-        <div class="w-[45%]">
-          <label
-            for="first_name"
-            class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
-            >CPU</label
-          >
-          <input
-            type="number"
-            id="first_name"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            placeholder="Ex: A15 Bionic"
-            required
-          />
-        </div>
-        <div class="w-[45%]">
+       <div class="w-[45%]">
           <label
             for="first_name"
             class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
@@ -415,73 +375,109 @@
             id="first_name"
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="Ex: 6.10"
+            required
+          />
+        </div>
+      </div>
+
+      <div class="flex flex-wrap justify-between">
+       <div class="w-[45%]">
+          <label
+            for="first_name"
+            class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
+            >Resolution</label
+          >
+          <input
+            type="text"
+            id="first_name"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Ex: FullHd"
             required
           />
         </div>
       </div>
     </div>
-    } @else if (selectedOption == '1002') {
+    } @else if (selectedOption == '19') {
     <div class="phones border rounded-lg px-5 py-7 relative">
       <label class="absolute -top-[10px] left-4">PC</label>
       <div class="flex flex-wrap justify-between mb-6">
         <div class="w-[45%]">
           <label
-            for="first_name"
+            for="RAM"
             class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
-            >Color</label
+            >RAM</label
           >
-          <input
-            type="text"
-            id="first_name"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            placeholder="Ex: Gray"
-            required
-          />
+          <select
+          id="RAM"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        >
+          <option selected>Select Ram size</option>
+          <option value="2">2GB</option>
+          <option value="4">4GB</option>
+          <option value="8">8GB</option>
+          <option value="16">16GB</option>
+          <option value="32">32GB</option>
+
+        </select>
         </div>
         <div class="w-[45%]">
           <label
-            for="first_name"
+            for="RAM"
             class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
-            >Brand</label
+            >Memory</label
           >
-          <input
-            type="text"
-            id="first_name"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            placeholder="Ex: Apple"
-            required
-          />
+          <select
+          id="RAM"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        >
+          <option selected>Select Memory size</option>
+          <option value="128">128GB</option>
+          <option value="256">256GB</option>
+          <option value="512">512GB</option>
+          <option value="1000">1TB</option>
+          <option value="2000">2TB</option>
+          <option value="4000">4TB</option>
+          <option value="8000">8TB</option>
+
+        </select>
         </div>
+
+
       </div>
       <div class="flex flex-wrap justify-between mb-6">
         <div class="w-[45%]">
           <label
-            for="first_name"
+            for="RAM"
             class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
-            >RAM</label
+            >Memory Type</label
           >
-          <input
-            type="number"
-            id="first_name"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            placeholder="Ex: 8"
-            required
-          />
+          <select
+          id="RAM"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        >
+          <option selected>Select Memory Type</option>
+          <option value="2">SSD</option>
+          <option value="4">HHD</option>
+
+
+        </select>
         </div>
+
         <div class="w-[45%]">
           <label
             for="first_name"
             class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
-            >Memory</label
+            >Graphics_Card</label
           >
           <input
-            type="number"
+            type="Text"
             id="first_name"
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            placeholder="Ex: 128"
+            placeholder="Ex: NVIDIA GTX 1650"
             required
           />
         </div>
+
       </div>
       <div class="flex flex-wrap justify-between">
         <div class="w-[45%]">
@@ -498,20 +494,7 @@
             required
           />
         </div>
-        <div class="w-[45%]">
-          <label
-            for="first_name"
-            class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
-            >Screen Size</label
-          >
-          <input
-            type="number"
-            id="first_name"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            placeholder="Ex: 6.10"
-            required
-          />
-        </div>
+        
       </div>
     </div>
     }
@@ -589,7 +572,7 @@
           <option value="DE">Clothing for Men</option>
           <option value="7">Tvs</option>
           <option value="4">SmartWatches</option>
-          <option value="1002">PCs</option>
+          <option value="19">PCs</option>
         </select>
       </div>
     </div>

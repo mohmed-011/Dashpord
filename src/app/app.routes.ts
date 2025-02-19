@@ -93,6 +93,20 @@ export const routes: Routes = [
             (c) => c.ChatbotComponent
           ),
       },
+      {
+        path: 'codeSystem',title:'Code System',
+        loadComponent: () =>
+          import('./components/code-system/code-system.component').then(
+            (c) => c.CodeSystemComponent
+          ),
+      },
+      {
+        path: 'excelSheet',title:'Excel Sheet',
+        loadComponent: () =>
+          import('./components/excel-sheet/excel-sheet.component').then(
+            (c) => c.ExcelSheetComponent
+          ),
+      },
     ],
   },
   {
