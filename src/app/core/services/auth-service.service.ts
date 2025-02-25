@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { environment } from '../environments/environments';
 
 @Injectable({
   providedIn: 'root'
@@ -15,11 +16,11 @@ export class AuthServiceService {
   userData:any = null
 
   setRegisterFoem(data:object):Observable<any>{
-    return this._HttpClient.post(`http://sm-ecommerce.runasp.net/Auth/loginDash`,data);
+    return this._HttpClient.post(`${environment.baseUrl}Auth/loginDash`,data);
   }
 
   setloginFoem(data:object):Observable<any>{
-    return this._HttpClient.post(`http://sm-ecommerce.runasp.net/Auth/loginDash`,data);
+    return this._HttpClient.post(`${environment.baseUrl}Auth/loginDash`,data);
   }
 
   //  saveUserData():void{

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { ProductsService } from './../../core/services/products.service';
+import { Component, inject } from '@angular/core';
 
 @Component({
   selector: 'app-add-product',
@@ -9,4 +10,5 @@ import { Component } from '@angular/core';
 })
 export class AddProductComponent {
 
+  
 }

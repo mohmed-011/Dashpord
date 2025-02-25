@@ -3,6 +3,28 @@ import { AuthComponent } from './layout/auth/auth.component';
 import { BlankComponent } from './layout/blank/blank.component';
 
 export const routes: Routes = [
+  {
+    path: '',
+    component: AuthComponent,
+    // canActivate: [lodeGuard],
+    children: [
+      { path: '', redirectTo: 'login', pathMatch: 'full' },
+      {
+        path: 'login',title:'Login',
+        loadComponent: () =>
+          import('./components/login/login.component').then(
+            (c) => c.LoginComponent
+          ),
+      },
+      {
+        path: 'forget',title:'Forget Password',
+        loadComponent: () =>
+          import('./components/forget-password/forget-password.component').then(
+            (c) => c.ForgetPasswordComponent
+          ),
+      },
+    ],
+  },
     {
     path: '',
     component: BlankComponent,
@@ -109,28 +131,7 @@ export const routes: Routes = [
       },
     ],
   },
-  {
-    path: '',
-    component: AuthComponent,
-    // canActivate: [lodeGuard],
-    children: [
-      { path: '', redirectTo: 'login', pathMatch: 'full' },
-      {
-        path: 'login',title:'Login',
-        loadComponent: () =>
-          import('./components/login/login.component').then(
-            (c) => c.LoginComponent
-          ),
-      },
-      {
-        path: 'forget',title:'Forget Password',
-        loadComponent: () =>
-          import('./components/forget-password/forget-password.component').then(
-            (c) => c.ForgetPasswordComponent
-          ),
-      },
-    ],
-  },
+
   {
     path: '**',title:'Not Found',
     loadComponent: () =>
