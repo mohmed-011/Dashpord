@@ -1,7 +1,10 @@
-import { Component, ElementRef, inject, model, ViewChild } from '@angular/core';
+import { Component, ElementRef, inject, model, OnInit, ViewChild } from '@angular/core';
 import {  FormsModule, NgModel } from '@angular/forms';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { ProductsService } from '../../core/services/products.service';
+import { AuthServiceService } from '../../core/services/auth-service.service';
+import { ActivatedRoute } from '@angular/router';
+import { IProduct } from '../../core/Interfaces/iproduct';
 
 @Component({
   selector: 'app-details',
@@ -10,7 +13,23 @@ import { ProductsService } from '../../core/services/products.service';
   templateUrl: './details.component.html',
   styleUrl: './details.component.scss'
 })
-export class DetailsComponent {
+export class DetailsComponent implements OnInit{
+  ngOnInit(): void {
+    this._ActivatedRoute.paramMap.subscribe({
+      next:( P )=>{
+          console.log(P.get("id"))
+
+        this._ProductsService.GetOneProduct(P.get("id")).subscribe({
+          next:(res)=>{
+            this.detalisProduct=res
+            console.log(this.detalisProduct)
+          }
+        })
+
+
+      }
+    })
+  }
 // customOptionsCat: OwlOptions = {
 //     loop: true,
 //     mouseDrag: true,
@@ -44,7 +63,15 @@ export class DetailsComponent {
 //     },
 //     nav: false
 //   }
+
+
 private readonly _ProductsService = inject(ProductsService)
+private readonly _AuthServiceService = inject(AuthServiceService)
+private readonly _ActivatedRoute = inject(ActivatedRoute)
+
+  detalisProduct:IProduct = {} as IProduct
+
+
 
 // @ViewChild('imageInput', { static: false }) imageInput!: ElementRef;
 
@@ -76,18 +103,15 @@ onFileSelected(event: Event) {
     formData.append('Rate',"0");
     formData.append('Category_ID', formValues.Category_ID);
     formData.append('Sub_Category_ID', formValues.Sub_Category_ID);
-    formData.append('Seller_ID', "1");
+    formData.append('Seller_ID', this._AuthServiceService.userData.nameid);
     formData.append('Image', this.selectedFile ); // إضافة الصورة
-
-            formData.forEach((value, key) => {
-  console.log(key, value);
-});
 
     this._ProductsService.addOneProduct(formData).subscribe({
       next: (res) => {
           if(res.message  == "success"){
 
             console.log('Product added:', res)
+
           }
       } ,
       error: (error) => console.error('Error:', error),
@@ -96,4 +120,6 @@ onFileSelected(event: Event) {
   }
 
   selectedOption: string = 'Select Sub Category';
+  selectedCatOption: string = 'Select Category';
+
 }

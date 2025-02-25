@@ -1,6 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
+import { IProduct } from '../../core/Interfaces/iproduct';
+import { ProductsService } from '../../core/services/products.service';
+import { AuthServiceService } from '../../core/services/auth-service.service';
 
 @Component({
   selector: 'app-products',
@@ -43,5 +46,27 @@ export class ProductsComponent {
       }
     },
     nav: false
+  }
+  private readonly _ProductsService = inject(ProductsService)
+    private readonly _AuthServiceService = inject(AuthServiceService)
+
+
+productList:IProduct[]=[]
+
+  ngOnInit(): void {
+
+    this._ProductsService.GetAllProduct( this._AuthServiceService.userData.nameid).subscribe({
+      next:(res)=>{
+         for (const item of res) {
+          this.productList.push(item);
+        }
+        for (const item of this.productList) {
+        console.log(item)
+        }
+      },
+      error:(err)=>{
+        console.log(err)
+      }
+    })
   }
 }

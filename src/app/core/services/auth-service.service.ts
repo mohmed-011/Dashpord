@@ -3,6 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { environment } from '../environments/environments';
+import { jwtDecode } from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root'
@@ -23,12 +24,10 @@ export class AuthServiceService {
     return this._HttpClient.post(`${environment.baseUrl}Auth/loginDash`,data);
   }
 
-  //  saveUserData():void{
-  //   if(localStorage.getItem('userToken') !=null){
-
-  //   this.userData =  jwtDecode(  localStorage.getItem('userToken')!  )
-  //     console.log("userData" , this.userData);
-
-  //   }
-  //}
+   saveUserData():void{
+    if(localStorage.getItem('userToken') !=null){
+    this.userData =  jwtDecode(  localStorage.getItem('userToken')!  )
+      console.log("userData" , this.userData);
+    }
+  }
 }

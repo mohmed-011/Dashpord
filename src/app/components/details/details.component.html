@@ -5,6 +5,9 @@
     <div class="lg:w-[50%] md:w-[60%] zero:w-full mx-auto sm:p-10">
 
       <p class="ps-3 font-[500] mb-1 text-sm">Image Cover</p>
+       <div class="flex items-center justify-center w-full">
+        <img [attr.src]="'http://sm-ecommerce.runasp.net/' + detalisProduct.Data.Image_Cover" class="rounded-md">
+       </div>
       <div class="flex items-center justify-center w-full">
         <label
           for="dropzone-file"
@@ -33,6 +36,13 @@
           </div>
           <input id="dropzone-file" type="file" class="hidden" (change)="onFileSelected($event)"/>
         </label>
+      </div>
+      <div class="flex items-center justify-center">
+        <button
+          class="px-[15px] py-[5px] rounded-lg text-white bg-green-500 shadow-md hover:bg-[#3adb75] transition-all shadow-green-500"
+        >
+          <i class="text-xl fa-regular fa-floppy-disk pe-2"></i> Edit Image
+        </button>
       </div>
       <div class="my-8">
         <label
@@ -512,9 +522,11 @@
         <input
           type="text"
           id="first_name"
+          value={{detalisProduct.Data.Item_ID}}
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           placeholder="5-400-5-6"
-          name="Item_ID" ngModel
+          disabled
+
           required
         />
       </div>
@@ -529,7 +541,7 @@
           id="first_name"
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           placeholder="Ex:  Iphone 16 Pro Max"
-          name="Item_Name" ngModel
+          value={{detalisProduct.Data.Item_Name}}
           required
         />
       </div>
@@ -545,8 +557,9 @@
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           rows="6"
           placeholder="Ex:  Latest Apple iPhone Version"
-          name="Description" ngModel
           required
+          value={{detalisProduct.Data.Description}}
+
         ></textarea>
       </div>
       <div class="flex flex-wrap justify-between">
@@ -557,8 +570,11 @@
             >Category</label
           >
           <select
-          name="Category_ID" ngModel
+
+          [(ngModel)]="selectedCatOption"
             id="countries"
+          value={{detalisProduct.Data.Category_Name}}
+
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           >
             <option selected>Select Category</option>
@@ -581,9 +597,10 @@
             >Sub Category</label
           >
           <select
-          name="Sub_Category_ID" ngModel
 
             id="countries"
+          value={{detalisProduct.Data.Sub_Category_Name}}
+
             [(ngModel)]="selectedOption"
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           >
@@ -609,9 +626,10 @@
           <input
             type="number"
             id="first_name"
+          value={{detalisProduct.Data.Price_in}}
+
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="Ex: 1500"
-          name="Price_in" ngModel
 
             required
           />
@@ -625,9 +643,10 @@
           <input
             type="number"
             id="first_name"
+          value={{detalisProduct.Data.Price_out}}
+
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="Ex: 1700"
-          name="Price_out" ngModel
 
             required
           />
@@ -641,9 +660,10 @@
           <input
             type="number"
             id="first_name"
+          value={{detalisProduct.Data.Discount}}
+
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="Ex: 50"
-          name="Discount" ngModel
 
             required
           />
@@ -658,9 +678,10 @@
         <input
           type="number"
           id="first_name"
+          value={{detalisProduct.Data.Quantity}}
+
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           placeholder="Ex: 22"
-          name="Quantity" ngModel
           required
         />
       </div>
@@ -693,7 +714,7 @@
         <button
           class="px-[15px] py-[5px] rounded-lg text-white bg-green-500 shadow-md hover:bg-[#3adb75] transition-all shadow-green-500"
         >
-          <i class="text-xl fa-regular fa-floppy-disk pe-2"></i> Save Product
+          <i class="text-xl fa-regular fa-floppy-disk pe-2"></i> Edit Product
         </button>
       </div>
 

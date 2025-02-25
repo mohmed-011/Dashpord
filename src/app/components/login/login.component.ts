@@ -15,6 +15,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class LoginComponent {
 private readonly _Router =inject(Router)
 private readonly _AuthService =inject(AuthServiceService)
+
   mgerror:string="";
   isLoding:boolean=false;
 
@@ -42,7 +43,7 @@ login():void{
 
             localStorage.setItem('userToken',res.Token) // 1-save token
 
-
+            this._AuthService.saveUserData()
 
             this._Router.navigate(['/dashboard']) // 3-navigate to home
             console.log(res);

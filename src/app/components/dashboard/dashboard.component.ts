@@ -3,6 +3,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, inject, OnInit } from '@angular/core';
 import {Chart, registerables} from 'chart.js';
 import { ChartsService } from '../../core/services/charts.service';
+import { AuthServiceService } from '../../core/services/auth-service.service';
 Chart.register(...registerables)
 
 @Component({
@@ -14,28 +15,20 @@ Chart.register(...registerables)
 })
 export class DashboardComponent implements OnInit {
 private readonly _ChartsService =inject(ChartsService)
+private readonly _AuthServiceService =inject(AuthServiceService)
+
 
 
     ngOnInit(): void {
 
-      this._ChartsService.GetMonthImports(1).subscribe({
+      this._ChartsService.GetMonthImports(this._AuthServiceService.userData.nameid).subscribe({
 
               next:(res)=>{
                 // move to login
                 if(res.message  == "success"){
-
-                  // 1-save token
-
-
-
-                 // 3-navigate to home
                   console.log(res.Data);
                   this.renderChart(res.Data)
                 }
-
-
-
-
               },
               error:(err:HttpErrorResponse)=>{
                 // show error in html to user
@@ -49,10 +42,10 @@ private readonly _ChartsService =inject(ChartsService)
 
 
   renderChart(dataa:any):void{
-   let importData: number[] = [];  // Ensure the array is initialized
+   let importData: number[] = [];
 
 for (let index = 0; index < dataa.length; index++) {
-  importData.push(dataa[index].Total_Sales); // Use push instead of direct assignment
+  importData.push(dataa[index].Total_Sales); 
 }
 const labels = [
   1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22,

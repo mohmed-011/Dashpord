@@ -28,6 +28,35 @@ export class ProductsService {
             headers
           });
   }
+
+  GetOneProduct(id:string | null):Observable<any>{
+
+    const token = localStorage.getItem('userToken'); // استرجاع التوكن من Local Storage
+
+      const headers = new HttpHeaders({
+        'Authorization': `Bearer ${token}`  // إضافة التوكن في الهيدر
+      });
+
+    return this._HttpClient.get(`${environment.baseUrl}Products/GetProductById?id=${id}`,
+          {
+            headers
+          });
+  }
+
+  GetAllProduct(Sellerid:string):Observable<any>{
+
+    const token = localStorage.getItem('userToken'); // استرجاع التوكن من Local Storage
+
+      const headers = new HttpHeaders({
+        'Authorization': `Bearer ${token}`  // إضافة التوكن في الهيدر
+      });
+
+    return this._HttpClient.get(`${environment.baseUrl}Products/GetFilteredProducts?sellerId=${Sellerid}`,
+          {
+            headers
+          });
+  }
+
   // getSpecificProduct(num:number):Observable<any>{
   //   return this._HttpClient.get(``);
   // }

@@ -4,16 +4,16 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { environment } from '../environments/environments';
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class ChartsService {
 
   constructor(private _HttpClient:HttpClient )  { }
-    private readonly _Router = inject(Router)
 
 
-  userToken:any = localStorage.getItem("userToken")
+
 
     GetMonthImports(id:number):Observable<any>{
 

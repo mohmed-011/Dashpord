@@ -102,7 +102,7 @@ export const routes: Routes = [
           ),
       },
       {
-        path: 'details',title:'Details',
+        path: 'details/:id',title:'Details',
         loadComponent: () =>
           import('./components/details/details.component').then(
             (c) => c.DetailsComponent
@@ -127,6 +127,13 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./components/excel-sheet/excel-sheet.component').then(
             (c) => c.ExcelSheetComponent
+          ),
+      },
+      {
+        path: 'addProduct',title:'AddP roduct',
+        loadComponent: () =>
+          import('./components/add-product/add-product.component').then(
+            (c) => c.AddProductComponent
           ),
       },
     ],
