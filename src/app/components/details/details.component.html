@@ -1,7 +1,7 @@
 <h2 class="text-3xl font-[500] m-0">Add Product</h2>
 <div class="">
 
-  <form  (submit)="onSubmit(f.value)" #f="ngForm" class="px-1 mb-10 flex flex-wrap w-full">
+  <form    class="px-1 mb-10 flex flex-wrap w-full">
     <div class="lg:w-[50%] md:w-[60%] zero:w-full mx-auto sm:p-10">
 
       <p class="ps-3 font-[500] mb-1 text-sm">Image Cover</p>
@@ -39,6 +39,7 @@
       </div>
       <div class="flex items-center justify-center">
         <button
+        (onclick)="onEdit()"
           class="px-[15px] py-[5px] rounded-lg text-white bg-green-500 shadow-md hover:bg-[#3adb75] transition-all shadow-green-500"
         >
           <i class="text-xl fa-regular fa-floppy-disk pe-2"></i> Edit Image

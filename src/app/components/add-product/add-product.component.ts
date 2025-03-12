@@ -1,10 +1,14 @@
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthServiceService } from '../../core/services/auth-service.service';
 import { ProductsService } from './../../core/services/products.service';
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ProductDetailsService } from '../../core/services/product-details.service';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { SelectFiltersService } from '../../core/services/select-filters.service';
+import { ICategory } from '../../core/Interfaces/icategory';
+import { ISubCategory } from '../../core/Interfaces/isub-category';
+import { IBrand } from '../../core/Interfaces/ibrand';
 
 @Component({
   selector: 'app-add-product',
@@ -13,10 +17,56 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
   templateUrl: './add-product.component.html',
   styleUrl: './add-product.component.scss'
 })
-export class AddProductComponent {
+export class AddProductComponent implements OnInit{
 
+    categoryList:ICategory[]=[]
+    subCategoryList:ISubCategory[]=[]
+    brandList:IBrand[]=[]
+
+
+
+  ngOnInit(): void {
+    this._SelectFiltersService.GetAllCategory().subscribe({
+      next:(res)=>{
+        this.categoryList = res
+        console.log(this.categoryList);
+
+      }
+    })
+  }
+
+  onCategoryChange(event: Event) {
+     const target = event.target as HTMLSelectElement; // تحويل target إلى HTMLSelectElement
+    const categoryId = Number(target.value); // استخراج القيمة وتحويلها إلى رقم
+
+    if (categoryId) {
+      console.log(categoryId);
+      this._SelectFiltersService.GetAllSubCategoryByCat(categoryId).subscribe({
+        next:(res)=>{
+          this.subCategoryList = res
+          console.log(res);
+        }
+      })
+    }
+  }
+    onSubCategoryChange(event: Event) {
+     const target = event.target as HTMLSelectElement; // تحويل target إلى HTMLSelectElement
+    const subCategoryId = Number(target.value); // استخراج القيمة وتحويلها إلى رقم
+
+    if (subCategoryId) {
+      console.log(subCategoryId);
+      this._SelectFiltersService.GetSubCategoryBrands(subCategoryId).subscribe({
+        next:(res)=>{
+          this.brandList = res.Brands
+          console.log(this.brandList);
+        }
+      })
+    }
+  }
 
   private readonly _ProductsService = inject(ProductsService)
+  private readonly _SelectFiltersService = inject(SelectFiltersService)
+
   private readonly _AuthServiceService = inject(AuthServiceService)
   private readonly _ProductDetailsService = inject(ProductDetailsService)
   private  itemId :any
@@ -51,6 +101,7 @@ export class AddProductComponent {
       formData.append('Category_ID', formValues.Category_ID);
       formData.append('Sub_Category_ID', formValues.Sub_Category_ID);
       formData.append('Seller_ID', this._AuthServiceService.userData.nameid);
+      formData.append('Brand_ID', formValues.Brand_ID);
       formData.append('Image', this.selectedFile ); // إضافة الصورة
 
       this._ProductsService.addOneProduct(formData).subscribe({
@@ -90,8 +141,6 @@ export class AddProductComponent {
                 console.log(err);
               }
             })
-
-             console.log(this.PhoneForm);
              console.log(this.PhoneForm.value);
           }
           else{

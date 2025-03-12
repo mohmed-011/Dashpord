@@ -57,6 +57,16 @@ productList:IProduct[]=[]
 
     this._ProductsService.GetAllProduct( this._AuthServiceService.userData.nameid).subscribe({
       next:(res)=>{
+        if(res.message == "success"){
+           console.log(res)
+         for (const item of res.products) {
+          this.productList.push(item);
+        }
+        for (const item of this.productList) {
+        console.log(item)
+        }
+        }
+        console.log(res)
          for (const item of res) {
           this.productList.push(item);
         }

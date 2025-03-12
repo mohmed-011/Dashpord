@@ -16,14 +16,6 @@ export class ProductStockComponent implements OnInit {
 
     ngOnInit(): void {
 
-      this._ProductsService.getAllProduct().subscribe({
-        next:(res)=>{
-          this.productList = res
-          console.log(this.productList)
-        },
-        error:(err)=>{
-          console.log(err);
-        }
-      })
+     
   }
 }

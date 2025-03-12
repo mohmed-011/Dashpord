@@ -84,7 +84,43 @@ onFileSelected(event: Event) {
     }
   }
 
-  onSubmit(formValues: any) {
+  // onSubmit(formValues: any) {
+
+  //  if (!this.selectedFile) {
+  //     console.error('يرجى اختيار صورة');
+  //     return;
+  //   }
+
+  //   const formData = new FormData();
+
+  //   // formData.append('Item_ID', formValues.Item_ID);
+  //   // formData.append('Item_Name', formValues.Item_Name);
+  //   // formData.append('Description', formValues.Description);
+  //   // formData.append('Quantity', formValues.Quantity);
+  //   // formData.append('Price_in', formValues.Price_in);
+  //   // formData.append('Price_out', formValues.Price_out);
+  //   // formData.append('Discount', formValues.Discount);
+  //   // formData.append('Rate',"0");
+  //   // formData.append('Category_ID', formValues.Category_ID);
+  //   // formData.append('Sub_Category_ID', formValues.Sub_Category_ID);
+  //   // formData.append('Seller_ID', this._AuthServiceService.userData.nameid);
+
+  //   formData.append('Image', this.selectedFile ); // إضافة الصورة
+
+  //   this._ProductsService.addOneProduct(formData).subscribe({
+  //     next: (res) => {
+  //         if(res.message  == "success"){
+
+  //           console.log('Product added:', res)
+
+  //         }
+  //     } ,
+  //     error: (error) => console.error('Error:', error),
+  //   });
+
+  // }
+
+  onEdit() {
 
    if (!this.selectedFile) {
       console.error('يرجى اختيار صورة');
@@ -93,20 +129,21 @@ onFileSelected(event: Event) {
 
     const formData = new FormData();
 
-    formData.append('Item_ID', formValues.Item_ID);
-    formData.append('Item_Name', formValues.Item_Name);
-    formData.append('Description', formValues.Description);
-    formData.append('Quantity', formValues.Quantity);
-    formData.append('Price_in', formValues.Price_in);
-    formData.append('Price_out', formValues.Price_out);
-    formData.append('Discount', formValues.Discount);
-    formData.append('Rate',"0");
-    formData.append('Category_ID', formValues.Category_ID);
-    formData.append('Sub_Category_ID', formValues.Sub_Category_ID);
-    formData.append('Seller_ID', this._AuthServiceService.userData.nameid);
+    // formData.append('Item_ID', formValues.Item_ID);
+    // formData.append('Item_Name', formValues.Item_Name);
+    // formData.append('Description', formValues.Description);
+    // formData.append('Quantity', formValues.Quantity);
+    // formData.append('Price_in', formValues.Price_in);
+    // formData.append('Price_out', formValues.Price_out);
+    // formData.append('Discount', formValues.Discount);
+    // formData.append('Rate',"0");
+    // formData.append('Category_ID', formValues.Category_ID);
+    // formData.append('Sub_Category_ID', formValues.Sub_Category_ID);
+    // formData.append('Seller_ID', this._AuthServiceService.userData.nameid);
+
     formData.append('Image', this.selectedFile ); // إضافة الصورة
 
-    this._ProductsService.addOneProduct(formData).subscribe({
+    this._ProductsService.UpdateItemImage( this.detalisProduct.Data.Item_ID,formData).subscribe({
       next: (res) => {
           if(res.message  == "success"){
 
