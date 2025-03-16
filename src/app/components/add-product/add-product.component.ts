@@ -9,11 +9,12 @@ import { SelectFiltersService } from '../../core/services/select-filters.service
 import { ICategory } from '../../core/Interfaces/icategory';
 import { ISubCategory } from '../../core/Interfaces/isub-category';
 import { IBrand } from '../../core/Interfaces/ibrand';
+import { ImageUploaderComponent } from '../app-image-uploader/app-image-uploader.component';
 
 @Component({
   selector: 'app-add-product',
   standalone: true,
-  imports: [CarouselModule,FormsModule , ReactiveFormsModule],
+  imports: [CarouselModule,FormsModule , ReactiveFormsModule  ],
   templateUrl: './add-product.component.html',
   styleUrl: './add-product.component.scss'
 })
@@ -72,8 +73,36 @@ export class AddProductComponent implements OnInit{
   private  itemId :any
   // @ViewChild('imageInput', { static: false }) imageInput!: ElementRef;
 
-  selectedFile: File | null = null; // تخزين الملف هنا
+  selectedFile:  File | null = null; // تخزين الملف هنا 0
+  selectedFile1: File | null = null; // تخزين الملف هنا 1
+  selectedFile2: File | null = null; // تخزين الملف هنا 2
+  selectedFile3: File | null = null; // تخزين الملف هنا 3
+  selectedFile4: File | null = null; // تخزين الملف هنا 4
 
+  onFileSelected1(event: Event) {
+      const input = event.target as HTMLInputElement;
+      if (input.files && input.files.length > 0) {
+        this.selectedFile1 = input.files[0];
+      }
+    }
+  onFileSelected2(event: Event) {
+      const input = event.target as HTMLInputElement;
+      if (input.files && input.files.length > 0) {
+        this.selectedFile2 = input.files[0];
+      }
+    }
+  onFileSelected3(event: Event) {
+      const input = event.target as HTMLInputElement;
+      if (input.files && input.files.length > 0) {
+        this.selectedFile3 = input.files[0];
+      }
+    }
+  onFileSelected4(event: Event) {
+      const input = event.target as HTMLInputElement;
+      if (input.files && input.files.length > 0) {
+        this.selectedFile4 = input.files[0];
+      }
+    }
   onFileSelected(event: Event) {
       const input = event.target as HTMLInputElement;
       if (input.files && input.files.length > 0) {
@@ -150,6 +179,67 @@ export class AddProductComponent implements OnInit{
         }
     selectedOption: string = 'Select Sub Category';
     selectedCatOption: string = 'Select Category';
+
+
+
+
+imageUrlMain: string | null = null;
+imageUrl1: string | null = null;
+imageUrl2: string | null = null;
+imageUrl3: string | null = null;
+imageUrl4: string | null = null;
+
+
+onFileSelectedImage(event: Event) {
+  const file = (event.target as HTMLInputElement).files?.[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.imageUrlMain = reader.result as string;
+    };
+    reader.readAsDataURL(file);
+  }
+}
+onFileSelectedImage1(event: Event) {
+  const file = (event.target as HTMLInputElement).files?.[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.imageUrl1 = reader.result as string;
+    };
+    reader.readAsDataURL(file);
+  }
+}
+onFileSelectedImage2(event: Event) {
+  const file = (event.target as HTMLInputElement).files?.[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.imageUrl2 = reader.result as string;
+    };
+    reader.readAsDataURL(file);
+  }
+}
+onFileSelectedImage3(event: Event) {
+  const file = (event.target as HTMLInputElement).files?.[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.imageUrl3 = reader.result as string;
+    };
+    reader.readAsDataURL(file);
+  }
+}
+onFileSelectedImage4(event: Event) {
+  const file = (event.target as HTMLInputElement).files?.[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.imageUrl4 = reader.result as string;
+    };
+    reader.readAsDataURL(file);
+  }
+}
 
 
 }

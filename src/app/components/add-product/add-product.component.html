@@ -1,12 +1,21 @@
 <h2 class="text-3xl font-[500] m-0">Add Product</h2>
 <div class="">
-
-  <form  (submit)="onSubmit(f.value)" #f="ngForm" class="px-1 mb-10 flex flex-wrap w-full">
+  <form
+    (submit)="onSubmit(f.value)"
+    #f="ngForm"
+    class="px-1 mb-10 flex flex-wrap w-full"
+  >
     <div class="lg:w-[50%] md:w-[60%] zero:w-full mx-auto sm:p-10">
-
       <p class="ps-3 font-[500] mb-1 text-sm">Image Cover</p>
       <div class="flex items-center justify-center w-full">
-        <label
+        @if (imageUrlMain) {
+          <div class="p-2 flex flex-col items-center justify-center w-full overflow-hidden h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800">
+            <img  [src]="imageUrlMain" alt="Preview" width="200" class="border" />
+          </div>
+
+}
+@else {
+<label
           for="dropzone-file"
           class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800"
         >
@@ -27,125 +36,293 @@
               />
             </svg>
             <p class="mb-2 text-sm text-gray-500 dark:text-gray-400">
-              <span class="font-semibold">Click to upload</span> or drag and drop
+              <span class="font-semibold">Click to upload</span> or drag and
+              drop
             </p>
-            <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG</p>
+            <p class="text-xs text-gray-500 dark:text-gray-400">
+              SVG, PNG, JPG
+            </p>
           </div>
-          <input id="dropzone-file" type="file" class="hidden" (change)="onFileSelected($event)"/>
+          <input
+            id="dropzone-file"
+            type="file"
+            class="hidden"
+            (change)="onFileSelected($event)"
+            (change)="onFileSelectedImage($event)"
+          />
         </label>
-      </div>
-      <div class="my-8">
-        <label
-          class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-          for="multiple_files"
-          >Upload multiple image</label
-        >
-        <input
-          class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-          id="multiple_files"
-          type="file"
+}
 
-        />
+      </div>
+      <div class="my-8 flex items-center justify-between flex-wrap ">
+
+      @if (imageUrl1) {
+          <div class="p-2 flex flex-col items-center justify-center w-[30%] h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800">
+            <img  [src]="imageUrl1" alt="Preview" width="200" class="border" />
+          </div>
+      }
+      @else {
+      <label
+                for="dropzone-file"
+                class="flex flex-col items-center justify-center w-[30%] h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800"
+              >
+                <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                  <svg
+                    class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 20 16"
+                  >
+                    <path
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
+                    />
+                  </svg>
+                  <p class="mb-2 text-[12px] text-gray-500 dark:text-gray-400">
+                    <span class="font-semibold">Click to upload</span>
+                  </p>
+                  <p class="text-xs text-gray-500 dark:text-gray-400">
+                    SVG, PNG, JPG
+                  </p>
+                </div>
+                <input
+                  id="dropzone-file"
+                  type="file"
+                  class="hidden"
+                  (change)="onFileSelected1($event)"
+                  (change)="onFileSelectedImage1($event)"
+                />
+      </label>
+      }
+
+      @if (imageUrl2) {
+          <div class="p-2 flex flex-col items-center justify-center w-[30%] h-32 overflow-hidden border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800">
+            <img  [src]="imageUrl2" alt="Preview" width="200" class="border" />
+          </div>
+      }
+      @else {
+      <label
+                for="dropzone-file"
+                class="flex flex-col items-center justify-center w-[30%] h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800"
+              >
+                <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                  <svg
+                    class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 20 16"
+                  >
+                    <path
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
+                    />
+                  </svg>
+                  <p class="mb-2 text-[12px] text-gray-500 dark:text-gray-400">
+                    <span class="font-semibold">Click to upload</span>
+                  </p>
+                  <p class="text-xs text-gray-500 dark:text-gray-400">
+                    SVG, PNG, JPG
+                  </p>
+                </div>
+                <input
+                  id="dropzone-file"
+                  type="file"
+                  class="hidden"
+                  (change)="onFileSelected2($event)"
+                  (change)="onFileSelectedImage2($event)"
+                />
+      </label>
+      }
+
+      @if (imageUrl3) {
+          <div class="p-2 flex flex-col items-center justify-center  w-[30%] h-32 overflow-hidden border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800">
+            <img  [src]="imageUrl3" alt="Preview" width="200" class="border" />
+          </div>
+      }
+      @else {
+      <label
+                for="dropzone-file"
+                class="flex flex-col items-center justify-center w-[30%] h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800"
+              >
+                <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                  <svg
+                    class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 20 16"
+                  >
+                    <path
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
+                    />
+                  </svg>
+                  <p class="mb-2 text-[12px] text-gray-500 dark:text-gray-400">
+                    <span class="font-semibold">Click to upload</span>
+                  </p>
+                  <p class="text-xs text-gray-500 dark:text-gray-400">
+                    SVG, PNG, JPG
+                  </p>
+                </div>
+                <input
+                  id="dropzone-file"
+                  type="file"
+                  class="hidden"
+                  (change)="onFileSelected3($event)"
+                  (change)="onFileSelectedImage3($event)"
+                />
+      </label>
+      }
+
+      @if (imageUrl4) {
+          <div class="p-2 mt-6 flex flex-col items-center justify-center  w-[30%] h-32 overflow-hidden border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800">
+            <img  [src]="imageUrl4" alt="Preview"  class="border w-full" />
+          </div>
+      }
+      @else {
+      <label
+                for="dropzone-file"
+                class="flex mt-6 flex-col items-center justify-center w-[30%] h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800"
+              >
+                <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                  <svg
+                    class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 20 16"
+                  >
+                    <path
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
+                    />
+                  </svg>
+                  <p class="mb-2 text-[12px] text-gray-500 dark:text-gray-400">
+                    <span class="font-semibold">Click to upload</span>
+                  </p>
+                  <p class="text-xs text-gray-500 dark:text-gray-400">
+                    SVG, PNG, JPG
+                  </p>
+                </div>
+                <input
+                  id="dropzone-file"
+                  type="file"
+                  class="hidden"
+                  (change)="onFileSelected4($event)"
+                  (change)="onFileSelectedImage4($event)"
+                />
+      </label>
+      }
+
       </div>
       @if (selectedOption == '1') {
-        <form [formGroup]="PhoneForm">
-      <div class="phones border rounded-lg px-5 py-7 relative">
-        <label class="absolute -top-[10px] left-4">Phones</label>
+      <form [formGroup]="PhoneForm">
+        <div class="phones border rounded-lg px-5 py-7 relative">
+          <label class="absolute -top-[10px] left-4">Phones</label>
 
-        <div class="flex flex-wrap justify-between mb-6">
-          <div class="w-[45%]">
-            <label
-              for="RAM"
-              class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
-              >RAM</label
-            >
-            <select
-            id="RAM"
-            formControlName="ram"
-            class="bg-gray-50 border  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          >
-            <option selected>Select Ram size</option>
-            <option value="2">2GB</option>
-            <option value="4">4GB</option>
-            <option value="8">8GB</option>
-            <option value="16">16GB</option>
-            <option value="32">32GB</option>
-
-          </select>
+          <div class="flex flex-wrap justify-between mb-6">
+            <div class="w-[45%]">
+              <label
+                for="RAM"
+                class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
+                >RAM</label
+              >
+              <select
+                id="RAM"
+                formControlName="ram"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              >
+                <option selected>Select Ram size</option>
+                <option value="2">2GB</option>
+                <option value="4">4GB</option>
+                <option value="8">8GB</option>
+                <option value="16">16GB</option>
+                <option value="32">32GB</option>
+              </select>
+            </div>
+            <div class="w-[45%]">
+              <label
+                for="RAM"
+                class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
+                >Memory</label
+              >
+              <select
+                id="RAM"
+                formControlName="memory"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              >
+                <option selected>Select Memory size</option>
+                <option value="128">128GB</option>
+                <option value="256">256GB</option>
+                <option value="512">512GB</option>
+                <option value="1000">1TB</option>
+              </select>
+            </div>
           </div>
-          <div class="w-[45%]">
-            <label
-              for="RAM"
-              class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
-              >Memory</label
-            >
-            <select
-            id="RAM"
-            formControlName="memory"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          >
-            <option selected>Select Memory size</option>
-            <option value="128">128GB</option>
-            <option value="256">256GB</option>
-            <option value="512">512GB</option>
-            <option value="1000">1TB</option>
-
-          </select>
+          <div class="flex flex-wrap justify-between mb-6">
+            <div class="w-[45%]">
+              <label
+                for="first_name"
+                class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
+                >CPU</label
+              >
+              <input
+                type="text"
+                id="first_name"
+                formControlName="cpu"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Ex: A15 Bionic"
+                required
+              />
+            </div>
+            <div class="w-[45%]">
+              <label
+                for="first_name"
+                class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
+                >Screen Size</label
+              >
+              <input
+                type="number"
+                id="first_name"
+                formControlName="screen_Size"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Ex: 6.10"
+                required
+              />
+            </div>
+          </div>
+          <div class="flex flex-wrap justify-between">
+            <div class="w-[45%]">
+              <label
+                for="first_name"
+                class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
+                >Color</label
+              >
+              <input
+                type="text"
+                id="first_name"
+                formControlName="color"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Ex: Gray"
+                required
+              />
+            </div>
           </div>
         </div>
-        <div class="flex flex-wrap justify-between mb-6">
-          <div class="w-[45%]">
-            <label
-              for="first_name"
-              class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
-              >CPU</label
-            >
-            <input
-              type="text"
-              id="first_name"
-            formControlName="cpu"
-              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="Ex: A15 Bionic"
-              required
-            />
-          </div>
-          <div class="w-[45%]">
-            <label
-              for="first_name"
-              class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
-              >Screen Size</label
-            >
-            <input
-              type="number"
-              id="first_name"
-            formControlName="screen_Size"
-
-              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="Ex: 6.10"
-              required
-            />
-          </div>
-        </div>
-        <div class="flex flex-wrap justify-between ">
-          <div class="w-[45%]">
-            <label
-              for="first_name"
-              class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
-              >Color</label
-            >
-            <input
-              type="text"
-              id="first_name"
-            formControlName="color"
-
-              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="Ex: Gray"
-              required
-            />
-          </div>
-
-        </div>
-      </div>
       </form>
       } @else if (selectedOption == '2') {
       <div class="phones border rounded-lg px-5 py-7 relative">
@@ -188,17 +365,16 @@
               >RAM</label
             >
             <select
-            id="RAM"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          >
-            <option selected>Select Ram size</option>
-            <option value="2">2GB</option>
-            <option value="4">4GB</option>
-            <option value="8">8GB</option>
-            <option value="16">16GB</option>
-            <option value="32">32GB</option>
-
-          </select>
+              id="RAM"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            >
+              <option selected>Select Ram size</option>
+              <option value="2">2GB</option>
+              <option value="4">4GB</option>
+              <option value="8">8GB</option>
+              <option value="16">16GB</option>
+              <option value="32">32GB</option>
+            </select>
           </div>
           <div class="w-[45%]">
             <label
@@ -207,22 +383,19 @@
               >Memory</label
             >
             <select
-            id="RAM"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          >
-            <option selected>Select Memory size</option>
-            <option value="128">128GB</option>
-            <option value="256">256GB</option>
-            <option value="512">512GB</option>
-            <option value="1000">1TB</option>
-            <option value="2000">2TB</option>
-            <option value="4000">4TB</option>
-            <option value="8000">8TB</option>
-
-          </select>
+              id="RAM"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            >
+              <option selected>Select Memory size</option>
+              <option value="128">128GB</option>
+              <option value="256">256GB</option>
+              <option value="512">512GB</option>
+              <option value="1000">1TB</option>
+              <option value="2000">2TB</option>
+              <option value="4000">4TB</option>
+              <option value="8000">8TB</option>
+            </select>
           </div>
-
-
         </div>
         <div class="flex flex-wrap justify-between mb-6">
           <div class="w-[45%]">
@@ -232,15 +405,13 @@
               >Memory Type</label
             >
             <select
-            id="RAM"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          >
-            <option selected>Select Memory Type</option>
-            <option value="2">SSD</option>
-            <option value="4">HHD</option>
-
-
-          </select>
+              id="RAM"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            >
+              <option selected>Select Memory Type</option>
+              <option value="2">SSD</option>
+              <option value="4">HHD</option>
+            </select>
           </div>
 
           <div class="w-[45%]">
@@ -257,7 +428,6 @@
               required
             />
           </div>
-
         </div>
         <div class="flex flex-wrap justify-between mb-6">
           <div class="w-[45%]">
@@ -289,9 +459,7 @@
             />
           </div>
         </div>
-        <div class="flex flex-wrap justify-between">
-
-        </div>
+        <div class="flex flex-wrap justify-between"></div>
       </div>
       } @else if (selectedOption == '4') {
       <div class="phones border rounded-lg px-5 py-7 relative">
@@ -376,7 +544,7 @@
               required
             />
           </div>
-        <div class="w-[45%]">
+          <div class="w-[45%]">
             <label
               for="first_name"
               class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
@@ -393,7 +561,7 @@
         </div>
 
         <div class="flex flex-wrap justify-between">
-        <div class="w-[45%]">
+          <div class="w-[45%]">
             <label
               for="first_name"
               class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
@@ -420,17 +588,16 @@
               >RAM</label
             >
             <select
-            id="RAM"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          >
-            <option selected>Select Ram size</option>
-            <option value="2">2GB</option>
-            <option value="4">4GB</option>
-            <option value="8">8GB</option>
-            <option value="16">16GB</option>
-            <option value="32">32GB</option>
-
-          </select>
+              id="RAM"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            >
+              <option selected>Select Ram size</option>
+              <option value="2">2GB</option>
+              <option value="4">4GB</option>
+              <option value="8">8GB</option>
+              <option value="16">16GB</option>
+              <option value="32">32GB</option>
+            </select>
           </div>
           <div class="w-[45%]">
             <label
@@ -439,22 +606,19 @@
               >Memory</label
             >
             <select
-            id="RAM"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          >
-            <option selected>Select Memory size</option>
-            <option value="128">128GB</option>
-            <option value="256">256GB</option>
-            <option value="512">512GB</option>
-            <option value="1000">1TB</option>
-            <option value="2000">2TB</option>
-            <option value="4000">4TB</option>
-            <option value="8000">8TB</option>
-
-          </select>
+              id="RAM"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            >
+              <option selected>Select Memory size</option>
+              <option value="128">128GB</option>
+              <option value="256">256GB</option>
+              <option value="512">512GB</option>
+              <option value="1000">1TB</option>
+              <option value="2000">2TB</option>
+              <option value="4000">4TB</option>
+              <option value="8000">8TB</option>
+            </select>
           </div>
-
-
         </div>
         <div class="flex flex-wrap justify-between mb-6">
           <div class="w-[45%]">
@@ -464,15 +628,13 @@
               >Memory Type</label
             >
             <select
-            id="RAM"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          >
-            <option selected>Select Memory Type</option>
-            <option value="2">SSD</option>
-            <option value="4">HHD</option>
-
-
-          </select>
+              id="RAM"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            >
+              <option selected>Select Memory Type</option>
+              <option value="2">SSD</option>
+              <option value="4">HHD</option>
+            </select>
           </div>
 
           <div class="w-[45%]">
@@ -489,7 +651,6 @@
               required
             />
           </div>
-
         </div>
         <div class="flex flex-wrap justify-between">
           <div class="w-[45%]">
@@ -506,7 +667,6 @@
               required
             />
           </div>
-
         </div>
       </div>
       }
@@ -523,7 +683,8 @@
           id="first_name"
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           placeholder="5-400-5-6"
-          name="Item_ID" ngModel
+          name="Item_ID"
+          ngModel
           required
         />
       </div>
@@ -538,7 +699,8 @@
           id="first_name"
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           placeholder="Ex:  Iphone 16 Pro Max"
-          name="Item_Name" ngModel
+          name="Item_Name"
+          ngModel
           required
         />
       </div>
@@ -554,7 +716,8 @@
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           rows="6"
           placeholder="Ex:  Latest Apple iPhone Version"
-          name="Description" ngModel
+          name="Description"
+          ngModel
           required
         ></textarea>
       </div>
@@ -566,15 +729,18 @@
             >Category</label
           >
           <select
-          name="Category_ID" ngModel
-          (change)="onCategoryChange($event)"
-          [(ngModel)]="selectedCatOption"
+            name="Category_ID"
+            ngModel
+            (change)="onCategoryChange($event)"
+            [(ngModel)]="selectedCatOption"
             id="countries"
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           >
             <option selected>Select Category</option>
             @for (item of categoryList; track $index) {
-            <option value={{item.Category_ID}}>{{item.Category_Name}}</option>
+            <option value="{{ item.Category_ID }}">
+              {{ item.Category_Name }}
+            </option>
 
             }
             <!-- <option value="1">Electronics</option>
@@ -590,21 +756,23 @@
         </div>
         <div class="w-[45%]">
           <label
-
             for="countries"
             class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
             >Sub Category</label
           >
           <select
-          name="Sub_Category_ID" ngModel
-          (change)="onSubCategoryChange($event)"
+            name="Sub_Category_ID"
+            ngModel
+            (change)="onSubCategoryChange($event)"
             id="countries"
             [(ngModel)]="selectedOption"
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           >
             <option selected>Select Sub Category</option>
             @for (item of subCategoryList; track $index) {
-            <option value={{item.Sub_Category_ID}}>{{item.Sub_Category_Name}}</option>
+            <option value="{{ item.Sub_Category_ID }}">
+              {{ item.Sub_Category_Name }}
+            </option>
 
             }
             <!-- <option value="1">Smartphones</option>
@@ -624,14 +792,14 @@
             >Brand</label
           >
           <select
-
             id="countries"
-            name="Brand_ID" ngModel
+            name="Brand_ID"
+            ngModel
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           >
             <option selected>Select Brand</option>
             @for (item of brandList; track $index) {
-            <option value={{item.Brand_ID}}>{{item.Brand_Name}}</option>
+            <option value="{{ item.Brand_ID }}">{{ item.Brand_Name }}</option>
 
             }
             <!-- <option value="1">Smartphones</option>
@@ -657,8 +825,8 @@
             id="first_name"
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="Ex: 1500"
-          name="Price_in" ngModel
-
+            name="Price_in"
+            ngModel
             required
           />
         </div>
@@ -673,8 +841,8 @@
             id="first_name"
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="Ex: 1700"
-          name="Price_out" ngModel
-
+            name="Price_out"
+            ngModel
             required
           />
         </div>
@@ -689,8 +857,8 @@
             id="first_name"
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="Ex: 50"
-          name="Discount" ngModel
-
+            name="Discount"
+            ngModel
             required
           />
         </div>
@@ -706,7 +874,8 @@
           id="first_name"
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           placeholder="Ex: 22"
-          name="Quantity" ngModel
+          name="Quantity"
+          ngModel
           required
         />
       </div>
@@ -802,3 +971,10 @@
   }
 </owl-carousel-o> -->
 
+<div>
+<input type="file" (change)="onFileSelectedImage($event)" />
+@if (imageUrlMain) {
+<img  [src]="imageUrlMain" alt="Preview" width="200" class="border" />
+
+}
+</div>
