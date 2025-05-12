@@ -27,81 +27,41 @@
           alt=""
         />
       </div>
-      <div
-        class="chat-message self-end bg-[#4880ff] text-white max-w-xs rounded-lg px-4 py-2.5"
-      >
-        <p class="text-[18px]">Hello! How can I assist you today?</p>
-      </div>
-      <div
-        class="chat-message self-start bg-zinc-500 text-white max-w-xs rounded-lg px-3 py-1.5"
-      >
-        <p class="text-[18px]">Hello! I need a Chatbot!</p>
-      </div>
-      <div
-        class="chat-message self-end bg-[#4880ff] text-white max-w-xs rounded-lg px-4 py-2.5"
-      >
-        <p class="text-[18px]">Hello! How can I assist you today?</p>
-      </div>
-      <div
-        class="chat-message self-end bg-[#4880ff] text-white max-w-xs rounded-lg px-4 py-2.5"
-      >
-        <p class="text-[18px]">Hello! How can I assist you today?</p>
-      </div>
-      <div
-        class="chat-message self-start bg-zinc-500 text-white max-w-xs rounded-lg px-3 py-1.5"
-      >
-        <p class="text-[18px]">Hello! I need a Chatbot!</p>
-      </div>
-      <div
-        class="chat-message self-end bg-[#4880ff] text-white max-w-xs rounded-lg px-4 py-2.5"
-      >
-        <p class="text-[18px]">Hello! How can I assist you today?</p>
-      </div>
-      <div
-        class="chat-message self-end bg-[#4880ff] text-white max-w-xs rounded-lg px-4 py-2.5"
-      >
-        <p class="text-[18px]">Hello! How can I assist you today?</p>
-      </div>
-      <div
-        class="chat-message self-start bg-zinc-500 text-white max-w-xs rounded-lg px-3 py-1.5"
-      >
-        <p class="text-[18px]">Hello! I need a Chatbot!</p>
-      </div>
-      <div
-        class="chat-message self-end bg-[#4880ff] text-white max-w-xs rounded-lg px-4 py-2.5"
-      >
-        <p class="text-[18px]">Hello! How can I assist you today?</p>
-      </div>
-      <div
-        class="chat-message self-end bg-[#4880ff] text-white max-w-xs rounded-lg px-4 py-2.5"
-      >
-        <p class="text-[18px]">Hello! How can I assist you today?</p>
-      </div>
-      <div
-        class="chat-message self-start bg-zinc-500 text-white max-w-xs rounded-lg px-3 py-1.5"
-      >
-        <p class="text-[18px]">Hello! I need a Chatbot!</p>
-      </div>
-      <div
-        class="chat-message self-end bg-[#4880ff] text-white max-w-xs rounded-lg px-4 py-2.5"
-      >
-        <p class="text-[18px]">Hello! How can I assist you today?</p>
-      </div>
+
+ <div
+  *ngFor="let msg of messages"
+  [ngClass]="{
+    'self-start bg-zinc-500': msg.from === 'user',
+    'self-end bg-[#4880ff]': msg.from === 'bot'
+  }"
+  class="chat-message text-white max-w-xs rounded-lg px-4 py-2.5"
+>
+  <p class="text-[18px]">{{ msg.text }}</p>
+</div>
+
+
     </div>
     <div class="px-3 py-3 border-t-2 dark:border-zinc-700">
       <div class="flex gap-2">
+         <form class="w-full flex" [formGroup]="MassageForm" (ngSubmit)="SendMassage()" >
+
+
         <input
+          formControlName="message"
           placeholder="Type your message..."
-          class="flex-1 p-2 border-2 rounded-lg dark:bg-zinc-700 dark:text-white dark:border-zinc-600 text-sm"
+          name="message"
+          class="w-full  flex-1 p-2 border-2 rounded-lg dark:bg-zinc-700 dark:text-white dark:border-zinc-600 text-sm"
           id="chatInput"
           type="text"
         />
         <button
+          type="submit"
           class="bg-blue-500 hover:bg-blue-700 text-white font-[500] py-1.5 px-3 rounded-lg transition duration-300 ease-in-out text-sm"
           id="sendButton"
         >
           Send
         </button>
+         </form>
       </div>
     </div>
   </div>

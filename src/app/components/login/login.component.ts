@@ -34,17 +34,11 @@ login():void{
      if(this.loginForm.valid){
       this.isLoding=true;
       this._AuthService.setloginFoem(this.loginForm.value).subscribe({
-
         next:(res)=>{
-          // move to login
             console.log(res);
-
           if(res.message  == "success"){
-
             localStorage.setItem('userToken',res.Token) // 1-save token
-
             this._AuthService.saveUserData()
-
             this._Router.navigate(['/dashboard']) // 3-navigate to home
             console.log(res);
 
@@ -70,6 +64,5 @@ login():void{
     else{
       this.loginForm.markAllAsTouched();
     }
-
   }
 }
