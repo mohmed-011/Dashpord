@@ -48,7 +48,7 @@ export class ProductsComponent {
     nav: false
   }
   private readonly _ProductsService = inject(ProductsService)
-    private readonly _AuthServiceService = inject(AuthServiceService)
+  private readonly _AuthServiceService = inject(AuthServiceService)
 
 
 productList:IProduct[]=[]

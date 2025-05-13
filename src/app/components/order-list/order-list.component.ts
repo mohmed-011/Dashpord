@@ -1,5 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FilterOptionComponent } from "../filter-option/filter-option.component";
+import { OrdersService } from '../../core/services/orders.service';
+import { AuthServiceService } from '../../core/services/auth-service.service';
+import { log } from 'console';
+import { Iorder } from '../../core/Interfaces/iorder';
 
 @Component({
   selector: 'app-order-list',
@@ -8,6 +12,23 @@ import { FilterOptionComponent } from "../filter-option/filter-option.component"
   templateUrl: './order-list.component.html',
   styleUrl: './order-list.component.scss'
 })
-export class OrderListComponent {
+export class OrderListComponent implements OnInit {
 
+private readonly _OrdersService = inject(OrdersService);
+private readonly _AuthServiceService = inject(AuthServiceService)
+
+orderList:Iorder[]=[]
+ngOnInit(): void {
+ this._OrdersService.GetUserOrders(this._AuthServiceService.userData.nameid).subscribe({
+  next:(res)=>{
+    this.orderList = res.data
+    console.log(res)
+    console.log(this.orderList)
+  },
+  error:(err)=>{
+    console.log(err)
+
+  }
+ })
+}
 }

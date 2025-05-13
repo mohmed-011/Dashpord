@@ -11,26 +11,32 @@
         <th scope="col" class="px-6 py-3 text-center">Name</th>
         <th scope="col" class="px-6 py-3 text-center">Address</th>
         <th scope="col" class="px-6 py-3 text-center">Date</th>
-        <th scope="col" class="px-6 py-3 text-center">type</th>
+        <th scope="col" class="px-6 py-3 text-center">Total Price</th>
         <th scope="col" class="px-6 py-3 text-center">status</th>
       </tr>
     </thead>
     <tbody>
-      <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+      @for (item of orderList; track $index) {
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
         <th
           scope="row" class=" text-center px-6 py-4 font-[500] text-gray-900  dark:text-white"
         >
-          00035
+          {{item.IDFromPaymob}}
         </th>
-        <td  class=" text-center font-[500] px-6 py-4">Christine Brooks</td>
-        <td  class=" text-center font-[500] px-6 py-4">089 Kutch Green Apt. 448</td>
-        <td  class=" text-center font-[500] px-6 py-4">$14 Feb 2019</td>
-        <td  class=" text-center font-[500] px-6 py-4">Electric</td>
+        <td  class=" text-center font-[500] px-6 py-4">{{item.Buyer_Name}}</td>
+        <td  class=" text-center font-[500] px-6 py-4">{{item.Building}}-{{item.Street}}-{{item.City}}</td>
+        <td  class=" text-center font-[500] px-6 py-4">{{item.Book_Date}}</td>
+        <td  class=" text-center font-[500] px-6 py-4">{{item.Total_Price}}</td>
+
         <td  class=" text-center font-[500] px-6 py-4">
-          <span class="bg-green-100 text-green-800 text-xs font-medium me-2 px-3 py-1 rounded dark:bg-green-900 dark:text-green-300">Completed</span>
+          @if (item.Status == "Success") {
+          <span class="bg-green-100 text-green-800 text-xs font-medium me-2 px-3 py-1 rounded dark:bg-green-900 dark:text-green-300">{{item.Status}}</span>
+          }
         </td>
       </tr>
-      <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+      }
+
+      <!-- <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
         <th
           scope="row" class=" text-center px-6 py-4 font-[500] text-gray-900  dark:text-white"
         >
@@ -99,7 +105,7 @@
         <td  class=" text-center font-[500] px-6 py-4">
           <span class="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">Processing</span>
         </td>
-      </tr>
+      </tr> -->
 
     </tbody>
   </table>
