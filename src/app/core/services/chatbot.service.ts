@@ -12,6 +12,7 @@ export class ChatbotService {
     constructor() { }
 
     sendToChatbot(data: object):Observable<any>{
-        return this._HttpClient.post(`https://marktingchatbot.up.railway.app/chat`,data);
+        return this._HttpClient.post(`https://marktingchat.up.railway.app/chat`,data);
             }
 }
+//https://marktingchat.up.railway.app/chat

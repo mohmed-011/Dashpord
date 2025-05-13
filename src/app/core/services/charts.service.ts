@@ -28,4 +28,19 @@ export class ChartsService {
           }
         );
       }
+
+
+      GetMonthItemsComp(id1:string , id2:string):Observable<any>{
+        const token = localStorage.getItem('userToken'); // استرجاع التوكن من Local Storage
+
+        const headers = new HttpHeaders({
+          'Authorization': `Bearer ${token}`  // إضافة التوكن في الهيدر
+        });
+          return this._HttpClient.get(`${environment.baseUrl}Comparison/GetTwoItemsComp?id1=${id1}&id2=${id2}`,
+            {
+              headers
+            },
+          );
+        }
+
 }
