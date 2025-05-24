@@ -1,1 +1,104 @@
-<p>excel-sheet works!</p>
+<div class="flex flex-wrap justify-between">
+  <div class="w-[45%]">
+    <label
+      for="countries"
+      class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
+      >Category</label
+    >
+    <select
+      name="Category_ID"
+      ngModel
+      (change)="onCategoryChange($event)"
+      [(ngModel)]="selectedCatOption"
+      id="countries"
+      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+    >
+      <option selected>Select Category</option>
+      @for (item of categoryList; track $index) {
+      <option value="{{ item.Category_ID }}">
+        {{ item.Category_Name }}
+      </option>
+
+      }
+      <!-- <option value="1">Electronics</option>
+      <option value="5">Home Appliances</option>
+      <option value="9">Clothing</option>
+      <option value="FR">Books</option>
+      <option value="DE">Beauty</option>
+      <option value="DE">Sports</option>
+      <option value="DE">accessories</option>
+      <option value="DE">Tools</option>
+      <option value="DE">Furniture</option> -->
+    </select>
+  </div>
+  <div class="w-[45%]">
+    <label
+      for="countries"
+      class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
+      >Sub Category</label
+    >
+    <select
+      name="Sub_Category_ID"
+      ngModel
+      (change)="onSubCategoryChange($event)"
+      id="countries"
+      [(ngModel)]="selectedOption"
+      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+    >
+      <option selected>Select Sub Category</option>
+      @for (item of subCategoryList; track $index) {
+      <option value="{{ item.Sub_Category_ID }}">
+        {{ item.Sub_Category_Name }}
+      </option>
+
+      }
+      <!-- <option value="1">Smartphones</option>
+      <option value="3">Tablets</option>
+      <option value="2">Laptops</option>
+      <option value="FR">Refrigerators</option>
+      <option value="DE">Clothing for Men</option>
+      <option value="7">Tvs</option>
+      <option value="4">SmartWatches</option>
+      <option value="19">PCs</option> -->
+    </select>
+  </div>
+  <div class="w-[45%] mt-4">
+    <label
+      for="countries"
+      class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
+      >Brand</label
+    >
+    <select
+      id="countries"
+      name="Brand_ID"
+      ngModel
+      [(ngModel)]="selectedBrandId"
+      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+    >
+      <option selected>Select Brand</option>
+      @for (item of brandList; track $index) {
+      <option value="{{ item.Brand_ID }}">{{ item.Brand_Name }}</option>
+
+      }
+      <!-- <option value="1">Smartphones</option>
+      <option value="3">Tablets</option>
+      <option value="2">Laptops</option>
+      <option value="FR">Refrigerators</option>
+      <option value="DE">Clothing for Men</option>
+      <option value="7">Tvs</option>
+      <option value="4">SmartWatches</option>
+      <option value="19">PCs</option> -->
+    </select>
+  </div>
+</div>
+<div class="p-4 max-w-md mx-auto mt-6 bg-white rounded shadow">
+  <h2 class="text-xl font-bold mb-4">Upload Excel File</h2>
+
+  <input type="file" (change)="onFileChange($event)" accept=".xlsx" class="mb-4" />
+
+  <button (click)="upload()" class="bg-blue-600 text-white px-4 py-2 rounded">
+    Upload
+  </button>
+
+  <p class="mt-4 text-sm text-gray-600">{{ message }}</p>
+</div>

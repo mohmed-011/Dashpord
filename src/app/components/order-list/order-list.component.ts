@@ -18,8 +18,12 @@ private readonly _OrdersService = inject(OrdersService);
 private readonly _AuthServiceService = inject(AuthServiceService)
 
 orderList:Iorder[]=[]
+
 ngOnInit(): void {
- this._OrdersService.GetUserOrders(this._AuthServiceService.userData.nameid).subscribe({
+  let userId: number | null = localStorage.getItem('userID') !== null
+  ? Number(localStorage.getItem('userID'))
+  : null;
+ this._OrdersService.GetٍSellerOrders( userId ).subscribe({
   next:(res)=>{
     this.orderList = res.data
     console.log(res)
@@ -27,7 +31,6 @@ ngOnInit(): void {
   },
   error:(err)=>{
     console.log(err)
-
   }
  })
 }

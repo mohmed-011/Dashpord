@@ -39,7 +39,7 @@ export class ProductsService {
           });
   }
 
-  GetAllProduct(Sellerid:string):Observable<any>{
+  GetAllProduct(Sellerid:string | null):Observable<any>{
 
     const token = localStorage.getItem('userToken'); // استرجاع التوكن من Local Storage
 

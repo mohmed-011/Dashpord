@@ -39,6 +39,7 @@ login():void{
           if(res.message  == "success"){
             localStorage.setItem('userToken',res.Token) // 1-save token
             this._AuthService.saveUserData()
+            localStorage.setItem('userID',this._AuthService.userData.nameid)
             this._Router.navigate(['/dashboard']) // 3-navigate to home
             console.log(res);
 

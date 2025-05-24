@@ -15,7 +15,7 @@ export class ChartsService {
 
 
 
-    GetMonthImports(id:number):Observable<any>{
+    GetMonthImports(id:number | null):Observable<any>{
 
       const token = localStorage.getItem('userToken'); // استرجاع التوكن من Local Storage
 
@@ -29,7 +29,6 @@ export class ChartsService {
         );
       }
 
-
       GetMonthItemsComp(id1:string , id2:string):Observable<any>{
         const token = localStorage.getItem('userToken'); // استرجاع التوكن من Local Storage
 
@@ -42,5 +41,20 @@ export class ChartsService {
             },
           );
         }
+
+
+        GetSellerNumbers(id:number | null):Observable<any>{
+
+          const token = localStorage.getItem('userToken'); // استرجاع التوكن من Local Storage
+
+      const headers = new HttpHeaders({
+        'Authorization': `Bearer ${token}`  // إضافة التوكن في الهيدر
+      });
+            return this._HttpClient.get(`${environment.baseUrl}api/Reports/GetSellerNumbers?Seller_ID=${id}`,
+              {
+                headers
+              }
+            );
+          }
 
 }

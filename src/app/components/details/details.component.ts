@@ -128,7 +128,6 @@ onFileSelected(event: Event) {
     }
 
     const formData = new FormData();
-
     // formData.append('Item_ID', formValues.Item_ID);
     // formData.append('Item_Name', formValues.Item_Name);
     // formData.append('Description', formValues.Description);
@@ -140,7 +139,6 @@ onFileSelected(event: Event) {
     // formData.append('Category_ID', formValues.Category_ID);
     // formData.append('Sub_Category_ID', formValues.Sub_Category_ID);
     // formData.append('Seller_ID', this._AuthServiceService.userData.nameid);
-
     formData.append('Image', this.selectedFile ); // إضافة الصورة
 
     this._ProductsService.UpdateItemImage( this.detalisProduct.Data.Item_ID,formData).subscribe({

@@ -18,4 +18,8 @@ export class OrdersService {
     GetOrderItems(IDFromPaymob: number):Observable<any>{
         return this._HttpClient.get(`${environment.baseUrl}api/Orders/GetOrderItems?IDFromPaymob=${IDFromPaymob}`);
     }
+
+    GetٍSellerOrders(SellerId: number|null):Observable<any>{
+      return this._HttpClient.get(`${environment.baseUrl}api/Orders/GetSellerOrders?saller=${SellerId}`);
+  }
 }

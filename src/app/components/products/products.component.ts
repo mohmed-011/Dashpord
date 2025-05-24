@@ -54,8 +54,10 @@ export class ProductsComponent {
 productList:IProduct[]=[]
 
   ngOnInit(): void {
-
-    this._ProductsService.GetAllProduct( this._AuthServiceService.userData.nameid).subscribe({
+    let userId: string | null = localStorage.getItem('userID') !== null
+    ? (localStorage.getItem('userID'))
+    : null;
+    this._ProductsService.GetAllProduct( userId ).subscribe({
       next:(res)=>{
         if(res.message == "success"){
            console.log(res)
