@@ -6,6 +6,8 @@ import { SelectFiltersService } from '../../core/services/select-filters.service
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { ExcelService } from '../../core/services/excel.service';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../core/environments/environments';
 
 @Component({
   selector: 'app-excel-sheet',
@@ -16,6 +18,8 @@ import { ExcelService } from '../../core/services/excel.service';
 })
 export class ExcelSheetComponent {
     private readonly _SelectFiltersService = inject(SelectFiltersService)
+    private readonly http = inject(HttpClient)
+
 
     categoryList:ICategory[]=[]
     subCategoryList:ISubCategory[]=[]
@@ -76,7 +80,71 @@ private readonly _ExcelService = inject(ExcelService)
       this.selectedFile = fileList[0];
     }
   }
+  downloadTemplate() {
+    if(this.subCategoryId == 1){
+      this.http.get(`${environment.baseUrl}api/Template/downloadPhones`, {
+        responseType: 'blob' // مهم جدًا
+      }).subscribe((data: Blob) => {
+        const url = window.URL.createObjectURL(data);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'students_template.xlsx';
+        a.click();
+        window.URL.revokeObjectURL(url);
+      });
+    }
+    else if(this.subCategoryId == 2){
+      this.http.get(`${environment.baseUrl}api/Template/downloadLaptops`, {
+        responseType: 'blob' // مهم جدًا
+      }).subscribe((data: Blob) => {
+        const url = window.URL.createObjectURL(data);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'students_template.xlsx';
+        a.click();
+        window.URL.revokeObjectURL(url);
+      });
+    }
+    else if(this.subCategoryId == 4){
+      this.http.get(`${environment.baseUrl}api/Template/downloadSmartWatches`, {
+        responseType: 'blob' // مهم جدًا
+      }).subscribe((data: Blob) => {
+        const url = window.URL.createObjectURL(data);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'students_template.xlsx';
+        a.click();
+        window.URL.revokeObjectURL(url);
+      });
+    }
+    else if(this.subCategoryId == 7){
+      this.http.get(`${environment.baseUrl}api/Template/downloadTVs`, {
+        responseType: 'blob' // مهم جدًا
+      }).subscribe((data: Blob) => {
+        const url = window.URL.createObjectURL(data);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'students_template.xlsx';
+        a.click();
+        window.URL.revokeObjectURL(url);
+      });
+    }
+    else if(this.subCategoryId == 19){
+      this.http.get(`${environment.baseUrl}api/Template/downloadPCs`, {
+        responseType: 'blob' // مهم جدًا
+      }).subscribe((data: Blob) => {
+        const url = window.URL.createObjectURL(data);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'students_template.xlsx';
+        a.click();
+        window.URL.revokeObjectURL(url);
+      });
+    }
+    else{
 
+    }
+  }
   upload(): void {
     // if (!this.selectedFile) {
     //   this.message = 'Please select a file.';
@@ -122,9 +190,5 @@ private readonly _ExcelService = inject(ExcelService)
       });
     }
 
-    this._ExcelService.uploadFileLaptops(this.selectedFile, userId, this.selectedBrandId)
-      .subscribe({
-        next: () => this.message = 'File uploaded successfully!',
-      });
   }
 }
