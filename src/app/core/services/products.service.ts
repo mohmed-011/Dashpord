@@ -1,7 +1,8 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../environments/environments';
+
 
 @Injectable({
   providedIn: 'root'
@@ -70,4 +71,26 @@ export class ProductsService {
   // getSpecificProduct(num:number):Observable<any>{
   //   return this._HttpClient.get(``);
   // }
+
+
+
+  private baseUrl = `${environment.baseUrl}Products/GetFilteredProducts`;
+
+
+  getFilteredProducts(filters: any): Observable<any> {
+
+    const token = localStorage.getItem('userToken'); // استرجاع التوكن من Local Storage
+
+      const headers = new HttpHeaders({
+        'Authorization': `Bearer ${token}`  // إضافة التوكن في الهيدر
+      });
+
+    let params = new HttpParams();
+    Object.entries(filters).forEach(([key, value]) => {
+      if (value !== null && value !== undefined && value !== '' && value !== false) {
+        params = params.set(key, value.toString());
+      }
+    });
+    return this._HttpClient.get<any[]>(this.baseUrl, { params ,headers }  );
+  }
 }
