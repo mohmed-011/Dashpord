@@ -74,20 +74,58 @@
           />
         </div>
         <div>
-          <label class="block text-sm text-gray-600 mb-1">Category</label>
-          <input
-            type="text"
-            formControlName="category"
-            class="w-full px-4 py-2 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-400 focus:outline-none transition-all"
-          />
-        </div>
+          <label for="countries"  for="countries" class="block text-sm text-gray-600 mb-1">Category</label>
+          <select
+      name="Category_ID"
+      (change)="onCategoryChange($event)"
+      formControlName="categry"
+
+      id="countries"
+      class="w-full px-4 py-2 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-400 focus:outline-none transition-all"
+    >
+      <option selected>Select Category</option>
+      @for (item of categoryList; track $index) {
+      <option value="{{ item.Category_ID }}">
+        {{ item.Category_Name }}
+      </option>
+
+      }
+      <!-- <option value="1">Electronics</option>
+      <option value="5">Home Appliances</option>
+      <option value="9">Clothing</option>
+      <option value="FR">Books</option>
+      <option value="DE">Beauty</option>
+      <option value="DE">Sports</option>
+      <option value="DE">accessories</option>
+      <option value="DE">Tools</option>
+      <option value="DE">Furniture</option> -->
+    </select>
         <div>
-          <label class="block text-sm text-gray-600 mb-1">SubCategory</label>
-          <input
-            type="text"
-            formControlName="subCategory"
-            class="w-full px-4 py-2 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-400 focus:outline-none transition-all"
-          />
+          <label for="countries2" class="block text-sm text-gray-600 mb-1">SubCategory</label>
+
+          <select
+      name="Sub_Category_ID"
+      (change)="onSubCategoryChange($event)"
+      id="countries2"
+      formControlName="subCategry"
+      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+    >
+      <option selected>Select Sub Category</option>
+      @for (item of subCategoryList; track $index) {
+      <option value="{{ item.Sub_Category_ID }}">
+        {{ item.Sub_Category_Name }}
+      </option>
+
+      }
+      <!-- <option value="1">Smartphones</option>
+      <option value="3">Tablets</option>
+      <option value="2">Laptops</option>
+      <option value="FR">Refrigerators</option>
+      <option value="DE">Clothing for Men</option>
+      <option value="7">Tvs</option>
+      <option value="4">SmartWatches</option>
+      <option value="19">PCs</option> -->
+    </select>
         </div>
         <div>
           <label class="block text-sm text-gray-600 mb-1">Min Price</label>
@@ -168,6 +206,7 @@
           <i class="fa-solid fa-check mr-2"></i> Apply Filters
         </button>
       </div>
+    </div>
     </form>
   </div>
 </div>
