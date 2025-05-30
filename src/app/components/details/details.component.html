@@ -1,7 +1,8 @@
-<h2 class="text-3xl font-[500] m-0">Add Product</h2>
+<h2 class="text-3xl font-[500] m-0">Product Details</h2>
 <div class="">
 
-  <form    class="px-1 mb-10 flex flex-wrap w-full">
+  <form
+    class="px-1 mb-10 flex flex-wrap w-full">
     <div class="lg:w-[50%] md:w-[60%] zero:w-full mx-auto sm:p-10">
 
       <p class="ps-3 font-[500] mb-1 text-sm">Image Cover</p>
@@ -39,7 +40,7 @@
       </div>
       <div class="flex items-center justify-center">
         <button
-        (onclick)="onEdit()"
+        (click)="onEdit()"
           class="px-[15px] py-[5px] rounded-lg text-white bg-green-500 shadow-md hover:bg-[#3adb75] transition-all shadow-green-500"
         >
           <i class="text-xl fa-regular fa-floppy-disk pe-2"></i> Edit Image
@@ -515,265 +516,143 @@
     </div>
     <div class="lg:w-[50%] md:w-[70%] mx-auto lg:pt-10 space-y-5">
       <div>
-        <label
-          for="first_name"
-          class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
-          >Product Code</label
-        >
+        <label class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white">Product Code</label>
         <input
           type="text"
-          id="first_name"
-          value={{detalisProduct.Data.Item_ID}}
-          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          placeholder="5-400-5-6"
+          [(ngModel)]="detalisProduct.Data.Item_ID"
+          name="Item_ID"
           disabled
-
-          required
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
+          placeholder="5-400-5-6"
         />
       </div>
+
       <div>
-        <label
-          for="first_name"
-          class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
-          >Product Name</label
-        >
+        <label class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white">Product Name</label>
         <input
           type="text"
-          id="first_name"
-          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          placeholder="Ex:  Iphone 16 Pro Max"
-          value={{detalisProduct.Data.Item_Name}}
-          required
+          [(ngModel)]="detalisProduct.Data.Item_Name"
+          name="Item_Name"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
+          placeholder="Ex: Iphone 16 Pro Max"
         />
       </div>
-      <div>
-        <label
-          for="first_name"
-          class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
-          >Product Description</label
-        >
-        <textarea
-          type="text"
-          id="first_name"
-          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          rows="6"
-          placeholder="Ex:  Latest Apple iPhone Version"
-          required
-          value={{detalisProduct.Data.Description}}
 
+      <div>
+        <label class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white">Product Description</label>
+        <textarea
+          [(ngModel)]="detalisProduct.Data.Description"
+          name="Description"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
+          rows="6"
+          placeholder="Ex: Latest Apple iPhone Version"
         ></textarea>
       </div>
+
       <div class="flex flex-wrap justify-between">
         <div class="w-[45%]">
-          <label
-            for="countries"
-            class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
-            >Category</label
-          >
+          <label class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white">Category</label>
           <select
-
-          [(ngModel)]="selectedCatOption"
-            id="countries"
-          value={{detalisProduct.Data.Category_Name}}
-
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            [(ngModel)]="detalisProduct.Data.Category_ID"
+            name="Category_ID"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
           >
-            <option selected>Select Category</option>
-            <option value="1">Electronics</option>
-            <option value="5">Home Appliances</option>
-            <option value="9">Clothing</option>
-            <option value="FR">Books</option>
-            <option value="DE">Beauty</option>
-            <option value="DE">Sports</option>
-            <option value="DE">accessories</option>
-            <option value="DE">Tools</option>
-            <option value="DE">Furniture</option>
+            <option [ngValue]="null">Select Category</option>
+            <option [ngValue]="1">Electronics</option>
+            <option [ngValue]="5">Home Appliances</option>
+            <option [ngValue]="9">Clothing</option>
+            <option [ngValue]="10">Books</option>
+            <option [ngValue]="11">Beauty</option>
+            <option [ngValue]="12">Sports</option>
+            <option [ngValue]="13">Accessories</option>
+            <option [ngValue]="14">Tools</option>
+            <option [ngValue]="15">Furniture</option>
           </select>
         </div>
+
         <div class="w-[45%]">
-          <label
-
-            for="countries"
-            class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
-            >Sub Category</label
-          >
+          <label class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white">Sub Category</label>
           <select
-
-            id="countries"
-          value={{detalisProduct.Data.Sub_Category_Name}}
-
-            [(ngModel)]="selectedOption"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            [(ngModel)]="detalisProduct.Data.Sub_Category_ID"
+            name="Sub_Category_ID"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
           >
-            <option selected>Select Sub Category</option>
-            <option value="1">Smartphones</option>
-            <option value="3">Tablets</option>
-            <option value="2">Laptops</option>
-            <option value="FR">Refrigerators</option>
-            <option value="DE">Clothing for Men</option>
-            <option value="7">Tvs</option>
-            <option value="4">SmartWatches</option>
-            <option value="19">PCs</option>
+            <option [ngValue]="null">Select Sub Category</option>
+            <option [ngValue]="1">Smartphones</option>
+            <option [ngValue]="3">Tablets</option>
+            <option [ngValue]="2">Laptops</option>
+            <option [ngValue]="4">Refrigerators</option>
+            <option [ngValue]="5">Clothing for Men</option>
+            <option [ngValue]="7">Tvs</option>
+            <option [ngValue]="8">SmartWatches</option>
+            <option [ngValue]="9">PCs</option>
           </select>
         </div>
       </div>
+
       <div class="flex flex-wrap justify-between">
         <div class="w-[30%]">
-          <label
-            for="first_name"
-            class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
-            >Price in</label
-          >
+          <label class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white">Price in</label>
           <input
             type="number"
-            id="first_name"
-          value={{detalisProduct.Data.Price_in}}
-
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            [(ngModel)]="detalisProduct.Data.Price_in"
+            name="Price_in"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
             placeholder="Ex: 1500"
-
-            required
           />
         </div>
+
         <div class="w-[30%]">
-          <label
-            for="first_name"
-            class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
-            >Price Out</label
-          >
+          <label class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white">Price Out</label>
           <input
             type="number"
-            id="first_name"
-          value={{detalisProduct.Data.Price_out}}
-
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            [(ngModel)]="detalisProduct.Data.Price_out"
+            name="Price_out"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
             placeholder="Ex: 1700"
-
-            required
           />
         </div>
+
         <div class="w-[30%]">
-          <label
-            for="first_name"
-            class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
-            >Discount</label
-          >
+          <label class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white">Discount</label>
           <input
             type="number"
-            id="first_name"
-          value={{detalisProduct.Data.Discount}}
-
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            [(ngModel)]="detalisProduct.Data.Discount"
+            name="Discount"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
             placeholder="Ex: 50"
-
-            required
           />
         </div>
       </div>
+
       <div class="w-[30%]">
-        <label
-          for="first_name"
-          class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
-          >Quantity</label
-        >
+        <label class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white">Quantity</label>
         <input
           type="number"
-          id="first_name"
-          value={{detalisProduct.Data.Quantity}}
-
-          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          [(ngModel)]="detalisProduct.Data.Quantity"
+          name="Quantity"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
           placeholder="Ex: 22"
-          required
         />
       </div>
-      <!-- <div class="flex items-center mt-5 mb-5">
-        <div class="flex items-center space-x-1 rtl:space-x-reverse">
-          @for (num of [1,2,3,4,5].slice(0,4.5); track
-          $index) {
-          <svg
-            class="w-4 h-4 text-yellow-300"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="currentColor"
-            viewBox="0 0 22 20"
-          >
-            <path
-              d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
-            />
-          </svg>
-          } @if (4.5 %1 !== 0) {
-          <i class="fa-solid fa-star-half-stroke w-4 h-4 text-yellow-300"></i>
-          }
 
-        </div>
-        <span
-          class="bg-emerald-200 text-emerald-900 text-xs font-semibold px-2.5 py-0.5 rounded dark:bg-emerald-200 dark:text-emerald-800 ms-3"
-          >4.5</span
-        >
-      </div> -->
-      <div class="flex items-center justify-center">
+      <div class="flex items-center justify-center mt-6 gap-4">
         <button
+          (click)="onEdit2()"
+          type="button"
           class="px-[15px] py-[5px] rounded-lg text-white bg-green-500 shadow-md hover:bg-[#3adb75] transition-all shadow-green-500"
         >
           <i class="text-xl fa-regular fa-floppy-disk pe-2"></i> Edit Product
         </button>
-      </div>
 
-      <!-- <h2 class="text-2xl font-semibold pb-3 text-black dark:text-white">Brand Details</h2> -->
-    </div>
-  </form>
-</div>
-<!--
-<h1
-  class="text-3xl transition-all duration-[0.5s] text-black dark:text-white hover:text-white p-4 w-fit mx-auto relative mb-5 before:w-8 before:h-8 before:bg-[#1a56db] before:z-[-1] before:absolute before:-left-6 before:translate-y-[-50%] before:top-[50%] before:rounded-full before:transition-all before:duration-[0.5s] after:z-[-1] after:transition-all after:duration-[0.5s] after:translate-y-[-50%] after:w-8 after:h-8 after:bg-[#1a56db] after:absolute after:-right-6 after:top-[50%] after:rounded-full hover:before:w-full hover:after:h-[75%] hover:before:h-[75%] hover:after:w-full"
->
-  Related Products
-</h1>
-<owl-carousel-o [options]="customOptionsCat">
-  @for (item of [1,2,3,4,5] ; track $index) {
-  <ng-template carouselSlide>
-    <div class="p-2">
-      <div
-        class="hover:scale-[1.05] transition-all duration-[0.5s] bg-white p-3 rounded-lg shadow-lg"
-      >
-        <owl-carousel-o [options]="customOptionsCat">
-          @for (item of [1,2,3]; track $index) {
-          <ng-template carouselSlide>
-            <div class="text-center cursor-pointer">
-              <img
-                src="../../../assets/images/OIP.jpeg"
-                [alt]=""
-                class="w-full h-[200px] rounded-md"
-              />
-            </div>
-          </ng-template>
-          }
-        </owl-carousel-o>
-
-        <h5 class="my-2 font-semibold">Apple Watch Series 4</h5>
-        <div class="flex justify-between">
-          <p class="my-1 text-[#4880FF] font-semibold">1200$</p>
-          <div
-            class="cursor-pointer p-1 rounded-full color1 d-flex items-center justify-center"
-          >
-            <i class="fa-regular fa-heart"></i>
-          </div>
-        </div>
-
-        <div class="flex my-2">
-          <i class="fa-solid fa-star text-yellow-400"></i>
-          <i class="fa-solid fa-star text-yellow-400"></i>
-          <i class="fa-solid fa-star text-yellow-400"></i>
-          <i class="fa-solid fa-star-half-stroke text-yellow-400"></i>
-          <i class="fa-regular fa-star text-yellow-400"></i>
-        </div>
         <button
-          class="bg-slate-100 text-sm font-semibold rounded-md px-3 py-1 my-2"
+          (click)="DeleteItem(detalisProduct.Data.Item_ID)"
+          type="button"
+          class="px-[15px] py-[5px] rounded-lg text-white bg-red-500 shadow-md hover:bg-[#db3a3a] transition-all shadow-red-500"
         >
-          Edit product
+          <i class="text-xl fa-solid fa-trash pe-2"></i> Delete Product
         </button>
       </div>
     </div>
-  </ng-template>
-  }
-</owl-carousel-o> -->
+  </form>
+</div>

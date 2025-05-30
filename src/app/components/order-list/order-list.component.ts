@@ -15,7 +15,6 @@ import { Iorder } from '../../core/Interfaces/iorder';
 export class OrderListComponent implements OnInit {
 
 private readonly _OrdersService = inject(OrdersService);
-private readonly _AuthServiceService = inject(AuthServiceService)
 
 orderList:Iorder[]=[]
 

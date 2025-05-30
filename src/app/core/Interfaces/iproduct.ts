@@ -23,6 +23,8 @@ export interface Data {
   Sold_Count: number
   Crate_Date: string
   Brand_ID: number
+  Category_ID: number
+  Sub_Category_ID: number
 }
 
 export interface Images {

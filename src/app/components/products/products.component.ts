@@ -22,9 +22,7 @@ export class ProductsComponent {
   private readonly _ProductsService = inject(ProductsService);
   private readonly _AuthServiceService = inject(AuthServiceService);
   private readonly _SelectFiltersService = inject(SelectFiltersService);
-
   filterForm!: FormGroup;
-
   productList: IProduct[] = [];
   categoryList: ICategory[] = [];
   subCategoryList: ISubCategory[] = [];
@@ -35,8 +33,113 @@ export class ProductsComponent {
   categoryId: number = 0;
   subCategoryId: number = 0;
   userId: string | null = '';
-
   showFilters = false;
+
+  ngOnInit(): void {
+    this.userId = localStorage.getItem('userID');
+
+    this.filterForm = this.fb.group({
+      sellerId: [this.userId],
+      minPrice: [1000],
+      maxPrice: [2000],
+      categry: [null],
+      subCategry: [null],
+      minRate: [0],
+      mostViewed: [false],
+      newwest: [false],
+      mostSold: [false],
+      searchQuery: [''],
+      pageNumber: [1],
+      pageSize: [10]
+    });
+
+
+
+    this._SelectFiltersService.GetAllCategory().subscribe({
+      next: (res) => {
+        this.categoryList = res;
+        console.log(this.categoryList);
+      }
+    });
+
+    this.getProducts();
+  }
+  applyFilters() {
+    this.showFilters = false;
+
+    this.filterForm.patchValue({
+      sellerId: this.userId,
+      categry:this.categoryId === 0 ? null : this.categoryId,
+      subCategry: this.subCategoryId === 0 ? null : this.subCategoryId
+    });
+    this.filterForm.get('mostViewed')?.valueChanges.subscribe(val => {
+      console.log('✅ mostViewed changed:', val);
+    });
+
+    this.filterForm.get('newwest')?.valueChanges.subscribe(val => {
+      console.log('✅ newwest changed:', val);
+    });
+
+    this.filterForm.get('mostSold')?.valueChanges.subscribe(val => {
+      console.log('✅ mostSold changed:', val);
+    });
+    console.log("categoryId:", this.categoryId);
+    console.log("subCategoryId:", this.subCategoryId);
+
+    this.getProducts();
+  }
+  getProducts() {
+    const filters = this.filterForm.value;
+    console.log('Filters sent to API:', filters);
+    this._ProductsService.getFilteredProducts(filters).subscribe({
+      next: (res: any) => {
+        console.log('Response:', res);
+        this.productList = [];
+
+        if (res.message === "success" && res.products) {
+          this.productList = res.products;
+        } else if (Array.isArray(res)) {
+          this.productList = res;
+        } else {
+          console.warn("Unexpected response format", res);
+        }
+
+        console.log('Updated product list:', this.productList);
+      },
+      error: (err) => {
+        console.error(err);
+      }
+    });
+  }
+  onCategoryChange(event: Event) {
+    const categoryId = this.filterForm.get('categry')?.value;
+    this.categoryId = categoryId;
+
+    if (categoryId) {
+      console.log(categoryId);
+      this._SelectFiltersService.GetAllSubCategoryByCat(categoryId).subscribe({
+        next: (res) => {
+          this.subCategoryList = res;
+          console.log(res);
+        }
+      });
+    }
+  }
+  onSubCategoryChange(event: Event) {
+    const subCategoryId = this.filterForm.get('subCategry')?.value;
+    this.subCategoryId = subCategoryId;
+
+    if (subCategoryId) {
+      console.log(subCategoryId);
+      this._SelectFiltersService.GetSubCategoryBrands(subCategoryId).subscribe({
+        next: (res) => {
+          this.brandList = res.Brands;
+          console.log(this.brandList);
+        }
+      });
+    }
+  }
+
 
   customOptionsCat: OwlOptions = {
     loop: true,
@@ -61,102 +164,5 @@ export class ProductsComponent {
     },
     nav: false
   };
-
-  ngOnInit(): void {
-    this.userId = localStorage.getItem('userID');
-
-    this.filterForm = this.fb.group({
-      sellerId: [this.userId],
-      minPrice: [1000],
-      maxPrice: [2000],
-      categry: [null],
-      subCategry: [null],
-      minRate: [0],
-      mostViewed: [false],
-      newwest: [false],
-      mostSold: [false],
-      searchQuery: [''],
-      pageNumber: [1],
-      pageSize: [10]
-    });
-
-    this._SelectFiltersService.GetAllCategory().subscribe({
-      next: (res) => {
-        this.categoryList = res;
-        console.log(this.categoryList);
-      }
-    });
-
-    this.getProducts();
-  }
-
-  applyFilters() {
-    this.showFilters = false;
-
-    this.filterForm.patchValue({
-      sellerId: this.userId,
-      categry: this.categoryId,
-      subCategry: this.subCategoryId
-    });
-
-    console.log("categoryId:", this.categoryId);
-    console.log("subCategoryId:", this.subCategoryId);
-
-    this.getProducts();
-  }
-
-  getProducts() {
-    const filters = this.filterForm.value;
-
-    this._ProductsService.getFilteredProducts(filters).subscribe({
-      next: (res: any) => {
-        console.log('Response:', res);
-        this.productList = [];
-
-        if (res.message === "success" && res.products) {
-          this.productList = res.products;
-        } else if (Array.isArray(res)) {
-          this.productList = res;
-        } else {
-          console.warn("Unexpected response format", res);
-        }
-
-        console.log('Updated product list:', this.productList);
-      },
-      error: (err) => {
-        console.error(err);
-      }
-    });
-  }
-
-  onCategoryChange(event: Event) {
-    const categoryId = this.filterForm.get('categry')?.value;
-    this.categoryId = categoryId;
-
-    if (categoryId) {
-      console.log(categoryId);
-      this._SelectFiltersService.GetAllSubCategoryByCat(categoryId).subscribe({
-        next: (res) => {
-          this.subCategoryList = res;
-          console.log(res);
-        }
-      });
-    }
-  }
-
-  onSubCategoryChange(event: Event) {
-    const subCategoryId = this.filterForm.get('subCategry')?.value;
-    this.subCategoryId = subCategoryId;
-
-    if (subCategoryId) {
-      console.log(subCategoryId);
-      this._SelectFiltersService.GetSubCategoryBrands(subCategoryId).subscribe({
-        next: (res) => {
-          this.brandList = res.Brands;
-          console.log(this.brandList);
-        }
-      });
-    }
-  }
 }
 

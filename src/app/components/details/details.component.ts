@@ -30,50 +30,14 @@ export class DetailsComponent implements OnInit{
       }
     })
   }
-// customOptionsCat: OwlOptions = {
-//     loop: true,
-//     mouseDrag: true,
-//     touchDrag: false,
-//     pullDrag: false,
-//     dots: true,
-//     dotsEach:true,
-//     navSpeed: 700,
-//     autoplay:true,
-//     margin:8,
-//     merge:true,
-//     autoplayTimeout:4000,
-//     autoplayHoverPause:true,
-//     navText: ['', ''],
-//     responsive: {
-//       0: {
-//         items: 1
-//       },
-//       400: {
-//         items: 2
-//       },
-//       740: {
-//         items: 3
-//       },
-//       940: {
-//         items: 4
-//       },
-//       1100: {
-//         items: 6
-//       }
-//     },
-//     nav: false
-//   }
 
 
 private readonly _ProductsService = inject(ProductsService)
-private readonly _AuthServiceService = inject(AuthServiceService)
 private readonly _ActivatedRoute = inject(ActivatedRoute)
 
+
+
   detalisProduct:IProduct = {} as IProduct
-
-
-
-// @ViewChild('imageInput', { static: false }) imageInput!: ElementRef;
 
 selectedFile: File | null = null; // تخزين الملف هنا
 
@@ -84,44 +48,8 @@ onFileSelected(event: Event) {
     }
   }
 
-  // onSubmit(formValues: any) {
-
-  //  if (!this.selectedFile) {
-  //     console.error('يرجى اختيار صورة');
-  //     return;
-  //   }
-
-  //   const formData = new FormData();
-
-  //   // formData.append('Item_ID', formValues.Item_ID);
-  //   // formData.append('Item_Name', formValues.Item_Name);
-  //   // formData.append('Description', formValues.Description);
-  //   // formData.append('Quantity', formValues.Quantity);
-  //   // formData.append('Price_in', formValues.Price_in);
-  //   // formData.append('Price_out', formValues.Price_out);
-  //   // formData.append('Discount', formValues.Discount);
-  //   // formData.append('Rate',"0");
-  //   // formData.append('Category_ID', formValues.Category_ID);
-  //   // formData.append('Sub_Category_ID', formValues.Sub_Category_ID);
-  //   // formData.append('Seller_ID', this._AuthServiceService.userData.nameid);
-
-  //   formData.append('Image', this.selectedFile ); // إضافة الصورة
-
-  //   this._ProductsService.addOneProduct(formData).subscribe({
-  //     next: (res) => {
-  //         if(res.message  == "success"){
-
-  //           console.log('Product added:', res)
-
-  //         }
-  //     } ,
-  //     error: (error) => console.error('Error:', error),
-  //   });
-
-  // }
-
   onEdit() {
-
+    console.log('بدايه  ');
    if (!this.selectedFile) {
       console.error('يرجى اختيار صورة');
       return;
@@ -139,14 +67,15 @@ onFileSelected(event: Event) {
     // formData.append('Category_ID', formValues.Category_ID);
     // formData.append('Sub_Category_ID', formValues.Sub_Category_ID);
     // formData.append('Seller_ID', this._AuthServiceService.userData.nameid);
-    formData.append('Image', this.selectedFile ); // إضافة الصورة
+    formData.append('Itemimage', this.selectedFile ); // إضافة الصورة
+    console.log('formData  ',formData);
+    console.log('Item_ID  ',this.detalisProduct.Data.Item_ID);
+
 
     this._ProductsService.UpdateItemImage( this.detalisProduct.Data.Item_ID,formData).subscribe({
       next: (res) => {
           if(res.message  == "success"){
-
             console.log('Product added:', res)
-
           }
       } ,
       error: (error) => console.error('Error:', error),
@@ -154,7 +83,44 @@ onFileSelected(event: Event) {
 
   }
 
+  onEdit2() {
+    const updatedProduct = {
+      item_ID: this.detalisProduct.Data.Item_ID,
+      image_Cover: this.detalisProduct.Data.Image_Cover,
+      item_Name: this.detalisProduct.Data.Item_Name,
+      description: this.detalisProduct.Data.Description,
+      quantity: this.detalisProduct.Data.Quantity,
+      price_in: this.detalisProduct.Data.Price_in,
+      price_out: this.detalisProduct.Data.Price_out,
+      discount: this.detalisProduct.Data.Discount,
+      category_ID: this.detalisProduct.Data.Category_ID,
+      sub_Category_ID: this.detalisProduct.Data.Sub_Category_ID,
+      brand_ID: this.detalisProduct.Data.Brand_ID,
+      crate_Date: this.detalisProduct.Data.Crate_Date,
+    };
+
+    this._ProductsService.UpdateProduct(updatedProduct).subscribe({
+      next: (res) => {
+        if (res.message === "success") {
+          console.log('تم تعديل المنتج بنجاح');
+        }
+      },
+      error: (err) => {
+        console.error('حدث خطأ أثناء تعديل المنتج:', err);
+      }
+    });
+  }
+  DeleteItem(id :string | null){
+    this._ProductsService.DeleteProduct(id).subscribe({
+      next:(res)=>{
+        console.log(res);
+      },
+      error:(err)=>{}
+
+    })
+  }
   selectedOption: string = 'Select Sub Category';
   selectedCatOption: string = 'Select Category';
+
 
 }

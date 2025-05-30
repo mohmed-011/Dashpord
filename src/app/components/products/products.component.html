@@ -83,7 +83,7 @@
       id="countries"
       class="w-full px-4 py-2 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-400 focus:outline-none transition-all"
     >
-      <option selected>Select Category</option>
+      <option  value=null selected>Select Category</option>
       @for (item of categoryList; track $index) {
       <option value="{{ item.Category_ID }}">
         {{ item.Category_Name }}
@@ -110,7 +110,7 @@
       formControlName="subCategry"
       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
     >
-      <option selected>Select Sub Category</option>
+      <option  value=null selected>Select Sub Category</option>
       @for (item of subCategoryList; track $index) {
       <option value="{{ item.Sub_Category_ID }}">
         {{ item.Sub_Category_Name }}
@@ -165,7 +165,7 @@
         <div class="col-span-1 flex items-center space-x-3">
           <input
             type="checkbox"
-            formControlName="newest"
+            formControlName="newwest"
             class="w-5 h-5 text-blue-600"
           />
           <label class="text-gray-700">Newest</label>

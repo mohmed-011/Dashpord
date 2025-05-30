@@ -111,7 +111,9 @@ export class AddProductComponent implements OnInit{
     }
 
     onSubmit(formValues: any) {
-
+      let userId: number | null = localStorage.getItem('userID') !== null
+      ? Number(localStorage.getItem('userID'))
+      : null;
      if (!this.selectedFile) {
         console.error('يرجى اختيار صورة');
         return;
@@ -129,7 +131,7 @@ export class AddProductComponent implements OnInit{
       formData.append('Rate',"0");
       formData.append('Category_ID', formValues.Category_ID);
       formData.append('Sub_Category_ID', formValues.Sub_Category_ID);
-      formData.append('Seller_ID', this._AuthServiceService.userData.nameid);
+      formData.append('Seller_ID', userId !== null ? userId.toString() : '');
       formData.append('Brand_ID', formValues.Brand_ID);
       formData.append('Image', this.selectedFile ); // إضافة الصورة
 

@@ -8,6 +8,8 @@ import { AuthServiceService } from '../../core/services/auth-service.service';
 import { TopService } from '../../core/services/top.service';
 import { IMostselas } from '../../core/Interfaces/Top/imostselas';
 import { ISellernumbrs } from '../../core/Interfaces/isellernumbrs';
+import { OrdersService } from '../../core/services/orders.service';
+import { Iorder } from '../../core/Interfaces/iorder';
 Chart.register(...registerables)
 
 @Component({
@@ -23,7 +25,9 @@ private readonly _TopService = inject(TopService)
 topRatedList:ITopRated[]=[]
 topSoldList:IMostselas[]=[]
 SellerNumber:ISellernumbrs[]=[]
+private readonly _OrdersService = inject(OrdersService);
 
+orderList:Iorder[]=[]
 
 
 
@@ -31,7 +35,16 @@ SellerNumber:ISellernumbrs[]=[]
       let userId: number | null = localStorage.getItem('userID') !== null
   ? Number(localStorage.getItem('userID'))
   : null;
-
+      this._OrdersService.GetٍSellerOrders( userId ).subscribe({
+        next:(res)=>{
+          this.orderList = res.data
+          console.log(res)
+          console.log(this.orderList)
+        },
+        error:(err)=>{
+          console.log(err)
+        }
+      })
       this._ChartsService.GetMonthImports(userId).subscribe({
 
               next:(res)=>{
@@ -47,7 +60,6 @@ SellerNumber:ISellernumbrs[]=[]
 
               }
       })
-
       this._TopService.GetMostSelas(userId).subscribe({
         next:(res)=>{
           // move to login

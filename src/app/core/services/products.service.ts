@@ -93,4 +93,33 @@ export class ProductsService {
     });
     return this._HttpClient.get<any[]>(this.baseUrl, { params ,headers }  );
   }
+
+
+DeleteProduct(id:string | null):Observable<any>{
+
+    const token = localStorage.getItem('userToken'); // استرجاع التوكن من Local Storage
+
+      const headers = new HttpHeaders({
+        'Authorization': `Bearer ${token}`  // إضافة التوكن في الهيدر
+      });
+
+    return this._HttpClient.delete(`${environment.baseUrl}Products/DeleteProductById?ItemID=${id}`,
+          {
+            headers
+          });
+  }
+
+
+  UpdateProduct(productData: any): Observable<any> {
+    const token = localStorage.getItem('userToken');
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    });
+
+    return this._HttpClient.put(`${environment.baseUrl}Products/update`, productData, { headers });
+  }
+
+
 }
