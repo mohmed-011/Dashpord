@@ -1,14 +1,14 @@
 <!-- <div class="w-[20%] mx-auto">
   <img src="../../../assets/images/chatbot.png" class="w-full" alt="" >
 </div> -->
-<div
+<!-- <div
   class="mx-auto bg-white dark:bg-zinc-800 shadow-lg rounded-lg overflow-hidden"
 >
   <div class="flex flex-col h-[500px]">
     <div class="px-4 py-3 border-b dark:border-zinc-700">
       <div class="flex justify-between items-center">
         <h2 class="text-lg font-semibold text-zinc-800 dark:text-white">
-          ChatGPT <span class="text-sm">plus</span>
+          Seller <span class="text-sm">assistant</span>
         </h2>
         <div class="bg-green-500 text-white text-xs px-2 py-1 rounded-full">
           Online
@@ -20,9 +20,9 @@
       class="flex-1 p-5 overflow-y-auto flex flex-col space-y-4"
       id="chatDisplay"
     >
-      <div class="mx-auto">
+      <div class="mx-auto w-28">
         <img
-          src="../../../assets/images/icons8-chatgpt-100.png"
+          src="../../../assets/images/chatbot.png"
           class="w-full"
           alt=""
         />
@@ -63,6 +63,61 @@
         </button>
          </form>
       </div>
+    </div>
+  </div>
+</div> -->
+<div class="mx-auto max-w-3xl bg-white dark:bg-zinc-800 shadow-2xl rounded-2xl overflow-hidden">
+  <div class="flex flex-col h-[600px]">
+
+    <!-- Header -->
+    <div class="px-6 py-4 border-b dark:border-zinc-700 bg-zinc-100 dark:bg-zinc-900">
+      <div class="flex justify-between items-center">
+        <h2 class="text-xl font-bold text-zinc-800 dark:text-white">
+          Seller <span class="text-sm font-normal text-zinc-500 dark:text-zinc-400">assistant</span>
+        </h2>
+        <div class="bg-green-500 text-white text-xs px-3 py-1 rounded-full shadow-sm">
+          Online
+        </div>
+      </div>
+    </div>
+
+    <!-- Chat Display -->
+    <div class="flex-1 px-6 py-4 overflow-y-auto flex flex-col space-y-4" id="chatDisplay">
+      <div class="mx-auto w-32">
+        <img src="../../../assets/images/chatbot.png" class="w-full" alt="Chatbot Avatar" />
+      </div>
+
+      <div
+        *ngFor="let msg of messages"
+        [ngClass]="{
+          'self-start bg-zinc-500': msg.from === 'user',
+          'self-end bg-blue-600': msg.from === 'bot'
+        }"
+        class="chat-message text-white text-base max-w-xs sm:max-w-sm md:max-w-md rounded-xl px-4 py-3 shadow-md transition-all"
+      >
+        <p>{{ msg.text }}</p>
+      </div>
+    </div>
+
+    <!-- Input Area -->
+    <div class="px-4 py-3 border-t dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900">
+      <form class="flex gap-3" [formGroup]="MassageForm" (ngSubmit)="SendMassage()">
+        <input
+          formControlName="message"
+          placeholder="Type your message..."
+          name="message"
+          class="flex-1 p-2.5 border-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-zinc-700 dark:text-white dark:border-zinc-600 text-sm"
+          id="chatInput"
+          type="text"
+        />
+        <button
+          type="submit"
+          class="bg-blue-600 hover:bg-blue-700 active:scale-95 transition duration-200 ease-in-out text-white font-semibold py-2 px-4 rounded-lg text-sm shadow"
+          id="sendButton"
+        >
+          Send
+        </button>
+      </form>
     </div>
   </div>
 </div>

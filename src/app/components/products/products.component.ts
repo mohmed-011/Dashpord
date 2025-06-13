@@ -18,12 +18,11 @@ import { SelectFiltersService } from '../../core/services/select-filters.service
   styleUrl: './products.component.scss'
 })
 export class ProductsComponent {
-  private readonly fb = inject(FormBuilder);
   private readonly _ProductsService = inject(ProductsService);
-  private readonly _AuthServiceService = inject(AuthServiceService);
+  productList: IProduct[] = [];
+  private readonly fb = inject(FormBuilder);
   private readonly _SelectFiltersService = inject(SelectFiltersService);
   filterForm!: FormGroup;
-  productList: IProduct[] = [];
   categoryList: ICategory[] = [];
   subCategoryList: ISubCategory[] = [];
   brandList: IBrand[] = [];

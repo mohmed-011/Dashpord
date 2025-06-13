@@ -39,7 +39,7 @@ private readonly _ActivatedRoute = inject(ActivatedRoute)
 
   detalisProduct:IProduct = {} as IProduct
 
-selectedFile: File | null = null; // تخزين الملف هنا
+selectedFile: File | null = null; 
 
 onFileSelected(event: Event) {
     const input = event.target as HTMLInputElement;

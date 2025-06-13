@@ -1,1 +1,81 @@
-<p>reports works!</p>
+<div class="bg-white dark:bg-zinc-900 shadow rounded-lg overflow-hidden">
+  @for (group of reportTree; track group.key) {
+    <div class="border-b border-gray-200 dark:border-zinc-700">
+      <!-- عنوان المجموعة -->
+      <button
+        class="w-full text-right px-4 py-3 bg-gray-50 dark:bg-zinc-800 text-zinc-700 dark:text-white font-semibold flex justify-between items-center"
+        (click)="toggleGroup(group.key)"
+      >
+        <span>{{ group.icon }} {{ group.title }}</span>
+        <span class="text-sm">
+          {{ isGroupExpanded(group.key) ? '▲' : '▼' }}
+        </span>
+      </button>
+
+      <!-- العناصر الفرعية -->
+      @if (isGroupExpanded(group.key)) {
+        <ul class="pl-6 pr-3 py-2 space-y-1">
+          @for (child of group.children; track child.id) {
+            <li>
+              <button
+                class="w-full text-right text-sm px-3 py-2 rounded transition-all duration-200
+                       hover:bg-blue-50 dark:hover:bg-zinc-700 dark:text-white"
+                [ngClass]="{
+                  'bg-blue-100 dark:bg-zinc-600 font-bold': selectedReport === child.id
+                }"
+                (click)="selectReport(child.id)"
+              >
+                {{ child.label }}
+              </button>
+            </li>
+          }
+        </ul>
+      }
+    </div>
+  }
+</div>
+
+<section class="flex-1 p-6 bg-white dark:bg-zinc-900">
+  @if (selectedReport === 'daily-sales') {
+    <app-daily-sales-report></app-daily-sales-report>
+  }
+  @if (selectedReport === 'monthly-sales') {
+    <app-monthly-sales-report></app-monthly-sales-report>
+  }
+  @if (selectedReport === 'All-order') {
+    <app-all-seller-orders></app-all-seller-orders>
+  }
+  @if (selectedReport === 'order-By-City') {
+    <app-seller-orders-by-city></app-seller-orders-by-city>
+  }
+  @if (selectedReport === 'top-profit-items') {
+    <app-top-profit-items></app-top-profit-items>
+  }
+  @if (selectedReport === 'unsold-items') {
+    <app-unsold-product-report></app-unsold-product-report>
+  }
+  @if (selectedReport === 'out-of-stock-items') {
+    <app-out-of-stok-product-report></app-out-of-stok-product-report>
+  }
+  @if (selectedReport === 'discountItems') {
+    <app-discounted-product-report></app-discounted-product-report>
+  }
+  @if (selectedReport === 'witslistItems') {
+    <app-most-wishlist-product-report></app-most-wishlist-product-report>
+  }
+  @if (selectedReport === 'comparedItems') {
+    <app-most-compared-product-report></app-most-compared-product-report>
+  }
+  @if (selectedReport === 'mostsoldItem') {
+    <app-most-sold-product-report></app-most-sold-product-report>
+  }
+  @if (selectedReport === 'Most-Viewed-Products') {
+    <app-most-viwed-product-report></app-most-viwed-product-report>
+  }
+  @if (selectedReport === 'Most-Viewers-Products') {
+    <app-most-top-viewers-report></app-most-top-viewers-report>
+  }
+  @if (selectedReport === 'adv') {
+    <app-advanced-report></app-advanced-report>
+  }
+</section>

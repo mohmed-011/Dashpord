@@ -91,6 +91,7 @@ export class ProductsService {
         params = params.set(key, value.toString());
       }
     });
+    
     return this._HttpClient.get<any[]>(this.baseUrl, { params ,headers }  );
   }
 
