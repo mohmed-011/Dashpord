@@ -30,6 +30,9 @@ export interface Data {
 export interface Images {
   "Item_Images-1": string
   "Item_Images-2": string
+  "Item_Images-3": string
+  "Item_Images-4": string
+
 }
 
 export interface Brand {

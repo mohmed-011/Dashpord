@@ -109,42 +109,84 @@ export class AddProductComponent implements OnInit{
         this.selectedFile = input.files[0];
       }
     }
+    uploadAllImages(itemId: string) {
+      const imageUploads = [
+        { file: this.selectedFile1, name: 'Image 1' },
+        { file: this.selectedFile2, name: 'Image 2' },
+        { file: this.selectedFile3, name: 'Image 3' },
+        { file: this.selectedFile4, name: 'Image 4' },
+      ];
+
+      imageUploads.forEach((img, index) => {
+        if (img.file) {
+          const formData = new FormData();
+          formData.append('Item_ID', itemId);
+          formData.append('Image', img.file);
+          this._ProductsService.uploadImage(formData).subscribe({
+            next: () => {
+             console.log(`${img.name} uploaded successfully.`);
+            },
+            error: (err) => {
+              console.log(`Failed to upload ${img.name}.`);
+              console.error(err);
+            }
+          });
+        }
+      });
+    }
 
     onSubmit(formValues: any) {
-      let userId: number | null = localStorage.getItem('userID') !== null
-      ? Number(localStorage.getItem('userID'))
-      : null;
-     if (!this.selectedFile) {
-        console.error('يرجى اختيار صورة');
-        return;
-      }
 
-      const formData = new FormData();
-      this.itemId = formValues.Item_ID
-      formData.append('Item_ID', formValues.Item_ID);
-      formData.append('Item_Name', formValues.Item_Name);
-      formData.append('Description', formValues.Description);
-      formData.append('Quantity', formValues.Quantity);
-      formData.append('Price_in', formValues.Price_in);
-      formData.append('Price_out', formValues.Price_out);
-      formData.append('Discount', formValues.Discount);
-      formData.append('Rate',"0");
-      formData.append('Category_ID', formValues.Category_ID);
-      formData.append('Sub_Category_ID', formValues.Sub_Category_ID);
-      formData.append('Seller_ID', userId !== null ? userId.toString() : '');
-      formData.append('Brand_ID', formValues.Brand_ID);
-      formData.append('Image', this.selectedFile ); // إضافة الصورة
+      let text :string = formValues.Item_Name + " " +formValues.Description;
+      this._ProductsService.CheckProduct(text).subscribe({
+        next:(res)=>{
+          if(res.is_clean){
 
-      this._ProductsService.addOneProduct(formData).subscribe({
-        next: (res) => {
-            if(res.message  == "success"){
-              this.SetPhoneForm()
-              console.log('Product added:', res)
 
+            let userId: number | null = localStorage.getItem('userID') !== null
+            ? Number(localStorage.getItem('userID'))
+            : null;
+           if (!this.selectedFile) {
+              console.error('يرجى اختيار صورة');
+              return;
             }
-        } ,
-        error: (error) => console.error('Error:', error),
-      });
+
+            const formData = new FormData();
+            this.itemId = formValues.Item_ID
+            formData.append('Item_ID', formValues.Item_ID);
+            formData.append('Item_Name', formValues.Item_Name);
+            formData.append('Description', formValues.Description);
+            formData.append('Quantity', formValues.Quantity);
+            formData.append('Price_in', formValues.Price_in);
+            formData.append('Price_out', formValues.Price_out);
+            formData.append('Discount', formValues.Discount);
+            formData.append('Rate',"0");
+            formData.append('Category_ID', formValues.Category_ID);
+            formData.append('Sub_Category_ID', formValues.Sub_Category_ID);
+            formData.append('Seller_ID', userId !== null ? userId.toString() : '');
+            formData.append('Brand_ID', formValues.Brand_ID);
+            formData.append('Image', this.selectedFile ); // إضافة الصورة
+
+            this._ProductsService.addOneProduct(formData).subscribe({
+              next: (res) => {
+                  if(res.message  == "success"){
+                    this.SetPhoneForm()
+                    console.log('Product added:', res)
+                    this.uploadAllImages(this.itemId)
+                  }
+              } ,
+              error: (error) => console.error('Error:', error),
+            });
+
+
+
+          }
+          else{
+            console.log(res.is_clean ,res.message );
+          }
+        },
+        error:()=>{}
+      })
 
     }
 

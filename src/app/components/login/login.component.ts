@@ -8,7 +8,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule ],
+  imports: [ReactiveFormsModule ,RouterLink ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })

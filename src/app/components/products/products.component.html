@@ -242,6 +242,7 @@
           {{ item1.Data.Price_out }}$
         </p>
         <div
+        (click)="AddToFav(item1.Data.Item_ID)"
           class="cursor-pointer p-1 rounded-full color1 d-flex items-center justify-center"
         >
           <i class="fa-regular fa-heart"></i>

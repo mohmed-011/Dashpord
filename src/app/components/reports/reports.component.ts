@@ -14,11 +14,12 @@ import { MostSoldProductReportComponent } from "../Report components/most-sold-p
 import { MostViwedProductReportComponent } from "../Report components/most-viwed-product-report/most-viwed-product-report.component";
 import { MostTopViewersReportComponent } from "../Report components/most-top-viewers-report/most-top-viewers-report.component";
 import { AdvancedReportComponent } from "../Report components/advanced-report/advanced-report.component";
+import { TopRateProductReportComponent } from "../Report components/top-rate-product-report/top-rate-product-report.component";
 
 @Component({
   selector: 'app-reports',
   standalone: true,
-  imports: [CommonModule, DailySalesReportComponent, MonthlySalesReportComponent, AllSellerOrdersComponent, SellerOrdersByCityComponent, TopProfitItemsComponent, UnsoldProductReportComponent, OutOfStokProductReportComponent, DiscountedProductReportComponent, MostWishlistProductReportComponent, MostComparedProductReportComponent, MostSoldProductReportComponent, MostViwedProductReportComponent, MostTopViewersReportComponent, AdvancedReportComponent],
+  imports: [CommonModule, DailySalesReportComponent, MonthlySalesReportComponent, AllSellerOrdersComponent, SellerOrdersByCityComponent, TopProfitItemsComponent, UnsoldProductReportComponent, OutOfStokProductReportComponent, DiscountedProductReportComponent, MostWishlistProductReportComponent, MostComparedProductReportComponent, MostSoldProductReportComponent, MostViwedProductReportComponent, MostTopViewersReportComponent, AdvancedReportComponent, TopRateProductReportComponent],
   templateUrl: './reports.component.html',
   styleUrl: './reports.component.scss'
 })
@@ -51,6 +52,8 @@ export class ReportsComponent {
         { id: 'mostsoldItem', label: 'Most Sold Item' },
         { id: 'witslistItems', label: 'most added to wishlist Items' },
         { id: 'comparedItems', label: 'most added to Comparision Items' },
+        { id: 'toprateItems', label: 'Top Rated Items' }
+
 
 
 

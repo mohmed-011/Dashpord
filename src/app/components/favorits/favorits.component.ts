@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
+import { FavoriteService } from '../../core/services/favorite.service';
 
 @Component({
   selector: 'app-favorits',
@@ -8,7 +9,38 @@ import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
   templateUrl: './favorits.component.html',
   styleUrl: './favorits.component.scss'
 })
-export class FavoritsComponent {
+export class FavoritsComponent implements OnInit {
+
+  productList:Ifav [] =[]
+  private readonly _FavoriteService = inject(FavoriteService)
+  ngOnInit(): void {
+    let userId: number | null = localStorage.getItem('userID') !== null
+    ? Number(localStorage.getItem('userID'))
+    : null;
+
+    this._FavoriteService.GetFavoriteItemsBySeller(userId).subscribe({
+      next:(res)=>{
+        this.productList = res.data
+        console.log(this.productList );
+
+      },
+      error:()=>{}
+    })
+  }
+
+
+  DeletfromFav(ItemID:string|null){
+    let userId: number | null = localStorage.getItem('userID') !== null
+    ? Number(localStorage.getItem('userID'))
+    : null;
+
+    this._FavoriteService.DeleteFavoriteItemBySeller(userId ,ItemID ).subscribe({
+      next:(res)=>{
+        console.log(res );
+      },
+      error:()=>{}
+    })
+  }
 
   customOptionsCat: OwlOptions = {
     loop: true,
@@ -43,4 +75,12 @@ export class FavoritsComponent {
     },
     nav: false
   }
+}
+ interface Ifav {
+  Item_ID: string
+  Item_Name: string
+  Price_out: number
+  Image_Cover: string
+  Description: string
+  Quantity: number
 }

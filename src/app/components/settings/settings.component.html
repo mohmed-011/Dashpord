@@ -1,77 +1,89 @@
-<div class="flex flex-col space-y-5 ">
-  <div class="w-full ">
-    <div class="w-[95%] flex  mx-auto bg-white p-5  rounded-lg shadow-lg">
-      <div class="w-[65%] flex">
-      <div class="w-[15%] relative   ">
-    <img src="../../../assets/images/profile3.jpeg" class="w-full rounded-full shadow-lg -z-10" alt="">
-    <a class="absolute block top-[80%] end-[11%] ">
-      <div class="size-7 bg-white rounded-full flex shadow-lg items-center justify-center cursor-pointer">
-      <i class="bi bi-pencil"></i>
-    </div></a>
+<div class="flex flex-col space-y-8 px-6 py-10 bg-gray-50 min-h-screen">
+  <!-- Section: Profile Picture -->
+  <div class="w-full max-w-5xl mx-auto bg-white rounded-lg shadow-md p-6 flex flex-col md:flex-row items-center justify-between">
+    <div class="flex items-center space-x-6">
+      <div class="relative">
+        <img src="../../../assets/images/profile3.jpeg" class="w-24 h-24 rounded-full shadow-md object-cover" />
+        <button class="absolute bottom-0 right-0 bg-white shadow-md rounded-full p-1">
+          <i class="bi bi-pencil text-gray-700"></i>
+        </button>
+      </div>
+      <div>
+        <h3 class="text-xl font-semibold text-gray-900">Mohamed Faragallah</h3>
+        <p class="text-sm text-gray-500">PNG, JPEG under 10MB</p>
+      </div>
     </div>
-    <div class="text-center ms-5 flex flex-col justify-center">
-      <h3 class="text-lg font-[500]">Mohmed Faragallah</h3>
-      <p class="font-[500] text-gray-500">PNG JPEG unfer 10 mg</p>
-    </div>
-    </div>
-    <div class="flex items-center justify-center space-x-2 ">
-      <button class="rounded-xl border py-1.5 px-3 shadow-md"><i class="fa-solid fa-arrow-up-from-bracket pe-2"></i>Upload new picture</button>
-      <button class="rounded-xl border py-1.5 px-3 shadow-md bg-red-100 text-red-700" ><i class="fa-solid fa-trash-can pe-2"></i>delete</button>
-    </div>
-    </div>
-
-  </div>
-
-  <div class="w-full ">
-    <div class="w-[95%]  mx-auto bg-white p-5  rounded-lg shadow-lg">
-      <h2 class="text-xl font-[500]">personal information</h2>
-      <div class="flex mt-6 flex-wrap">
-        <div class="mb-5 w-[45%] me-[10%]">
-            <label for="name" class="block mb-2 text-sm  text-gray-900 dark:text-white">Name</label>
-            <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" value="Mohamed Faragallah" required />
-        </div>
-        <div class="mb-5 w-[45%]">
-            <label for="email" class="block mb-2 text-sm  text-gray-900 dark:text-white">Email address</label>
-            <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" value="mohmedf022@gmail.com" required />
-        </div>
-        <div class="mb-5 w-[45%] me-[10%]">
-            <label for="phon" class="block mb-2 text-sm  text-gray-900 dark:text-white">card number </label>
-            <input type="text" name="phon" id="phon" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" value="2044n694482654198" required />
-        </div>
-        <div class="mb-5 w-[45%]">
-            <label for="address" class="block mb-2 text-sm  text-gray-900 dark:text-white">Address</label>
-            <input type="text" name="address" id="address" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" value="2st noor elden -faisal-giza" required />
-        </div>
-        <div class="mb-5 w-[45%] me-[10%]">
-            <label for="phon" class="block mb-2 text-sm  text-gray-900 dark:text-white">Phon </label>
-            <input type="tel" name="phon" id="phon" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" value="01128530130" required />
-        </div>
-        <div class="mb-5 w-[45%]">
-            <label for="address" class="block mb-2 text-sm  text-gray-900 dark:text-white">Address</label>
-            <input type="text" name="address" id="address" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" value="2st noor elden -faisal-giza" required />
-        </div>
-        </div>
-        <hr class="my-4 ">
-        <div class="flex mt-6 flex-wrap">
-          <div class="mb-5 w-[45%] me-[10%]">
-            <label for="password" class="block mb-2 text-sm  text-gray-900 dark:text-white">Password</label>
-            <input type="password" name="password" id="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" value="M_F30130" required />
-        </div>
-        <div class="mb-5 w-[45%]">
-            <label for="New password" class="block mb-2 text-sm  text-gray-900 dark:text-white">New Password</label>
-            <input type="password" name="New password" id="New password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" value="M_F30130" required />
-        </div>
-        </div>
-
-
-       <hr class="my-4 ">
-       <div class="flex mt-6 flex-wrap">
-        <div class="mb-5 w-[45%]">
-            <label for="roule" class="block mb-2 text-sm  text-gray-900 dark:text-white">Roule</label>
-            <input type="text" name="roule" id="roule" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" value="Admin" disabled required />
-        </div>
-       </div>
+    <div class="flex space-x-3 mt-4 md:mt-0">
+      <button class="border border-gray-300 rounded-lg px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100">
+        <i class="fa-solid fa-arrow-up-from-bracket mr-2"></i>Upload New
+      </button>
+      <button class="border border-red-200 bg-red-50 text-red-700 rounded-lg px-4 py-2 text-sm font-medium hover:bg-red-100">
+        <i class="fa-solid fa-trash-can mr-2"></i>Delete
+      </button>
     </div>
   </div>
-  <div class=""></div>
+
+  <!-- Section: Personal Info -->
+   <form  [formGroup]="SettingForm" (ngSubmit)="UudateSettingForm()">
+    <div class="w-full max-w-5xl mx-auto bg-white rounded-lg shadow-md p-6">
+      <h2 class="text-xl font-semibold text-gray-800 mb-6">Personal Information</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <label class="block mb-1 text-sm font-medium text-gray-700">Name</label>
+          <input type="text" formControlName="seller_Name" [value]="profileList?.seller_Name" class="input-style" />
+        </div>
+        <div>
+          <label class="block mb-1 text-sm font-medium text-gray-700">Email Address</label>
+          <input type="email"  [value]="profileList?.Email" class="input-style" disabled />
+        </div>
+        <div>
+          <label class="block mb-1 text-sm font-medium text-gray-700">package</label>
+          <input type="text"  [value]="profileList?.package" class="input-style" disabled/>
+        </div>
+        <div>
+          <label class="block mb-1 text-sm font-medium text-gray-700">Phone</label>
+          <input type="tel" formControlName="phone" [value]="profileList?.phone" class="input-style" />
+        </div>
+        <div class="md:col-span-2">
+          <label class="block mb-1 text-sm font-medium text-gray-700">Address</label>
+          <input type="text" formControlName="location" [value]="profileList?.Location" class="input-style" />
+        </div>
+        <div class="flex items-center justify-center mt-6 gap-4">
+          <button
+            type="submit"
+            class="px-[15px] py-[5px] rounded-lg text-white bg-green-500 shadow-md hover:bg-[#3adb75] transition-all shadow-green-500"
+          >
+            <i class="text-xl fa-regular fa-floppy-disk pe-2"></i> Save Changes
+          </button>
+
+        </div>
+      </div>
+    </div>
+  </form>
+  <!-- Section: Security -->
+  <div class="w-full max-w-5xl mx-auto bg-white rounded-lg shadow-md p-6">
+    <h2 class="text-xl font-semibold text-gray-800 mb-6">Security Settings</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div>
+        <label class="block mb-1 text-sm font-medium text-gray-700">Old Password</label>
+        <input type="password" value="********" class="input-style" />
+      </div>
+      <div>
+        <label class="block mb-1 text-sm font-medium text-gray-700">New Password</label>
+        <input type="password" value="" class="input-style" />
+      </div>
+    </div>
+  </div>
+
+  <!-- Section: Role (Readonly) -->
+  <div class="w-full max-w-5xl mx-auto bg-white rounded-lg shadow-md p-6">
+    <h2 class="text-xl font-semibold text-gray-800 mb-6">Account Role</h2>
+    <div>
+      <label class="block mb-1 text-sm font-medium text-gray-700">Role</label>
+      <input type="text" value="Admin" disabled class="input-style bg-gray-100 text-gray-500" />
+    </div>
+  </div>
 </div>
+
+<!-- Tailwind Custom Style -->
+

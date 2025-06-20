@@ -91,7 +91,7 @@ export class ProductsService {
         params = params.set(key, value.toString());
       }
     });
-    
+
     return this._HttpClient.get<any[]>(this.baseUrl, { params ,headers }  );
   }
 
@@ -123,4 +123,20 @@ DeleteProduct(id:string | null):Observable<any>{
   }
 
 
+  uploadImage(formData: FormData) {
+    const token = localStorage.getItem('userToken'); // استرجاع التوكن من Local Storage
+
+      const headers = new HttpHeaders({
+        'Authorization': `Bearer ${token}`  // إضافة التوكن في الهيدر
+      });
+
+    return this._HttpClient.post(`${environment.baseUrl}Products/PostProductImage`, formData ,{headers});
+  }
+
+
+  CheckProduct(text: string):Observable<any>{
+    const body = { text };
+    return this._HttpClient.post(`https://abusive-machine.up.railway.app/check_text`,body);
+  }
 }
+

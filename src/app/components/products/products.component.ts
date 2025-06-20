@@ -9,6 +9,7 @@ import { ICategory } from '../../core/Interfaces/icategory';
 import { ISubCategory } from '../../core/Interfaces/isub-category';
 import { IBrand } from '../../core/Interfaces/ibrand';
 import { SelectFiltersService } from '../../core/services/select-filters.service';
+import { FavoriteService } from '../../core/services/favorite.service';
 
 @Component({
   selector: 'app-products',
@@ -22,6 +23,8 @@ export class ProductsComponent {
   productList: IProduct[] = [];
   private readonly fb = inject(FormBuilder);
   private readonly _SelectFiltersService = inject(SelectFiltersService);
+    private readonly _FavoriteService = inject(FavoriteService)
+
   filterForm!: FormGroup;
   categoryList: ICategory[] = [];
   subCategoryList: ISubCategory[] = [];
@@ -139,6 +142,18 @@ export class ProductsComponent {
     }
   }
 
+  AddToFav(ItemID:string|null){
+    let userId: number | null = localStorage.getItem('userID') !== null
+    ? Number(localStorage.getItem('userID'))
+    : null;
+
+    this._FavoriteService.AddFavoriteItemBySeller(userId ,ItemID ).subscribe({
+      next:(res)=>{
+        console.log(res );
+      },
+      error:()=>{}
+    })
+  }
 
   customOptionsCat: OwlOptions = {
     loop: true,

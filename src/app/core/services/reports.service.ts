@@ -80,8 +80,21 @@ export class ReportsService {
   GetViewToBuyConversion(Sellerid:number | null):Observable<any>{
     return this.http.get(`${environment.baseUrl}api/Reports/GetViewToBuyConversion?Seller_ID=${Sellerid}`);
   }
-  
+
   GetTopViewersBySeller(Sellerid:number | null):Observable<any>{
     return this.http.get(`${environment.baseUrl}api/Reports/GetTopViewersBySeller?Seller_ID=${Sellerid}`);
+  }
+  GetTopRatedBySeller(Sellerid:number | null):Observable<any>{
+       const token = localStorage.getItem('userToken'); // استرجاع التوكن من Local Storage
+
+          const headers = new HttpHeaders({
+            'Authorization': `Bearer ${token}`  // إضافة التوكن في الهيدر
+          });
+
+    return this.http.get(`${environment.baseUrl}TopDash/TopRated?Seller_ID=${Sellerid}`,
+      {
+        headers
+      }
+    );
   }
 }
