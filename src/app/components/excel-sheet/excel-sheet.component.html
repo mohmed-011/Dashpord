@@ -1,107 +1,90 @@
-<div class="flex flex-wrap justify-between">
-  <div class="w-[45%]">
-    <label
-      for="countries"
-      class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
-      >Category</label
-    >
-    <select
-      name="Category_ID"
-      ngModel
-      (change)="onCategoryChange($event)"
-      [(ngModel)]="selectedCatOption"
-      id="countries"
-      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-    >
-      <option selected>Select Category</option>
-      @for (item of categoryList; track $index) {
-      <option value="{{ item.Category_ID }}">
-        {{ item.Category_Name }}
-      </option>
+<section class="max-w-5xl mx-auto p-6 bg-white shadow-xl rounded-2xl mt-10">
+  <h1 class="text-2xl font-bold mb-6 text-center text-gray-800">🛒 Upload Your Products</h1>
 
-      }
-      <!-- <option value="1">Electronics</option>
-      <option value="5">Home Appliances</option>
-      <option value="9">Clothing</option>
-      <option value="FR">Books</option>
-      <option value="DE">Beauty</option>
-      <option value="DE">Sports</option>
-      <option value="DE">accessories</option>
-      <option value="DE">Tools</option>
-      <option value="DE">Furniture</option> -->
-    </select>
+  <!-- Dropdowns -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <!-- Category -->
+    <div>
+      <label for="category" class="block text-sm font-medium text-gray-700 mb-1">Category</label>
+      <select
+        id="category"
+        name="Category_ID"
+        ngModel
+        (change)="onCategoryChange($event)"
+        [(ngModel)]="selectedCatOption"
+        class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2"
+      >
+        <option selected>Select Category</option>
+        @for (item of categoryList; track $index) {
+        <option value="{{ item.Category_ID }}">{{ item.Category_Name }}</option>
+        }
+      </select>
+    </div>
+
+    <!-- Sub Category -->
+    <div>
+      <label for="subCategory" class="block text-sm font-medium text-gray-700 mb-1">Sub Category</label>
+      <select
+        id="subCategory"
+        name="Sub_Category_ID"
+        ngModel
+        (change)="onSubCategoryChange($event)"
+        [(ngModel)]="selectedOption"
+        class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2"
+      >
+        <option selected>Select Sub Category</option>
+        @for (item of subCategoryList; track $index) {
+        <option value="{{ item.Sub_Category_ID }}">{{ item.Sub_Category_Name }}</option>
+        }
+      </select>
+    </div>
+
+    <!-- Brand -->
+    <div>
+      <label for="brand" class="block text-sm font-medium text-gray-700 mb-1">Brand</label>
+      <select
+        id="brand"
+        name="Brand_ID"
+        ngModel
+        [(ngModel)]="selectedBrandId"
+        class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2"
+      >
+        <option selected>Select Brand</option>
+        @for (item of brandList; track $index) {
+        <option value="{{ item.Brand_ID }}">{{ item.Brand_Name }}</option>
+        }
+      </select>
+    </div>
+
+    <!-- Download Template -->
+    <div class="flex items-end justify-center md:justify-start">
+      <button
+        (click)="downloadTemplate()"
+        class="bg-green-600 text-white px-4 py-2 rounded-lg shadow hover:bg-green-700 transition"
+      >
+        Download Excel Template
+      </button>
+    </div>
   </div>
-  <div class="w-[45%]">
-    <label
-      for="countries"
-      class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
-      >Sub Category</label
-    >
-    <select
-      name="Sub_Category_ID"
-      ngModel
-      (change)="onSubCategoryChange($event)"
-      id="countries"
-      [(ngModel)]="selectedOption"
-      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-    >
-      <option selected>Select Sub Category</option>
-      @for (item of subCategoryList; track $index) {
-      <option value="{{ item.Sub_Category_ID }}">
-        {{ item.Sub_Category_Name }}
-      </option>
 
-      }
-      <!-- <option value="1">Smartphones</option>
-      <option value="3">Tablets</option>
-      <option value="2">Laptops</option>
-      <option value="FR">Refrigerators</option>
-      <option value="DE">Clothing for Men</option>
-      <option value="7">Tvs</option>
-      <option value="4">SmartWatches</option>
-      <option value="19">PCs</option> -->
-    </select>
+  <!-- File Upload -->
+  <div class="mt-10 bg-gray-50 p-6 rounded-xl border border-gray-200 shadow-inner">
+    <h2 class="text-lg font-semibold mb-4 text-gray-800">📤 Upload Excel File</h2>
+
+    <input
+      type="file"
+      (change)="onFileChange($event)"
+      accept=".xlsx"
+      class="block w-full border border-gray-300 rounded-lg p-2 mb-4 focus:ring-blue-500 focus:border-blue-500"
+    />
+
+    <button
+      (click)="upload()"
+      class="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition"
+    >
+      Upload
+    </button>
+
+    <p class="mt-4 text-sm text-gray-600 italic">{{ message }}</p>
   </div>
-  <div class="w-[45%] mt-4">
-    <label
-      for="countries"
-      class="block ps-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
-      >Brand</label
-    >
-    <select
-      id="countries"
-      name="Brand_ID"
-      ngModel
-      [(ngModel)]="selectedBrandId"
-      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-    >
-      <option selected>Select Brand</option>
-      @for (item of brandList; track $index) {
-      <option value="{{ item.Brand_ID }}">{{ item.Brand_Name }}</option>
-
-      }
-      <!-- <option value="1">Smartphones</option>
-      <option value="3">Tablets</option>
-      <option value="2">Laptops</option>
-      <option value="FR">Refrigerators</option>
-      <option value="DE">Clothing for Men</option>
-      <option value="7">Tvs</option>
-      <option value="4">SmartWatches</option>
-      <option value="19">PCs</option> -->
-    </select>
-  </div>
-</div>
-
-<button (click)="downloadTemplate()">Download Excel Template</button>
-
-<div class="p-4 max-w-md mx-auto mt-6 bg-white rounded shadow">
-  <h2 class="text-xl font-bold mb-4">Upload Excel File</h2>
-
-  <input type="file" (change)="onFileChange($event)" accept=".xlsx" class="mb-4" />
-
-  <button (click)="upload()" class="bg-blue-600 text-white px-4 py-2 rounded">
-    Upload
-  </button>
-
-  <p class="mt-4 text-sm text-gray-600">{{ message }}</p>
-</div>
+</section>

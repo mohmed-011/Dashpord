@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AuthServiceService } from '../../core/services/auth-service.service';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -18,6 +19,7 @@ private readonly _AuthService =inject(AuthServiceService)
 
   mgerror:string="";
   isLoding:boolean=false;
+      constructor(private toastr: ToastrService) {}
 
 
 loginForm:FormGroup = new FormGroup({
@@ -43,13 +45,17 @@ login():void{
             this._Router.navigate(['/dashboard']) // 3-navigate to home
             console.log(res);
 
+          }else{
+          this.toastr.error("Email or Password not vaild", 'error');
           }
 
           console.log(res);
-          this.isLoding=false;
+
 
         },
         error:(err:HttpErrorResponse)=>{
+          this.toastr.error("Email or Password not vaild", 'Done');
+
           // show error in html to user
           this.mgerror = err.error.message;
           this.isLoding=false;

@@ -5,6 +5,8 @@ import { ProductsService } from '../../core/services/products.service';
 import { AuthServiceService } from '../../core/services/auth-service.service';
 import { ActivatedRoute } from '@angular/router';
 import { IProduct } from '../../core/Interfaces/iproduct';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from 'express';
 
 @Component({
   selector: 'app-details',
@@ -34,12 +36,15 @@ export class DetailsComponent implements OnInit{
 
 private readonly _ProductsService = inject(ProductsService)
 private readonly _ActivatedRoute = inject(ActivatedRoute)
+// private readonly _Router =inject(Router)
+
+    constructor(private toastr: ToastrService) {}
 
 
 
   detalisProduct:IProduct = {} as IProduct
 
-selectedFile: File | null = null; 
+selectedFile: File | null = null;
 
 onFileSelected(event: Event) {
     const input = event.target as HTMLInputElement;
@@ -76,6 +81,8 @@ onFileSelected(event: Event) {
       next: (res) => {
           if(res.message  == "success"){
             console.log('Product added:', res)
+            this.toastr.success("Product Image Updated successfuly", 'Done');
+
           }
       } ,
       error: (error) => console.error('Error:', error),
@@ -103,17 +110,24 @@ onFileSelected(event: Event) {
       next: (res) => {
         if (res.message === "success") {
           console.log('تم تعديل المنتج بنجاح');
+          this.toastr.success("Product Updated successfuly", 'Done');
+
         }
       },
       error: (err) => {
         console.error('حدث خطأ أثناء تعديل المنتج:', err);
+        this.toastr.error("Product Not Updated", 'error');
+
       }
     });
   }
   DeleteItem(id :string | null){
+    // this._Router.navigate(['/products'])
     this._ProductsService.DeleteProduct(id).subscribe({
       next:(res)=>{
         console.log(res);
+        this.toastr.success("Product Deleted successfuly", 'Done');
+
       },
       error:(err)=>{}
 

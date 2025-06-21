@@ -9,12 +9,13 @@ import { SelectFiltersService } from '../../core/services/select-filters.service
 import { ICategory } from '../../core/Interfaces/icategory';
 import { ISubCategory } from '../../core/Interfaces/isub-category';
 import { IBrand } from '../../core/Interfaces/ibrand';
-import { ImageUploaderComponent } from '../app-image-uploader/app-image-uploader.component';
+import { ToastrService } from 'ngx-toastr';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-add-product',
   standalone: true,
-  imports: [CarouselModule,FormsModule , ReactiveFormsModule  ],
+  imports: [CarouselModule,FormsModule , ReactiveFormsModule ,CommonModule ],
   templateUrl: './add-product.component.html',
   styleUrl: './add-product.component.scss'
 })
@@ -24,7 +25,65 @@ export class AddProductComponent implements OnInit{
     subCategoryList:ISubCategory[]=[]
     brandList:IBrand[]=[]
 
+    constructor(private toastr: ToastrService) {}
+    onSubmit(formValues: any) {
 
+      let text :string = formValues.Item_Name + " " +formValues.Description;
+      this._ProductsService.CheckProduct(text).subscribe({
+        next:(res)=>{
+          if(res.is_clean){
+
+
+            let userId: number | null = localStorage.getItem('userID') !== null
+            ? Number(localStorage.getItem('userID'))
+            : null;
+           if (!this.selectedFile) {
+              console.error('يرجى اختيار صورة');
+              return;
+            }
+
+            const formData = new FormData();
+            this.itemId = formValues.Item_ID
+            formData.append('Item_ID', formValues.Item_ID);
+            formData.append('Item_Name', formValues.Item_Name);
+            formData.append('Description', formValues.Description);
+            formData.append('Quantity', formValues.Quantity);
+            formData.append('Price_in', formValues.Price_in);
+            formData.append('Price_out', formValues.Price_out);
+            formData.append('Discount', formValues.Discount);
+            formData.append('Rate',"0");
+            formData.append('Category_ID', formValues.Category_ID);
+            formData.append('Sub_Category_ID', formValues.Sub_Category_ID);
+            formData.append('Seller_ID', userId !== null ? userId.toString() : '');
+            formData.append('Brand_ID', formValues.Brand_ID);
+            formData.append('Image', this.selectedFile ); // إضافة الصورة
+
+            this._ProductsService.addOneProduct(formData).subscribe({
+              next: (res) => {
+                  if(res.message  == "success"){
+                    this.SetPhoneForm()
+                    console.log('Product added:', res)
+                    this.uploadAllImages(this.itemId)
+                    this.toastr.success("Product added successfuly", 'Done');
+                  }
+              } ,
+              error: (error) => console.error('Error:', error),
+            });
+
+
+
+          }
+          else{
+            console.log(res.is_clean ,res.message );
+            this.toastr.error(res.message, 'Error');
+            console.log(res.is_clean ,res.message );
+
+          }
+        },
+        error:()=>{}
+      })
+
+    }
 
   ngOnInit(): void {
     this._SelectFiltersService.GetAllCategory().subscribe({
@@ -68,7 +127,6 @@ export class AddProductComponent implements OnInit{
   private readonly _ProductsService = inject(ProductsService)
   private readonly _SelectFiltersService = inject(SelectFiltersService)
 
-  private readonly _AuthServiceService = inject(AuthServiceService)
   private readonly _ProductDetailsService = inject(ProductDetailsService)
   private  itemId :any
   // @ViewChild('imageInput', { static: false }) imageInput!: ElementRef;
@@ -135,60 +193,7 @@ export class AddProductComponent implements OnInit{
       });
     }
 
-    onSubmit(formValues: any) {
 
-      let text :string = formValues.Item_Name + " " +formValues.Description;
-      this._ProductsService.CheckProduct(text).subscribe({
-        next:(res)=>{
-          if(res.is_clean){
-
-
-            let userId: number | null = localStorage.getItem('userID') !== null
-            ? Number(localStorage.getItem('userID'))
-            : null;
-           if (!this.selectedFile) {
-              console.error('يرجى اختيار صورة');
-              return;
-            }
-
-            const formData = new FormData();
-            this.itemId = formValues.Item_ID
-            formData.append('Item_ID', formValues.Item_ID);
-            formData.append('Item_Name', formValues.Item_Name);
-            formData.append('Description', formValues.Description);
-            formData.append('Quantity', formValues.Quantity);
-            formData.append('Price_in', formValues.Price_in);
-            formData.append('Price_out', formValues.Price_out);
-            formData.append('Discount', formValues.Discount);
-            formData.append('Rate',"0");
-            formData.append('Category_ID', formValues.Category_ID);
-            formData.append('Sub_Category_ID', formValues.Sub_Category_ID);
-            formData.append('Seller_ID', userId !== null ? userId.toString() : '');
-            formData.append('Brand_ID', formValues.Brand_ID);
-            formData.append('Image', this.selectedFile ); // إضافة الصورة
-
-            this._ProductsService.addOneProduct(formData).subscribe({
-              next: (res) => {
-                  if(res.message  == "success"){
-                    this.SetPhoneForm()
-                    console.log('Product added:', res)
-                    this.uploadAllImages(this.itemId)
-                  }
-              } ,
-              error: (error) => console.error('Error:', error),
-            });
-
-
-
-          }
-          else{
-            console.log(res.is_clean ,res.message );
-          }
-        },
-        error:()=>{}
-      })
-
-    }
 
 
     PhoneForm:FormGroup = new FormGroup({

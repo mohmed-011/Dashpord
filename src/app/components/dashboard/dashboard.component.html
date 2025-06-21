@@ -164,45 +164,7 @@
                 </tr>
                 }
 
-                <!-- <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-        <th
-          scope="row" class=" text-center px-6 py-4 font-[500] text-gray-900  dark:text-white"
-        >
-          <div class="">
-            <img src="../../../assets/images/Image(2).png" alt="">
-          </div>
-        </th>
-        <td  class=" text-center font-[500] px-6 py-4">Apple Watch Series 4</td>
 
-        <td  class=" text-center font-[500] px-6 py-4">$690.00</td>
-
-      </tr>
-      <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-        <th
-          scope="row" class=" text-center px-6 py-4 font-[500] text-gray-900  dark:text-white"
-        >
-          <div class="">
-            <img src="../../../assets/images/Image(3).png" alt="">
-          </div>
-        </th>
-        <td  class=" text-center font-[500] px-6 py-4">Apple Watch Series 4</td>
-
-        <td  class=" text-center font-[500] px-6 py-4">$690.00</td>
-
-      </tr>
-      <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-        <th
-          scope="row" class=" text-center px-6 py-4 font-[500] text-gray-900  dark:text-white"
-        >
-          <div class="">
-            <img src="../../../assets/images/Image(2).png" alt="">
-          </div>
-        </th>
-        <td  class=" text-center font-[500] px-6 py-4">Apple Watch Series 4</td>
-
-        <td  class=" text-center font-[500] px-6 py-4">$690.00</td>
-
-      </tr> -->
               </tbody>
             </table>
           </div>
@@ -234,12 +196,15 @@
         </thead>
         <tbody>
           @for (item of orderList; track $index) {
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-            <th
+            <div></div>
+
+            <tr [routerLink]="['/orderdetails', item.IDFromPaymob]" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700" >
+            <td
+
               scope="row" class=" text-center px-6 py-4 font-[500] text-gray-900  dark:text-white"
             >
               {{item.IDFromPaymob}}
-            </th>
+            </td>
             <td  class=" text-center font-[500] px-6 py-4">{{item.Buyer_Name}}</td>
             <td  class=" text-center font-[500] px-6 py-4">{{item.Building}}-{{item.Street}}-{{item.City}}</td>
             <td  class=" text-center font-[500] px-6 py-4">{{item.Book_Date}}</td>
@@ -249,80 +214,13 @@
               @if (item.Status == "Success") {
               <span class="bg-green-100 text-green-800 text-xs font-medium me-2 px-3 py-1 rounded dark:bg-green-900 dark:text-green-300">{{item.Status}}</span>
               }
+              @if (item.Status == "Sucess") {
+                <span class="bg-green-100 text-green-800 text-xs font-medium me-2 px-3 py-1 rounded dark:bg-green-900 dark:text-green-300">{{item.Status}}</span>
+                }
             </td>
           </tr>
           }
 
-          <!-- <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-            <th
-              scope="row" class=" text-center px-6 py-4 font-[500] text-gray-900  dark:text-white"
-            >
-              00925
-            </th>
-            <td  class=" text-center font-[500] px-6 py-4">Christine Brooks</td>
-            <td  class=" text-center font-[500] px-6 py-4">089 Kutch Green Apt. 448</td>
-            <td  class=" text-center font-[500] px-6 py-4">$14 Feb 2019</td>
-            <td  class=" text-center font-[500] px-6 py-4">Book</td>
-            <td  class=" text-center font-[500] px-6 py-4">
-              <span class="bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">Rejected</span>
-            </td>
-          </tr>
-          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-            <th
-              scope="row" class=" text-center px-6 py-4 font-[500] text-gray-900  dark:text-white"
-            >
-              00305
-            </th>
-            <td  class=" text-center font-[500] px-6 py-4">Darrell Caldwell</td>
-            <td  class=" text-center font-[500] px-6 py-4">8587 Frida Ports</td>
-            <td  class=" text-center font-[500] px-6 py-4">$14 Feb 2019</td>
-            <td  class=" text-center font-[500] px-6 py-4">Mobile</td>
-            <td  class=" text-center font-[500] px-6 py-4">
-              <span class="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">Processing</span>
-            </td>
-          </tr>
-           <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-            <th
-              scope="row" class=" text-center px-6 py-4 font-[500] text-gray-900  dark:text-white"
-            >
-              00035
-            </th>
-            <td  class=" text-center font-[500] px-6 py-4">Christine Brooks</td>
-            <td  class=" text-center font-[500] px-6 py-4">089 Kutch Green Apt. 448</td>
-            <td  class=" text-center font-[500] px-6 py-4">$14 Feb 2019</td>
-            <td  class=" text-center font-[500] px-6 py-4">Electric</td>
-            <td  class=" text-center font-[500] px-6 py-4">
-              <span class="bg-green-100 text-green-800 text-xs font-medium me-2 px-3 py-1 rounded dark:bg-green-900 dark:text-green-300">Completed</span>
-            </td>
-          </tr>
-          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-            <th
-              scope="row" class=" text-center px-6 py-4 font-[500] text-gray-900  dark:text-white"
-            >
-              00925
-            </th>
-            <td  class=" text-center font-[500] px-6 py-4">Christine Brooks</td>
-            <td  class=" text-center font-[500] px-6 py-4">089 Kutch Green Apt. 448</td>
-            <td  class=" text-center font-[500] px-6 py-4">$14 Feb 2019</td>
-            <td  class=" text-center font-[500] px-6 py-4">Book</td>
-            <td  class=" text-center font-[500] px-6 py-4">
-              <span class="bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">Rejected</span>
-            </td>
-          </tr>
-          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-            <th
-              scope="row" class=" text-center px-6 py-4 font-[500] text-gray-900  dark:text-white"
-            >
-              00305
-            </th>
-            <td  class=" text-center font-[500] px-6 py-4">Darrell Caldwell</td>
-            <td  class=" text-center font-[500] px-6 py-4">8587 Frida Ports</td>
-            <td  class=" text-center font-[500] px-6 py-4">$14 Feb 2019</td>
-            <td  class=" text-center font-[500] px-6 py-4">Mobile</td>
-            <td  class=" text-center font-[500] px-6 py-4">
-              <span class="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">Processing</span>
-            </td>
-          </tr> -->
 
         </tbody>
           </table>

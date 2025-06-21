@@ -1,215 +1,134 @@
-<div class="flex items-center justify-between pb-5">
-  <h2 class="text-3xl font-[500]">Products</h2>
-  <button
-    routerLink="/addProduct"
-    class="px-4 py-2 rounded-md text-[#4880FF] bg-1 border-2 border-[#4880FF]"
-  >
-    add Product
-  </button>
-</div>
-<!-- <div class=" rounded-md border my-6 flex flex-wrap w-fit ">
-  <div class="px-5 py-2.5 border-r">
-    <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-  <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M18.796 4H5.204a1 1 0 0 0-.753 1.659l5.302 6.058a1 1 0 0 1 .247.659v4.874a.5.5 0 0 0 .2.4l3 2.25a.5.5 0 0 0 .8-.4v-7.124a1 1 0 0 1 .247-.659l5.302-6.059c.566-.646.106-1.658-.753-1.658Z"/>
-</svg>
-</div>
-  <div class="px-5 py-2.5 border-r">
-    <p class="font-[500]">Filter By</p>
-  </div>
-  <div class="px-5 py-2.5 border-r  flex-wrap flex items-center justify-between">
-     <p class="font-[500] pe-5 cursor-pointer">Category</p>
-     <i class="fa-solid fa-chevron-down cursor-pointer"></i>
+<main class="p-6 dark:bg-gray-900 dark:text-white min-h-screen font-sans">
+  <div class="max-w-7xl mx-auto">
+    <!-- Top Header with Add Product -->
+    <div class="flex flex-wrap items-center justify-between gap-4 mb-8">
+      <h2 class="text-4xl font-bold text-gray-800 dark:text-white">Products</h2>
+      <button routerLink="/addProduct"
+        class="bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800 text-white font-medium px-6 py-2 rounded-xl shadow transition-all">
+        <i class="fa-solid fa-plus mr-2"></i> Add Product
+      </button>
+    </div>
 
-  </div>
-  <div class="px-5 py-2.5 border-r  flex-wrap flex items-center justify-between">
-    <p class="font-[500] pe-5 cursor-pointer">Price</p>
-    <i class="fa-solid fa-chevron-down cursor-pointer"></i>
-  </div>
-  <div class="px-5 py-2.5 border-r  flex-wrap flex items-center justify-between">
-    <i class="fa-solid w-[2px] fa-arrow-rotate-left text-red-600"></i>
-    <p class="font-[500] ps-5 cursor-pointer text-red-600">Reset</p>
-
-  </div>
-</div> -->
-<div class="flex justify-end mb-4">
-  <button
-    (click)="showFilters = true"
-    class="bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 text-white px-6 py-2 rounded-full shadow-lg transition-all duration-300"
-  >
-    <i class="fa-solid fa-sliders mr-2"></i> Filters
-  </button>
-</div>
+    <!-- Filter Trigger -->
+    <div class="flex justify-end mb-6">
+      <button (click)="showFilters = true"
+        class="bg-gradient-to-r from-indigo-600 to-purple-700 hover:from-indigo-700 hover:to-purple-800 text-white px-6 py-2 rounded-full shadow-md transition-transform hover:scale-105">
+        <i class="fa-solid fa-sliders mr-2"></i> Filters
+      </button>
+    </div>
 
 <!-- Overlay -->
 @if (showFilters) {
-<div
-  class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center transition-opacity duration-300"
->
-  <!-- Modal -->
-  <div
-    class="bg-white w-full max-w-5xl mx-auto p-8 rounded-3xl shadow-2xl relative animate-fade-in"
-  >
-    <!-- Close Button -->
-    <button
-      (click)="showFilters = false"
-      class="absolute top-5 right-5 text-gray-500 hover:text-red-600 text-xl transition duration-200"
-    >
-      <i class="fa-solid fa-xmark"></i>
-    </button>
+  <div class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center px-4 py-8">
+    <div class="bg-white dark:bg-gray-800 w-full max-w-6xl p-6 sm:p-8 rounded-3xl shadow-2xl relative overflow-y-auto max-h-[95vh]">
 
-    <h2 class="text-2xl font-bold text-gray-800 mb-6">
-      <i class="fa-solid fa-filter mr-2 text-blue-600"></i> Advanced Product
-      Filters
-    </h2>
+      <!-- Close -->
+      <button (click)="showFilters = false"
+        class="absolute top-5 right-5 text-gray-500 hover:text-red-600 text-xl transition duration-200">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
 
-    <form [formGroup]="filterForm">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <!-- Filter Inputs -->
-        <div>
-          <label class="block text-sm text-gray-600 mb-1">Search</label>
-          <input
-            type="text"
-            formControlName="searchQuery"
-            class="w-full px-4 py-2 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-400 focus:outline-none transition-all"
-          />
-        </div>
-        <div>
-          <label for="countries"  for="countries" class="block text-sm text-gray-600 mb-1">Category</label>
-          <select
-      name="Category_ID"
-      (change)="onCategoryChange($event)"
-      formControlName="categry"
+      <!-- Title -->
+      <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6 flex items-center gap-2">
+        <i class="fa-solid fa-filter text-blue-600"></i>
+        Advanced Product Filters
+      </h2>
 
-      id="countries"
-      class="w-full px-4 py-2 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-400 focus:outline-none transition-all"
-    >
-      <option  value=null selected>Select Category</option>
-      @for (item of categoryList; track $index) {
-      <option value="{{ item.Category_ID }}">
-        {{ item.Category_Name }}
-      </option>
+      <form [formGroup]="filterForm">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
-      }
-      <!-- <option value="1">Electronics</option>
-      <option value="5">Home Appliances</option>
-      <option value="9">Clothing</option>
-      <option value="FR">Books</option>
-      <option value="DE">Beauty</option>
-      <option value="DE">Sports</option>
-      <option value="DE">accessories</option>
-      <option value="DE">Tools</option>
-      <option value="DE">Furniture</option> -->
-    </select>
-        <div>
-          <label for="countries2" class="block text-sm text-gray-600 mb-1">SubCategory</label>
+          <!-- Search -->
+          <div>
+            <label class="block text-sm mb-1 text-gray-600 dark:text-gray-300">Search</label>
+            <input type="text" formControlName="searchQuery"
+              class="w-full px-4 py-2 rounded-xl border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-blue-400 focus:outline-none transition" />
+          </div>
 
-          <select
-      name="Sub_Category_ID"
-      (change)="onSubCategoryChange($event)"
-      id="countries2"
-      formControlName="subCategry"
-      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-    >
-      <option  value=null selected>Select Sub Category</option>
-      @for (item of subCategoryList; track $index) {
-      <option value="{{ item.Sub_Category_ID }}">
-        {{ item.Sub_Category_Name }}
-      </option>
+          <!-- Category -->
+          <div>
+            <label class="block text-sm mb-1 text-gray-600 dark:text-gray-300">Category</label>
+            <select formControlName="categry" (change)="onCategoryChange($event)"
+              class="w-full px-4 py-2 rounded-xl border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-blue-400 focus:outline-none">
+              <option [ngValue]="null" selected>Select Category</option>
+              @for (item of categoryList; track $index) {
+                <option [value]="item.Category_ID">{{ item.Category_Name }}</option>
+              }
+            </select>
+          </div>
 
-      }
-      <!-- <option value="1">Smartphones</option>
-      <option value="3">Tablets</option>
-      <option value="2">Laptops</option>
-      <option value="FR">Refrigerators</option>
-      <option value="DE">Clothing for Men</option>
-      <option value="7">Tvs</option>
-      <option value="4">SmartWatches</option>
-      <option value="19">PCs</option> -->
-    </select>
-        </div>
-        <div>
-          <label class="block text-sm text-gray-600 mb-1">Min Price</label>
-          <input
-            type="number"
-            formControlName="minPrice"
-            class="w-full px-4 py-2 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-400 focus:outline-none transition-all"
-          />
-        </div>
-        <div>
-          <label class="block text-sm text-gray-600 mb-1">Max Price</label>
-          <input
-            type="number"
-            formControlName="maxPrice"
-            class="w-full px-4 py-2 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-400 focus:outline-none transition-all"
-          />
-        </div>
-        <div>
-          <label class="block text-sm text-gray-600 mb-1">Min Rate</label>
-          <input
-            type="number"
-            formControlName="minRate"
-            min="0"
-            max="5"
-            class="w-full px-4 py-2 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-400 focus:outline-none transition-all"
-          />
-        </div>
-        <!-- Checkboxes -->
-        <div class="col-span-1 flex items-center space-x-3">
-          <input
-            type="checkbox"
-            formControlName="mostViewed"
-            class="w-5 h-5 text-blue-600"
-          />
-          <label class="text-gray-700">Most Viewed</label>
-        </div>
-        <div class="col-span-1 flex items-center space-x-3">
-          <input
-            type="checkbox"
-            formControlName="newwest"
-            class="w-5 h-5 text-blue-600"
-          />
-          <label class="text-gray-700">Newest</label>
-        </div>
-        <div class="col-span-1 flex items-center space-x-3">
-          <input
-            type="checkbox"
-            formControlName="mostSold"
-            class="w-5 h-5 text-blue-600"
-          />
-          <label class="text-gray-700">Most Sold</label>
-        </div>
-        <div>
-          <label class="block text-sm text-gray-600 mb-1">Page</label>
-          <input
-            type="number"
-            formControlName="pageNumber"
-            class="w-full px-4 py-2 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-400 focus:outline-none transition-all"
-          />
-        </div>
-        <div>
-          <label class="block text-sm text-gray-600 mb-1">Page Size</label>
-          <input
-            type="number"
-            formControlName="pageSize"
-            class="w-full px-4 py-2 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-400 focus:outline-none transition-all"
-          />
-        </div>
-      </div>
+          <!-- SubCategory -->
+          <div>
+            <label class="block text-sm mb-1 text-gray-600 dark:text-gray-300">SubCategory</label>
+            <select formControlName="subCategry" (change)="onSubCategoryChange($event)"
+              class="w-full px-4 py-2 rounded-xl border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-blue-400 focus:outline-none">
+              <option [ngValue]="null" selected>Select Sub Category</option>
+              @for (item of subCategoryList; track $index) {
+                <option [value]="item.Sub_Category_ID">{{ item.Sub_Category_Name }}</option>
+              }
+            </select>
+          </div>
 
-      <!-- Apply Button -->
-      <div class="mt-8 text-right">
-        <button
-          type="button"
-          (click)="applyFilters()"
-          class="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white px-6 py-2 rounded-xl shadow-md transition hover:scale-105"
-        >
-          <i class="fa-solid fa-check mr-2"></i> Apply Filters
-        </button>
-      </div>
+          <!-- Min Price -->
+          <div>
+            <label class="block text-sm mb-1 text-gray-600 dark:text-gray-300">Min Price</label>
+            <input type="number" formControlName="minPrice"
+              class="w-full px-4 py-2 rounded-xl border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-blue-400 focus:outline-none" />
+          </div>
+
+          <!-- Max Price -->
+          <div>
+            <label class="block text-sm mb-1 text-gray-600 dark:text-gray-300">Max Price</label>
+            <input type="number" formControlName="maxPrice"
+              class="w-full px-4 py-2 rounded-xl border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-blue-400 focus:outline-none" />
+          </div>
+
+          <!-- Min Rate -->
+          <div>
+            <label class="block text-sm mb-1 text-gray-600 dark:text-gray-300">Min Rate</label>
+            <input type="number" formControlName="minRate" min="0" max="5"
+              class="w-full px-4 py-2 rounded-xl border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-blue-400 focus:outline-none" />
+          </div>
+
+          <!-- Checkboxes -->
+          <div class="col-span-full flex flex-wrap gap-4 mt-2">
+            <label class="flex items-center space-x-2 text-gray-700 dark:text-gray-300">
+              <input type="checkbox" formControlName="mostViewed" class="w-5 h-5 text-blue-600" />
+              <span>Most Viewed</span>
+            </label>
+            <label class="flex items-center space-x-2 text-gray-700 dark:text-gray-300">
+              <input type="checkbox" formControlName="newwest" class="w-5 h-5 text-blue-600" />
+              <span>Newest</span>
+            </label>
+            <label class="flex items-center space-x-2 text-gray-700 dark:text-gray-300">
+              <input type="checkbox" formControlName="mostSold" class="w-5 h-5 text-blue-600" />
+              <span>Most Sold</span>
+            </label>
+          </div>
+
+          <!-- Page / PageSize -->
+          <div>
+            <label class="block text-sm mb-1 text-gray-600 dark:text-gray-300">Page</label>
+            <input type="number" formControlName="pageNumber"
+              class="w-full px-4 py-2 rounded-xl border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-blue-400 focus:outline-none" />
+          </div>
+          <div>
+            <label class="block text-sm mb-1 text-gray-600 dark:text-gray-300">Page Size</label>
+            <input type="number" formControlName="pageSize"
+              class="w-full px-4 py-2 rounded-xl border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-blue-400 focus:outline-none" />
+          </div>
+        </div>
+
+        <!-- Apply Button -->
+        <div class="mt-8 text-right">
+          <button type="button" (click)="applyFilters()"
+            class="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white px-6 py-2 rounded-xl shadow-md transition hover:scale-105">
+            <i class="fa-solid fa-check mr-2"></i> Apply Filters
+          </button>
+        </div>
+      </form>
     </div>
-    </form>
   </div>
-</div>
+
 }
 
 <div class="flex flex-wrap gap-y-4 mb-5">
@@ -242,20 +161,23 @@
           {{ item1.Data.Price_out }}$
         </p>
         <div
-        (click)="AddToFav(item1.Data.Item_ID)"
-          class="cursor-pointer p-1 rounded-full color1 d-flex items-center justify-center"
-        >
-          <i class="fa-regular fa-heart"></i>
-        </div>
+        (click)="AddToFav(item1.Data.Item_ID); $event.stopPropagation()"
+        class="cursor-pointer p-1 rounded-full color1 d-flex items-center justify-center z-10"
+        [ngClass]="{'text-red-600': isFav(item1.Data.Item_ID) }"
+      >
+        <i class="fa-regular fa-heart"></i>
+      </div>
       </div>
 
-      <div class="flex my-2">
-        <i class="fa-solid fa-star text-yellow-400"></i>
-        <i class="fa-solid fa-star text-yellow-400"></i>
-        <i class="fa-solid fa-star text-yellow-400"></i>
-        <i class="fa-solid fa-star-half-stroke text-yellow-400"></i>
-        <i class="fa-regular fa-star text-yellow-400"></i>
-      </div>
+      <div class="flex items-center mt-2 space-x-1 text-yellow-400">
+        @for (num of [1,2,3,4,5].slice(0, item1.Data.Rate); track $index) {
+        <i class="fa-solid fa-star text-sm"></i>
+        }
+        @if (item1.Data.Rate % 1 !== 0) {
+        <i class="fa-solid fa-star-half-stroke text-sm"></i>
+        }
+
+    </div>
       <button class="bg-slate-100 text-sm font-[500] rounded-md px-3 py-1 my-2">
         Edit product
       </button>

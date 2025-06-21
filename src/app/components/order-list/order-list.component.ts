@@ -4,11 +4,12 @@ import { OrdersService } from '../../core/services/orders.service';
 import { AuthServiceService } from '../../core/services/auth-service.service';
 import { log } from 'console';
 import { Iorder } from '../../core/Interfaces/iorder';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-order-list',
   standalone: true,
-  imports: [FilterOptionComponent],
+  imports: [FilterOptionComponent ,RouterLink],
   templateUrl: './order-list.component.html',
   styleUrl: './order-list.component.scss'
 })

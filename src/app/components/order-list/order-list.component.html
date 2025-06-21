@@ -17,7 +17,7 @@
     </thead>
     <tbody>
       @for (item of orderList; track $index) {
-        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+        <tr  [routerLink]="['/orderdetails', item.IDFromPaymob]" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
         <th
           scope="row" class=" text-center px-6 py-4 font-[500] text-gray-900  dark:text-white"
         >

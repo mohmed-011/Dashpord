@@ -109,6 +109,13 @@ export const routes: Routes = [
           ),
       },
       {
+        path: 'orderdetails/:id',title:'Order Details',
+        loadComponent: () =>
+          import('./components/orderdetails/orderdetails.component').then(
+            (c) => c.OrderdetailsComponent
+          ),
+      },
+      {
         path: 'chatbot',title:'Chatbot',
         loadComponent: () =>
           import('./components/chatbot/chatbot.component').then(

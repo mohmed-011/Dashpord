@@ -229,7 +229,7 @@
       }
 
       </div>
-      
+
       @if (selectedOption == '1') {
       <form [formGroup]="PhoneForm">
         <div class="phones border rounded-lg px-5 py-7 relative">
@@ -910,60 +910,6 @@
     </div>
   </form>
 </div>
-<!--
-<h1
-  class="text-3xl transition-all duration-[0.5s] text-black dark:text-white hover:text-white p-4 w-fit mx-auto relative mb-5 before:w-8 before:h-8 before:bg-[#1a56db] before:z-[-1] before:absolute before:-left-6 before:translate-y-[-50%] before:top-[50%] before:rounded-full before:transition-all before:duration-[0.5s] after:z-[-1] after:transition-all after:duration-[0.5s] after:translate-y-[-50%] after:w-8 after:h-8 after:bg-[#1a56db] after:absolute after:-right-6 after:top-[50%] after:rounded-full hover:before:w-full hover:after:h-[75%] hover:before:h-[75%] hover:after:w-full"
->
-  Related Products
-</h1>
-<owl-carousel-o [options]="customOptionsCat">
-  @for (item of [1,2,3,4,5] ; track $index) {
-  <ng-template carouselSlide>
-    <div class="p-2">
-      <div
-        class="hover:scale-[1.05] transition-all duration-[0.5s] bg-white p-3 rounded-lg shadow-lg"
-      >
-        <owl-carousel-o [options]="customOptionsCat">
-          @for (item of [1,2,3]; track $index) {
-          <ng-template carouselSlide>
-            <div class="text-center cursor-pointer">
-              <img
-                src="../../../assets/images/OIP.jpeg"
-                [alt]=""
-                class="w-full h-[200px] rounded-md"
-              />
-            </div>
-          </ng-template>
-          }
-        </owl-carousel-o>
-
-        <h5 class="my-2 font-semibold">Apple Watch Series 4</h5>
-        <div class="flex justify-between">
-          <p class="my-1 text-[#4880FF] font-semibold">1200$</p>
-          <div
-            class="cursor-pointer p-1 rounded-full color1 d-flex items-center justify-center"
-          >
-            <i class="fa-regular fa-heart"></i>
-          </div>
-        </div>
-
-        <div class="flex my-2">
-          <i class="fa-solid fa-star text-yellow-400"></i>
-          <i class="fa-solid fa-star text-yellow-400"></i>
-          <i class="fa-solid fa-star text-yellow-400"></i>
-          <i class="fa-solid fa-star-half-stroke text-yellow-400"></i>
-          <i class="fa-regular fa-star text-yellow-400"></i>
-        </div>
-        <button
-          class="bg-slate-100 text-sm font-semibold rounded-md px-3 py-1 my-2"
-        >
-          Edit product
-        </button>
-      </div>
-    </div>
-  </ng-template>
-  }
-</owl-carousel-o> -->
 
 <div>
 <input type="file" (change)="onFileSelectedImage($event)" />

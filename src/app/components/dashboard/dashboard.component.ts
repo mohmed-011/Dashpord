@@ -10,12 +10,13 @@ import { IMostselas } from '../../core/Interfaces/Top/imostselas';
 import { ISellernumbrs } from '../../core/Interfaces/isellernumbrs';
 import { OrdersService } from '../../core/services/orders.service';
 import { Iorder } from '../../core/Interfaces/iorder';
+import { RouterLink } from '@angular/router';
 Chart.register(...registerables)
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })
@@ -32,6 +33,7 @@ orderList:Iorder[]=[]
 
 
     ngOnInit(): void {
+      
       let userId: number | null = localStorage.getItem('userID') !== null
   ? Number(localStorage.getItem('userID'))
   : null;

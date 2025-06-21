@@ -1,6 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { FavoriteService } from '../../core/services/favorite.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-favorits',
@@ -13,6 +14,8 @@ export class FavoritsComponent implements OnInit {
 
   productList:Ifav [] =[]
   private readonly _FavoriteService = inject(FavoriteService)
+      constructor(private toastr: ToastrService) {}
+
   ngOnInit(): void {
     let userId: number | null = localStorage.getItem('userID') !== null
     ? Number(localStorage.getItem('userID'))
@@ -37,6 +40,9 @@ export class FavoritsComponent implements OnInit {
     this._FavoriteService.DeleteFavoriteItemBySeller(userId ,ItemID ).subscribe({
       next:(res)=>{
         console.log(res );
+        this.toastr.warning("Product removed from Favorites", 'Done');
+        this.ngOnInit()
+
       },
       error:()=>{}
     })

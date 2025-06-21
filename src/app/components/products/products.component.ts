@@ -10,11 +10,13 @@ import { ISubCategory } from '../../core/Interfaces/isub-category';
 import { IBrand } from '../../core/Interfaces/ibrand';
 import { SelectFiltersService } from '../../core/services/select-filters.service';
 import { FavoriteService } from '../../core/services/favorite.service';
+import { ToastrService } from 'ngx-toastr';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [CarouselModule, RouterLink, ReactiveFormsModule, FormsModule],
+  imports: [CarouselModule, RouterLink, ReactiveFormsModule, FormsModule,CommonModule],
   templateUrl: './products.component.html',
   styleUrl: './products.component.scss'
 })
@@ -24,6 +26,7 @@ export class ProductsComponent {
   private readonly fb = inject(FormBuilder);
   private readonly _SelectFiltersService = inject(SelectFiltersService);
     private readonly _FavoriteService = inject(FavoriteService)
+    constructor(private toastr: ToastrService) {}
 
   filterForm!: FormGroup;
   categoryList: ICategory[] = [];
@@ -150,11 +153,23 @@ export class ProductsComponent {
     this._FavoriteService.AddFavoriteItemBySeller(userId ,ItemID ).subscribe({
       next:(res)=>{
         console.log(res );
+        this.toastr.success("Product added to Favorites", 'Done');
       },
       error:()=>{}
     })
-  }
 
+    if (this.favoriteItems.has(ItemID!)) {
+      this.favoriteItems.delete(ItemID!);
+    } else {
+      this.favoriteItems.add(ItemID!);
+    }
+  }
+  favoriteItems: Set<string> = new Set();
+
+
+  isFav(itemId: string): boolean {
+    return this.favoriteItems.has(itemId);
+  }
   customOptionsCat: OwlOptions = {
     loop: true,
     mouseDrag: true,
